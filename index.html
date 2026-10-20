@@ -119,7 +119,6 @@
                         <p id="chart-avg-text" class="text-xs text-slate-500 mt-0.5">Promedio ponderado del mes: 91.87%</p>
                     </div>
 
-                    <!-- Gráfico de barras -->
                     <div class="h-64 flex items-end justify-around gap-4 pt-8 pb-2 px-4 border-b border-slate-100 mt-4">
                         <div class="w-16 bg-orange-500 rounded-t-lg transition-all duration-500 hover:bg-orange-600 relative group flex items-center justify-center" id="bar-nl" style="height: 93.57%;">
                             <span id="bar-nl-val" class="absolute -top-7 text-xs font-bold text-slate-700">93.57%</span>
@@ -145,10 +144,8 @@
                         <p class="text-xs text-slate-500 mt-0.5">Haz clic en cada barra para ver la distribución detallada de casos</p>
                     </div>
 
-                    <!-- BARRAS HORIZONTALES DINÁMICAS -->
                     <div class="space-y-6 my-6">
-                        
-                        <!-- BARRA 1: SOPORTE -->
+                        <!-- BARRA SOPORTE -->
                         <div onclick="openModal('soporte')" class="cursor-pointer group">
                             <div class="flex justify-between text-xs font-medium text-slate-700 mb-1.5">
                                 <span class="font-semibold text-slate-800 group-hover:text-emerald-800 group-hover:underline flex items-center gap-2 transition">
@@ -161,7 +158,7 @@
                             </div>
                         </div>
 
-                        <!-- BARRA 2: INTERURBANAS -->
+                        <!-- BARRA INTERURBANAS -->
                         <div onclick="openModal('interurbanas')" class="cursor-pointer group">
                             <div class="flex justify-between text-xs font-medium text-slate-700 mb-1.5">
                                 <span class="font-semibold text-slate-800 group-hover:text-slate-600 group-hover:underline flex items-center gap-2 transition">
@@ -173,7 +170,6 @@
                                 <div id="q-inter-bar" class="bg-slate-500 h-2 rounded-full transition-all duration-500 group-hover:bg-slate-600" style="width: 15.61%"></div>
                             </div>
                         </div>
-
                     </div>
 
                     <div id="footer-total-text" class="text-xs text-slate-400 text-right pt-2 border-t border-slate-100">
@@ -194,7 +190,7 @@
                 </div>
 
                 <div onclick="openImageModal('geeos')" class="cursor-pointer group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 hover:shadow-md transition max-h-48 md:max-h-52 flex items-center justify-center">
-                    <img id="geeos-img" src="image_19bed7.jpeg" onerror="this.onerror=null; this.src='image_19bed7.jpg'; if(!this.src.endsWith('.png')) this.src='image_19bed7.png';" alt="Gráfica Geeos" class="w-full h-auto object-cover object-top transition duration-300 group-hover:scale-[1.01]">
+                    <img id="geeos-img" src="image_19bed7.jpeg" onerror="this.onerror=null; this.src='image_19bed7.png'; if(!this.src.endsWith('.jpg')) this.src='image_19bed7.jpg';" alt="Gráfica Geeos" class="w-full h-auto object-cover object-top transition duration-300 group-hover:scale-[1.01]">
                     <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-slate-900/25 transition flex items-center justify-center">
                         <span class="bg-white/95 backdrop-blur-sm text-slate-800 text-xs font-semibold px-3.5 py-1.5 rounded-lg shadow-sm border border-slate-200 flex items-center gap-1.5 group-hover:scale-105 transition">
                             <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
@@ -208,7 +204,7 @@
 
     </div>
 
-    <!-- MODAL INTERACTIVO DE DETALLES DE CUADRILLAS -->
+    <!-- MODAL CUADRILLAS -->
     <div id="detail-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4 animate-in fade-in zoom-in duration-200">
             <div class="flex justify-between items-center border-b border-slate-100 pb-3">
@@ -216,9 +212,7 @@
                 <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold px-2">&times;</button>
             </div>
             
-            <div id="modal-content" class="space-y-3 text-sm text-slate-600">
-                <!-- Contenido dinámico -->
-            </div>
+            <div id="modal-content" class="space-y-3 text-sm text-slate-600"></div>
 
             <div class="pt-2 border-t border-slate-100 flex justify-end">
                 <button onclick="closeModal()" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs px-4 py-2 rounded-xl transition">
@@ -228,7 +222,7 @@
         </div>
     </div>
 
-    <!-- MODAL AMPLIO PARA VISUALIZACIÓN DE IMÁGENES / GRÁFICAS -->
+    <!-- MODAL AMPLIADO PARA IMÁGENES -->
     <div id="image-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4 md:p-8" onclick="closeImageModal()">
         <div class="bg-white rounded-2xl max-w-5xl w-full p-6 shadow-2xl border border-slate-200 space-y-4 relative" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center border-b border-slate-100 pb-3">
@@ -399,7 +393,6 @@
             } else {
                 title.innerText = `Cuadrillas Interurbanas - ${data.title}`;
                 
-                // Si el mes es Agosto, hacer interactiva la tarjeta de CASOS GESTIONADOS
                 const isAgosto = selectedMonthKey === 'agosto';
                 const casosClass = isAgosto 
                     ? "bg-slate-50 hover:bg-blue-50/70 cursor-pointer transition p-3 rounded-xl border border-slate-200/80 flex justify-between items-center group" 
@@ -457,8 +450,8 @@
                 imgSrc.src = "int_agosto.jpeg";
                 imgSrc.onerror = function() {
                     this.onerror = null;
-                    this.src = 'int_agosto.jpg';
-                    if(!this.src.endsWith('.png')) this.src = 'int_agosto.png';
+                    this.src = 'int_agosto.png';
+                    if(!this.src.endsWith('.jpg')) this.src = 'int_agosto.jpg';
                 };
                 imgFooter.innerText = "Detalle de distribución de casos Netlife y Ecuanet por tramo interurbano";
             } else {
@@ -466,8 +459,8 @@
                 imgSrc.src = "image_19bed7.jpeg";
                 imgSrc.onerror = function() {
                     this.onerror = null;
-                    this.src = 'image_19bed7.jpg';
-                    if(!this.src.endsWith('.png')) this.src = 'image_19bed7.png';
+                    this.src = 'image_19bed7.png';
+                    if(!this.src.endsWith('.jpg')) this.src = 'image_19bed7.jpg';
                 };
                 imgFooter.innerText = "Fuente: Qlik Sense - Soporte Netlife TS Santo Domingo";
             }
