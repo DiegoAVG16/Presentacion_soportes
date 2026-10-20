@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TS Santo Domingo - Dashboard de Gestión Operativa</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Importar Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
         html { scroll-behavior: smooth; }
+        .custom-tooltip {
+            transition: all 0.15s ease-in-out;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="text-slate-800 antialiased min-h-screen p-6 md:p-10">
@@ -224,7 +226,7 @@
         </div>
     </div>
 
-    <!-- MODAL AMPLIADO PARA IMÁGENES / GRÁFICA INTERACTIVA -->
+    <!-- MODAL AMPLIO PARA IMÁGENES / GRÁFICA INTERACTIVA NATIVA -->
     <div id="image-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4 md:p-8" onclick="closeImageModal()">
         <div class="bg-white rounded-2xl max-w-5xl w-full p-6 shadow-2xl border border-slate-200 space-y-4 relative" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center border-b border-slate-100 pb-3">
@@ -235,10 +237,121 @@
                 <button onclick="closeImageModal()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold px-2 leading-none">&times;</button>
             </div>
             
-            <!-- Contenedor optimizado sin overflow para permitir interactividad del mouse -->
-            <div class="bg-slate-50 rounded-xl border border-slate-200/80 p-4 relative flex items-center justify-center h-[500px]">
-                <img id="image-modal-src" src="" alt="Gráfica Ampliada" class="w-full h-full object-contain rounded-lg hidden">
-                <canvas id="interactive-chart" class="w-full h-full hidden"></canvas>
+            <!-- Contenedor Visualizador -->
+            <div id="modal-content-box" class="bg-slate-50 rounded-xl border border-slate-200/80 p-4 relative flex items-center justify-center min-h-[460px]">
+                <!-- Imagen normal (Octubre) -->
+                <img id="image-modal-src" src="" alt="Gráfica Ampliada" class="w-full h-auto max-h-[75vh] object-contain rounded-lg hidden">
+                
+                <!-- Gráfico Interactivo SVG Nativo (Agosto) con Tooltip Flotante -->
+                <div id="interactive-svg-container" class="w-full h-full relative hidden">
+                    <div class="flex justify-center items-center gap-6 mb-2">
+                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-orange-500 inline-block"></span> NETLIFE</div>
+                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-sky-500 inline-block"></span> ECUANET</div>
+                    </div>
+                    
+                    <!-- SVG Chart Area -->
+                    <div class="relative w-full overflow-x-auto">
+                        <svg viewBox="0 0 900 340" class="w-full h-[320px] select-none">
+                            <!-- Líneas de cuadrícula horizontal -->
+                            <line x1="50" y1="30" x2="870" y2="30" stroke="#e2e8f0" stroke-dasharray="4" />
+                            <line x1="50" y1="90" x2="870" y2="90" stroke="#e2e8f0" stroke-dasharray="4" />
+                            <line x1="50" y1="150" x2="870" y2="150" stroke="#e2e8f0" stroke-dasharray="4" />
+                            <line x1="50" y1="210" x2="870" y2="210" stroke="#e2e8f0" stroke-dasharray="4" />
+                            <line x1="50" y1="270" x2="870" y2="270" stroke="#cbd5e1" />
+
+                            <!-- Etiquetas Eje Y -->
+                            <text x="35" y="35" font-size="11" fill="#64748b" text-anchor="end">25</text>
+                            <text x="35" y="95" font-size="11" fill="#64748b" text-anchor="end">20</text>
+                            <text x="35" y="155" font-size="11" fill="#64748b" text-anchor="end">15</text>
+                            <text x="35" y="215" font-size="11" fill="#64748b" text-anchor="end">10</text>
+                            <text x="35" y="275" font-size="11" fill="#64748b" text-anchor="end">0</text>
+
+                            <!-- Línea NETLIFE (Naranja) -->
+                            <path d="M 90 96 L 175 240 L 260 36 L 345 96 L 430 216 L 515 246 L 600 270 L 685 240 L 770 270 L 855 240" fill="none" stroke="#f97316" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            
+                            <!-- Línea ECUANET (Celeste) -->
+                            <path d="M 90 96 L 175 240 L 260 198 L 345 210 L 430 180 L 515 192 L 600 270 L 685 180 L 770 222 L 855 240" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+
+                            <!-- Puntos Interactivos y Etiquetas Eje X -->
+                            <!-- TRAMO 1 -->
+                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV STO INT 01', 16, 16, 90, 80)" onmouseleave="hideTooltip()">
+                                <text x="90" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 90, 295)">STO PROV STO INT 01</text>
+                                <circle cx="90" cy="96" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
+                                <circle cx="90" cy="96" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
+                            </g>
+
+                            <!-- TRAMO 2 -->
+                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV STO INT 02', 2, 2, 175, 220)" onmouseleave="hideTooltip()">
+                                <text x="175" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 175, 295)">STO PROV STO INT 02</text>
+                                <circle cx="175" cy="240" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
+                                <circle cx="175" cy="240" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
+                            </g>
+
+                            <!-- TRAMO 3 -->
+                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV STO INT 03', 22, 8, 260, 20)" onmouseleave="hideTooltip()">
+                                <text x="260" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 260, 295)">STO PROV STO INT 03</text>
+                                <circle cx="260" cy="36" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
+                                <circle cx="260" cy="198" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
+                            </g>
+
+                            <!-- TRAMO 4 -->
+                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV STO INT 04', 15, 7, 345, 80)" onmouseleave="hideTooltip()">
+                                <text x="345" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 345, 295)">STO PROV STO INT 04</text>
+                                <circle cx="345" cy="96" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
+                                <circle cx="345" cy="210" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
+                            </g>
+
+                            <!-- TRAMO 5 -->
+                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV PTQ INT 01', 8, 10, 430, 160)" onmouseleave="hideTooltip()">
+                                <text x="430" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 430, 295)">STO PROV PTQ INT 01</text>
+                                <circle cx="430" cy="216" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
+                                <circle cx="430" cy="180" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
+                            </g>
+
+                            <!-- TRAMO 6 -->
+                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV LDA INT 01', 4, 9, 515, 170)" onmouseleave="hideTooltip()">
+                                <text x="515" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 515, 295)">STO PROV LDA INT 01</text>
+                                <circle cx="515" cy="246" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
+                                <circle cx="515" cy="192" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
+                            </g>
+
+                            <!-- TRAMO 7 -->
+                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV CAR INT 01', 1, 1, 600, 230)" onmouseleave="hideTooltip()">
+                                <text x="600" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 600, 295)">STO PROV CAR INT 01</text>
+                                <circle cx="600" cy="270" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
+                                <circle cx="600" cy="270" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
+                            </g>
+
+                            <!-- TRAMO 8 -->
+                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV TAN INT 01', 5, 9, 685, 160)" onmouseleave="hideTooltip()">
+                                <text x="685" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 685, 295)">STO PROV TAN INT 01</text>
+                                <circle cx="685" cy="240" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
+                                <circle cx="685" cy="180" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
+                            </g>
+
+                            <!-- TRAMO 9 -->
+                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV BAN INT 01', 0, 6, 770, 200)" onmouseleave="hideTooltip()">
+                                <text x="770" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 770, 295)">STO PROV BAN INT 01</text>
+                                <circle cx="770" cy="270" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
+                                <circle cx="770" cy="222" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
+                            </g>
+
+                            <!-- TRAMO 10 -->
+                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV CON INT 01', 2, 2, 855, 220)" onmouseleave="hideTooltip()">
+                                <text x="855" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 855, 295)">STO PROV CON INT 01</text>
+                                <circle cx="855" cy="240" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
+                                <circle cx="855" cy="240" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
+                            </g>
+                        </svg>
+
+                        <!-- Tooltip Flotante Negro Exacto -->
+                        <div id="chart-tooltip" class="custom-tooltip absolute hidden bg-slate-900/95 text-white text-xs rounded-lg p-2.5 shadow-xl border border-slate-700 pointer-events-none z-30">
+                            <div id="tooltip-title" class="font-bold border-b border-slate-700 pb-1 mb-1"></div>
+                            <div id="tooltip-nl" class="text-orange-400"></div>
+                            <div id="tooltip-en" class="text-sky-400"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="flex justify-between items-center text-xs text-slate-500 pt-1 border-t border-slate-100">
@@ -253,7 +366,6 @@
     <!-- SCRIPT INTERACTIVO -->
     <script>
         let selectedMonthKey = 'julio';
-        let myChartInstance = null;
 
         const monthData = {
             julio: {
@@ -404,7 +516,7 @@
                     : "bg-slate-50 p-3 rounded-xl border border-slate-200/80 flex justify-between items-center";
                 
                 const clickHint = isAgosto 
-                    ? `<span class="block text-[10px] text-blue-600 font-medium group-hover:underline mt-0.5">🔍 Haz clic para ver gráfico interactivo con tooltip</span>` 
+                    ? `<span class="block text-[10px] text-blue-600 font-medium group-hover:underline mt-0.5">🔍 Haz clic para ver gráfico interactivo por tramo</span>` 
                     : ``;
 
                 content.innerHTML = `
@@ -448,87 +560,16 @@
             const imgModal = document.getElementById('image-modal');
             const imgTitle = document.getElementById('image-modal-title');
             const imgSrc = document.getElementById('image-modal-src');
-            const canvasEl = document.getElementById('interactive-chart');
+            const svgContainer = document.getElementById('interactive-svg-container');
             const imgFooter = document.getElementById('image-modal-footer');
 
             if (type === 'interurbanas_agosto') {
                 imgTitle.innerText = "Cuadrillas Interurbanas - Rendimiento por Tramo (Agosto 2026)";
                 imgSrc.classList.add('hidden');
-                canvasEl.classList.remove('hidden');
-                imgFooter.innerText = "Pasa el cursor sobre los puntos de la línea para ver las cantidades de NETLIFE y ECUANET";
-
-                if (myChartInstance) {
-                    myChartInstance.destroy();
-                }
-
-                const ctx = canvasEl.getContext('2d');
-                myChartInstance = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: [
-                            'STO PROV STO INT 01', 'STO PROV STO INT 02', 'STO PROV STO INT 03', 
-                            'STO PROV STO INT 04', 'STO PROV PTQ INT 01', 'STO PROV LDA INT 01', 
-                            'STO PROV CAR INT 01', 'STO PROV TAN INT 01', 'STO PROV BAN INT 01', 'STO PROV CON INT 01'
-                        ],
-                        datasets: [
-                            {
-                                label: 'NETLIFE',
-                                data: [16, 2, 22, 15, 8, 4, 1, 5, 0, 2],
-                                borderColor: '#f97316',
-                                backgroundColor: '#f97316',
-                                borderWidth: 3,
-                                tension: 0.3,
-                                pointRadius: 6,
-                                pointHoverRadius: 9
-                            },
-                            {
-                                label: 'ECUANET',
-                                data: [16, 2, 8, 7, 10, 9, 1, 9, 6, 2],
-                                borderColor: '#0ea5e9',
-                                backgroundColor: '#0ea5e9',
-                                borderWidth: 3,
-                                tension: 0.3,
-                                pointRadius: 6,
-                                pointHoverRadius: 9
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        interaction: {
-                            mode: 'index',
-                            intersect: false
-                        },
-                        plugins: {
-                            tooltip: {
-                                enabled: true,
-                                backgroundColor: 'rgba(15, 23, 42, 0.95)',
-                                titleFont: { size: 13, weight: 'bold' },
-                                bodyFont: { size: 12, weight: '500' },
-                                padding: 12,
-                                cornerRadius: 8
-                            },
-                            legend: {
-                                position: 'top',
-                                labels: { font: { weight: 'bold', size: 12 } }
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                grid: { color: '#e2e8f0' }
-                            },
-                            x: {
-                                grid: { display: false },
-                                ticks: { font: { size: 10, weight: '600' } }
-                            }
-                        }
-                    }
-                });
-
+                svgContainer.classList.remove('hidden');
+                imgFooter.innerText = "Pasa el cursor sobre cada punto para ver el detalle de Netlife y Ecuanet";
             } else {
-                canvasEl.classList.add('hidden');
+                svgContainer.classList.add('hidden');
                 imgSrc.classList.remove('hidden');
                 imgTitle.innerText = "Vista Ampliada - Gráfica Geeos (Octubre 2026)";
                 imgSrc.src = "image_19bed7.jpeg";
@@ -548,10 +589,23 @@
             const imgModal = document.getElementById('image-modal');
             imgModal.classList.remove('flex');
             imgModal.classList.add('hidden');
-            if (myChartInstance) {
-                myChartInstance.destroy();
-                myChartInstance = null;
-            }
+            hideTooltip();
+        }
+
+        function showTooltip(tramoName, netlifeVal, ecuanetVal, posX, posY) {
+            const tooltip = document.getElementById('chart-tooltip');
+            document.getElementById('tooltip-title').innerText = tramoName;
+            document.getElementById('tooltip-nl').innerText = `NETLIFE: ${netlifeVal}`;
+            document.getElementById('tooltip-en').innerText = `ECUANET: ${ecuanetVal}`;
+            
+            tooltip.style.left = `${posX}px`;
+            tooltip.style.top = `${posY}px`;
+            tooltip.classList.remove('hidden');
+        }
+
+        function hideTooltip() {
+            const tooltip = document.getElementById('chart-tooltip');
+            tooltip.classList.add('hidden');
         }
     </script>
 </body>
