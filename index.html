@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TS Santo Domingo - Dashboard de Gestión Operativa</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Importar Chart.js para gráficos interactivos -->
+    <!-- Importar Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -224,7 +224,7 @@
         </div>
     </div>
 
-    <!-- MODAL AMPLIO PARA IMÁGENES / GRÁFICA INTERACTIVA -->
+    <!-- MODAL AMPLIADO PARA IMÁGENES / GRÁFICA INTERACTIVA -->
     <div id="image-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4 md:p-8" onclick="closeImageModal()">
         <div class="bg-white rounded-2xl max-w-5xl w-full p-6 shadow-2xl border border-slate-200 space-y-4 relative" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center border-b border-slate-100 pb-3">
@@ -235,10 +235,10 @@
                 <button onclick="closeImageModal()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold px-2 leading-none">&times;</button>
             </div>
             
-            <!-- Contenedor dinámico (Imagen estática o Gráfico interactivo con Tooltip) -->
-            <div id="modal-body-container" class="overflow-auto rounded-xl border border-slate-200/80 bg-slate-50 flex items-center justify-center p-4 min-h-[400px]">
-                <img id="image-modal-src" src="" alt="Gráfica Ampliada" class="w-full h-auto max-h-[75vh] object-contain rounded-lg hidden">
-                <canvas id="interactive-chart" class="w-full max-h-[75vh] hidden"></canvas>
+            <!-- Contenedor optimizado sin overflow para permitir interactividad del mouse -->
+            <div class="bg-slate-50 rounded-xl border border-slate-200/80 p-4 relative flex items-center justify-center h-[500px]">
+                <img id="image-modal-src" src="" alt="Gráfica Ampliada" class="w-full h-full object-contain rounded-lg hidden">
+                <canvas id="interactive-chart" class="w-full h-full hidden"></canvas>
             </div>
 
             <div class="flex justify-between items-center text-xs text-slate-500 pt-1 border-t border-slate-100">
@@ -404,7 +404,7 @@
                     : "bg-slate-50 p-3 rounded-xl border border-slate-200/80 flex justify-between items-center";
                 
                 const clickHint = isAgosto 
-                    ? `<span class="block text-[10px] text-blue-600 font-medium group-hover:underline mt-0.5">🔍 Haz clic para ver gráfica interactiva por tramo</span>` 
+                    ? `<span class="block text-[10px] text-blue-600 font-medium group-hover:underline mt-0.5">🔍 Haz clic para ver gráfico interactivo con tooltip</span>` 
                     : ``;
 
                 content.innerHTML = `
@@ -455,7 +455,7 @@
                 imgTitle.innerText = "Cuadrillas Interurbanas - Rendimiento por Tramo (Agosto 2026)";
                 imgSrc.classList.add('hidden');
                 canvasEl.classList.remove('hidden');
-                imgFooter.innerText = "Pasa el cursor sobre los puntos de la línea para ver las cantidades exactas de Netlife y Ecuanet";
+                imgFooter.innerText = "Pasa el cursor sobre los puntos de la línea para ver las cantidades de NETLIFE y ECUANET";
 
                 if (myChartInstance) {
                     myChartInstance.destroy();
@@ -476,31 +476,36 @@
                                 data: [16, 2, 22, 15, 8, 4, 1, 5, 0, 2],
                                 borderColor: '#f97316',
                                 backgroundColor: '#f97316',
-                                borderWidth: 2.5,
+                                borderWidth: 3,
                                 tension: 0.3,
-                                pointRadius: 5,
-                                pointHoverRadius: 8
+                                pointRadius: 6,
+                                pointHoverRadius: 9
                             },
                             {
                                 label: 'ECUANET',
                                 data: [16, 2, 8, 7, 10, 9, 1, 9, 6, 2],
                                 borderColor: '#0ea5e9',
                                 backgroundColor: '#0ea5e9',
-                                borderWidth: 2.5,
+                                borderWidth: 3,
                                 tension: 0.3,
-                                pointRadius: 5,
-                                pointHoverRadius: 8
+                                pointRadius: 6,
+                                pointHoverRadius: 9
                             }
                         ]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false
+                        },
                         plugins: {
                             tooltip: {
-                                backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                                enabled: true,
+                                backgroundColor: 'rgba(15, 23, 42, 0.95)',
                                 titleFont: { size: 13, weight: 'bold' },
-                                bodyFont: { size: 12 },
+                                bodyFont: { size: 12, weight: '500' },
                                 padding: 12,
                                 cornerRadius: 8
                             },
@@ -516,7 +521,7 @@
                             },
                             x: {
                                 grid: { display: false },
-                                ticks: { font: { size: 10 } }
+                                ticks: { font: { size: 10, weight: '600' } }
                             }
                         }
                     }
