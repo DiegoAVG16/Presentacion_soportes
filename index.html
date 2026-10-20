@@ -239,8 +239,6 @@
             
             <!-- Contenedor Visualizador -->
             <div id="modal-content-box" class="bg-slate-50 rounded-xl border border-slate-200/80 p-4 relative flex items-center justify-center min-h-[460px]">
-                <!-- Imagen normal (Octubre) -->
-                <img id="image-modal-src" src="" alt="Gráfica Ampliada" class="w-full h-auto max-h-[75vh] object-contain rounded-lg hidden">
                 
                 <!-- Gráfico Interactivo SVG de Agosto -->
                 <div id="svg-container-agosto" class="w-full h-full relative hidden">
@@ -265,7 +263,6 @@
                             <path d="M 90 96 L 175 240 L 260 36 L 345 96 L 430 216 L 515 246 L 600 270 L 685 240 L 770 270 L 855 240" fill="none" stroke="#f97316" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M 90 96 L 175 240 L 260 198 L 345 210 L 430 180 L 515 192 L 600 270 L 685 180 L 770 222 L 855 240" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
 
-                            <!-- Puntos Agosto -->
                             <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 01', 16, 16, 90, 80)" onmouseleave="hideTooltip()"><text x="90" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 90, 295)">STO PROV STO INT 01</text><circle cx="90" cy="96" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="90" cy="96" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
                             <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 02', 2, 2, 175, 220)" onmouseleave="hideTooltip()"><text x="175" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 175, 295)">STO PROV STO INT 02</text><circle cx="175" cy="240" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="175" cy="240" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
                             <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 03', 22, 8, 260, 20)" onmouseleave="hideTooltip()"><text x="260" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 260, 295)">STO PROV STO INT 03</text><circle cx="260" cy="36" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="260" cy="198" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
@@ -301,11 +298,9 @@
                             <text x="35" y="205" font-size="11" fill="#64748b" text-anchor="end">10</text>
                             <text x="35" y="315" font-size="11" fill="#64748b" text-anchor="end">0</text>
 
-                            <!-- Líneas Septiembre -->
                             <path d="M 90 28.5 L 175 92.5 L 260 85.25 L 345 63.5 L 430 288.25 L 515 259.25 L 600 295.5 L 685 281 L 770 281 L 855 273.75" fill="none" stroke="#f97316" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M 90 143.25 L 175 215.75 L 260 201.25 L 345 165 L 430 266.5 L 515 237.5 L 600 310 L 685 266.5 L 770 201.25 L 855 281" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
 
-                            <!-- Puntos Septiembre con valores exactos -->
                             <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 01', 39, 23, 90, 40)" onmouseleave="hideTooltip()"><text x="90" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 90, 330)">STO PROV STO INT 01</text><circle cx="90" cy="28.5" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="90" cy="143.25" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
                             <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 02', 30, 13, 175, 80)" onmouseleave="hideTooltip()"><text x="175" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 175, 330)">STO PROV STO INT 02</text><circle cx="175" cy="92.5" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="175" cy="215.75" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
                             <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 03', 31, 15, 260, 70)" onmouseleave="hideTooltip()"><text x="260" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 260, 330)">STO PROV STO INT 03</text><circle cx="260" cy="85.25" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="260" cy="201.25" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
@@ -316,6 +311,45 @@
                             <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV TAN INT 01', 4, 6, 685, 220)" onmouseleave="hideTooltip()"><text x="685" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 685, 330)">STO PROV TAN INT 01</text><circle cx="685" cy="281" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="685" cy="266.5" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
                             <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV BAN INT 01', 4, 15, 770, 180)" onmouseleave="hideTooltip()"><text x="770" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 770, 330)">STO PROV BAN INT 01</text><circle cx="770" cy="281" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="770" cy="201.25" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
                             <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CON INT 01', 5, 4, 855, 230)" onmouseleave="hideTooltip()"><text x="855" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 855, 330)">STO PROV CON INT 01</text><circle cx="855" cy="273.75" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="855" cy="281" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Gráfico Interactivo SVG de Octubre (NUEVO) -->
+                <div id="svg-container-octubre" class="w-full h-full relative hidden">
+                    <div class="flex justify-center items-center gap-6 mb-2">
+                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-orange-500 inline-block"></span> NETLIFE</div>
+                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-sky-500 inline-block"></span> ECUANET</div>
+                    </div>
+                    <div class="relative w-full overflow-x-auto">
+                        <svg viewBox="0 0 900 340" class="w-full h-[320px] select-none">
+                            <line x1="50" y1="30" x2="870" y2="30" stroke="#e2e8f0" stroke-dasharray="4" />
+                            <line x1="50" y1="90" x2="870" y2="90" stroke="#e2e8f0" stroke-dasharray="4" />
+                            <line x1="50" y1="150" x2="870" y2="150" stroke="#e2e8f0" stroke-dasharray="4" />
+                            <line x1="50" y1="210" x2="870" y2="210" stroke="#e2e8f0" stroke-dasharray="4" />
+                            <line x1="50" y1="270" x2="870" y2="270" stroke="#cbd5e1" />
+
+                            <text x="35" y="35" font-size="11" fill="#64748b" text-anchor="end">20</text>
+                            <text x="35" y="95" font-size="11" fill="#64748b" text-anchor="end">15</text>
+                            <text x="35" y="155" font-size="11" fill="#64748b" text-anchor="end">10</text>
+                            <text x="35" y="215" font-size="11" fill="#64748b" text-anchor="end">5</text>
+                            <text x="35" y="275" font-size="11" fill="#64748b" text-anchor="end">0</text>
+
+                            <!-- Líneas Octubre (Escala 0 a 20 -> 12px por unidad) -->
+                            <path d="M 90 150 L 175 102 L 260 126 L 345 162 L 430 258 L 515 210 L 600 246 L 685 246 L 770 234 L 855 258" fill="none" stroke="#f97316" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M 90 102 L 175 42 L 260 210 L 345 198 L 430 174 L 515 234 L 600 258 L 685 234 L 770 186 L 855 234" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+
+                            <!-- Puntos Octubre con valores exactos basados en la imagen -->
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 01', 10, 14, 90, 80)" onmouseleave="hideTooltip()"><text x="90" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 90, 295)">STO PROV STO INT 01</text><circle cx="90" cy="150" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="90" cy="102" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 02', 14, 19, 175, 40)" onmouseleave="hideTooltip()"><text x="175" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 175, 295)">STO PROV STO INT 02</text><circle cx="175" cy="102" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="175" cy="42" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 03', 12, 5, 260, 100)" onmouseleave="hideTooltip()"><text x="260" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 260, 295)">STO PROV STO INT 03</text><circle cx="260" cy="126" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="260" cy="210" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 04', 9, 6, 345, 120)" onmouseleave="hideTooltip()"><text x="345" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 345, 295)">STO PROV STO INT 04</text><circle cx="345" cy="162" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="345" cy="198" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV PTQ INT 01', 1, 8, 430, 160)" onmouseleave="hideTooltip()"><text x="430" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 430, 295)">STO PROV PTQ INT 01</text><circle cx="430" cy="258" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="430" cy="174" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV LDA INT 01', 5, 3, 515, 170)" onmouseleave="hideTooltip()"><text x="515" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 515, 295)">STO PROV LDA INT 01</text><circle cx="515" cy="210" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="515" cy="234" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CAR INT 01', 2, 1, 600, 210)" onmouseleave="hideTooltip()"><text x="600" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 600, 295)">STO PROV CAR INT 01</text><circle cx="600" cy="246" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="600" cy="258" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV TAN INT 01', 2, 3, 685, 210)" onmouseleave="hideTooltip()"><text x="685" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 685, 295)">STO PROV TAN INT 01</text><circle cx="685" cy="246" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="685" cy="234" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV BAN INT 01', 3, 7, 770, 160)" onmouseleave="hideTooltip()"><text x="770" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 770, 295)">STO PROV BAN INT 01</text><circle cx="770" cy="234" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="770" cy="186" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CON INT 01', 1, 3, 855, 210)" onmouseleave="hideTooltip()"><text x="855" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 855, 295)">STO PROV CON INT 01</text><circle cx="855" cy="258" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="855" cy="234" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
                         </svg>
                     </div>
                 </div>
@@ -484,7 +518,7 @@
             } else {
                 title.innerText = `Cuadrillas Interurbanas - ${data.title}`;
                 
-                const hasInteractiveGraph = selectedMonthKey === 'agosto' || selectedMonthKey === 'septiembre';
+                const hasInteractiveGraph = selectedMonthKey === 'agosto' || selectedMonthKey === 'septiembre' || selectedMonthKey === 'octubre';
                 const casosClass = hasInteractiveGraph 
                     ? "bg-slate-50 hover:bg-blue-50/70 cursor-pointer transition p-3 rounded-xl border border-slate-200/80 flex justify-between items-center group" 
                     : "bg-slate-50 p-3 rounded-xl border border-slate-200/80 flex justify-between items-center";
@@ -496,6 +530,7 @@
                 let clickAction = '';
                 if (selectedMonthKey === 'agosto') clickAction = "openImageModal('interurbanas_agosto')";
                 if (selectedMonthKey === 'septiembre') clickAction = "openImageModal('interurbanas_septiembre')";
+                if (selectedMonthKey === 'octubre') clickAction = "openImageModal('interurbanas_octubre')";
 
                 content.innerHTML = `
                     <div onclick="${clickAction}" class="${casosClass}">
@@ -537,15 +572,15 @@
         function openImageModal(type) {
             const imgModal = document.getElementById('image-modal');
             const imgTitle = document.getElementById('image-modal-title');
-            const imgSrc = document.getElementById('image-modal-src');
             const svgAgosto = document.getElementById('svg-container-agosto');
             const svgSeptiembre = document.getElementById('svg-container-septiembre');
+            const svgOctubre = document.getElementById('svg-container-octubre');
             const imgFooter = document.getElementById('image-modal-footer');
 
             // Ocultar todos por defecto
-            imgSrc.classList.add('hidden');
             svgAgosto.classList.add('hidden');
             svgSeptiembre.classList.add('hidden');
+            svgOctubre.classList.add('hidden');
 
             if (type === 'interurbanas_agosto') {
                 imgTitle.innerText = "Cuadrillas Interurbanas - Rendimiento por Tramo (Agosto 2026)";
@@ -555,16 +590,10 @@
                 imgTitle.innerText = "Cuadrillas Interurbanas - Rendimiento por Tramo (Septiembre 2026)";
                 svgSeptiembre.classList.remove('hidden');
                 imgFooter.innerText = "Pasa el cursor sobre cada punto para ver el detalle de Netlife y Ecuanet";
-            } else {
-                imgTitle.innerText = "Vista Ampliada - Gráfica Geeos (Octubre 2026)";
-                imgSrc.classList.remove('hidden');
-                imgSrc.src = "image_19bed7.jpeg";
-                imgSrc.onerror = function() {
-                    this.onerror = null;
-                    this.src = 'image_19bed7.png';
-                    if(!this.src.endsWith('.jpg')) this.src = 'image_19bed7.jpg';
-                };
-                imgFooter.innerText = "Fuente: Qlik Sense - Soporte Netlife TS Santo Domingo";
+            } else if (type === 'interurbanas_octubre') {
+                imgTitle.innerText = "Cuadrillas Interurbanas - Rendimiento por Tramo (Octubre 2026)";
+                svgOctubre.classList.remove('hidden');
+                imgFooter.innerText = "Pasa el cursor sobre cada punto para ver el detalle de Netlife y Ecuanet";
             }
 
             imgModal.classList.remove('hidden');
