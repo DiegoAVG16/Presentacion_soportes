@@ -226,7 +226,7 @@
         </div>
     </div>
 
-    <!-- MODAL AMPLIO PARA IMÁGENES / GRÁFICA INTERACTIVA NATIVA -->
+    <!-- MODAL AMPLIADO PARA GRÁFICAS INTERACTIVAS SVG -->
     <div id="image-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4 md:p-8" onclick="closeImageModal()">
         <div class="bg-white rounded-2xl max-w-5xl w-full p-6 shadow-2xl border border-slate-200 space-y-4 relative" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center border-b border-slate-100 pb-3">
@@ -242,115 +242,89 @@
                 <!-- Imagen normal (Octubre) -->
                 <img id="image-modal-src" src="" alt="Gráfica Ampliada" class="w-full h-auto max-h-[75vh] object-contain rounded-lg hidden">
                 
-                <!-- Gráfico Interactivo SVG Nativo (Agosto) con Tooltip Flotante -->
-                <div id="interactive-svg-container" class="w-full h-full relative hidden">
+                <!-- Gráfico Interactivo SVG de Agosto -->
+                <div id="svg-container-agosto" class="w-full h-full relative hidden">
                     <div class="flex justify-center items-center gap-6 mb-2">
                         <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-orange-500 inline-block"></span> NETLIFE</div>
                         <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-sky-500 inline-block"></span> ECUANET</div>
                     </div>
-                    
-                    <!-- SVG Chart Area -->
                     <div class="relative w-full overflow-x-auto">
                         <svg viewBox="0 0 900 340" class="w-full h-[320px] select-none">
-                            <!-- Líneas de cuadrícula horizontal -->
                             <line x1="50" y1="30" x2="870" y2="30" stroke="#e2e8f0" stroke-dasharray="4" />
                             <line x1="50" y1="90" x2="870" y2="90" stroke="#e2e8f0" stroke-dasharray="4" />
                             <line x1="50" y1="150" x2="870" y2="150" stroke="#e2e8f0" stroke-dasharray="4" />
                             <line x1="50" y1="210" x2="870" y2="210" stroke="#e2e8f0" stroke-dasharray="4" />
                             <line x1="50" y1="270" x2="870" y2="270" stroke="#cbd5e1" />
 
-                            <!-- Etiquetas Eje Y -->
                             <text x="35" y="35" font-size="11" fill="#64748b" text-anchor="end">25</text>
                             <text x="35" y="95" font-size="11" fill="#64748b" text-anchor="end">20</text>
                             <text x="35" y="155" font-size="11" fill="#64748b" text-anchor="end">15</text>
                             <text x="35" y="215" font-size="11" fill="#64748b" text-anchor="end">10</text>
                             <text x="35" y="275" font-size="11" fill="#64748b" text-anchor="end">0</text>
 
-                            <!-- Línea NETLIFE (Naranja) -->
                             <path d="M 90 96 L 175 240 L 260 36 L 345 96 L 430 216 L 515 246 L 600 270 L 685 240 L 770 270 L 855 240" fill="none" stroke="#f97316" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                            
-                            <!-- Línea ECUANET (Celeste) -->
                             <path d="M 90 96 L 175 240 L 260 198 L 345 210 L 430 180 L 515 192 L 600 270 L 685 180 L 770 222 L 855 240" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
 
-                            <!-- Puntos Interactivos y Etiquetas Eje X -->
-                            <!-- TRAMO 1 -->
-                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV STO INT 01', 16, 16, 90, 80)" onmouseleave="hideTooltip()">
-                                <text x="90" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 90, 295)">STO PROV STO INT 01</text>
-                                <circle cx="90" cy="96" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
-                                <circle cx="90" cy="96" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
-                            </g>
-
-                            <!-- TRAMO 2 -->
-                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV STO INT 02', 2, 2, 175, 220)" onmouseleave="hideTooltip()">
-                                <text x="175" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 175, 295)">STO PROV STO INT 02</text>
-                                <circle cx="175" cy="240" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
-                                <circle cx="175" cy="240" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
-                            </g>
-
-                            <!-- TRAMO 3 -->
-                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV STO INT 03', 22, 8, 260, 20)" onmouseleave="hideTooltip()">
-                                <text x="260" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 260, 295)">STO PROV STO INT 03</text>
-                                <circle cx="260" cy="36" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
-                                <circle cx="260" cy="198" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
-                            </g>
-
-                            <!-- TRAMO 4 -->
-                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV STO INT 04', 15, 7, 345, 80)" onmouseleave="hideTooltip()">
-                                <text x="345" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 345, 295)">STO PROV STO INT 04</text>
-                                <circle cx="345" cy="96" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
-                                <circle cx="345" cy="210" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
-                            </g>
-
-                            <!-- TRAMO 5 -->
-                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV PTQ INT 01', 8, 10, 430, 160)" onmouseleave="hideTooltip()">
-                                <text x="430" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 430, 295)">STO PROV PTQ INT 01</text>
-                                <circle cx="430" cy="216" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
-                                <circle cx="430" cy="180" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
-                            </g>
-
-                            <!-- TRAMO 6 -->
-                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV LDA INT 01', 4, 9, 515, 170)" onmouseleave="hideTooltip()">
-                                <text x="515" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 515, 295)">STO PROV LDA INT 01</text>
-                                <circle cx="515" cy="246" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
-                                <circle cx="515" cy="192" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
-                            </g>
-
-                            <!-- TRAMO 7 -->
-                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV CAR INT 01', 1, 1, 600, 230)" onmouseleave="hideTooltip()">
-                                <text x="600" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 600, 295)">STO PROV CAR INT 01</text>
-                                <circle cx="600" cy="270" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
-                                <circle cx="600" cy="270" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
-                            </g>
-
-                            <!-- TRAMO 8 -->
-                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV TAN INT 01', 5, 9, 685, 160)" onmouseleave="hideTooltip()">
-                                <text x="685" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 685, 295)">STO PROV TAN INT 01</text>
-                                <circle cx="685" cy="240" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
-                                <circle cx="685" cy="180" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
-                            </g>
-
-                            <!-- TRAMO 9 -->
-                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV BAN INT 01', 0, 6, 770, 200)" onmouseleave="hideTooltip()">
-                                <text x="770" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 770, 295)">STO PROV BAN INT 01</text>
-                                <circle cx="770" cy="270" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
-                                <circle cx="770" cy="222" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
-                            </g>
-
-                            <!-- TRAMO 10 -->
-                            <g class="cursor-pointer group" onmouseenter="showTooltip('STO PROV CON INT 01', 2, 2, 855, 220)" onmouseleave="hideTooltip()">
-                                <text x="855" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 855, 295)">STO PROV CON INT 01</text>
-                                <circle cx="855" cy="240" r="6" fill="#f97316" stroke="#fff" stroke-width="2" />
-                                <circle cx="855" cy="240" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" />
-                            </g>
+                            <!-- Puntos Agosto -->
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 01', 16, 16, 90, 80)" onmouseleave="hideTooltip()"><text x="90" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 90, 295)">STO PROV STO INT 01</text><circle cx="90" cy="96" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="90" cy="96" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 02', 2, 2, 175, 220)" onmouseleave="hideTooltip()"><text x="175" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 175, 295)">STO PROV STO INT 02</text><circle cx="175" cy="240" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="175" cy="240" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 03', 22, 8, 260, 20)" onmouseleave="hideTooltip()"><text x="260" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 260, 295)">STO PROV STO INT 03</text><circle cx="260" cy="36" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="260" cy="198" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 04', 15, 7, 345, 80)" onmouseleave="hideTooltip()"><text x="345" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 345, 295)">STO PROV STO INT 04</text><circle cx="345" cy="96" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="345" cy="210" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV PTQ INT 01', 8, 10, 430, 160)" onmouseleave="hideTooltip()"><text x="430" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 430, 295)">STO PROV PTQ INT 01</text><circle cx="430" cy="216" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="430" cy="180" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV LDA INT 01', 4, 9, 515, 170)" onmouseleave="hideTooltip()"><text x="515" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 515, 295)">STO PROV LDA INT 01</text><circle cx="515" cy="246" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="515" cy="192" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CAR INT 01', 1, 1, 600, 230)" onmouseleave="hideTooltip()"><text x="600" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 600, 295)">STO PROV CAR INT 01</text><circle cx="600" cy="270" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="600" cy="270" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV TAN INT 01', 5, 9, 685, 160)" onmouseleave="hideTooltip()"><text x="685" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 685, 295)">STO PROV TAN INT 01</text><circle cx="685" cy="240" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="685" cy="180" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV BAN INT 01', 0, 6, 770, 200)" onmouseleave="hideTooltip()"><text x="770" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 770, 295)">STO PROV BAN INT 01</text><circle cx="770" cy="270" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="770" cy="222" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CON INT 01', 2, 2, 855, 220)" onmouseleave="hideTooltip()"><text x="855" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 855, 295)">STO PROV CON INT 01</text><circle cx="855" cy="240" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="855" cy="240" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
                         </svg>
-
-                        <!-- Tooltip Flotante Negro Exacto -->
-                        <div id="chart-tooltip" class="custom-tooltip absolute hidden bg-slate-900/95 text-white text-xs rounded-lg p-2.5 shadow-xl border border-slate-700 pointer-events-none z-30">
-                            <div id="tooltip-title" class="font-bold border-b border-slate-700 pb-1 mb-1"></div>
-                            <div id="tooltip-nl" class="text-orange-400"></div>
-                            <div id="tooltip-en" class="text-sky-400"></div>
-                        </div>
                     </div>
+                </div>
+
+                <!-- Gráfico Interactivo SVG de Septiembre -->
+                <div id="svg-container-septiembre" class="w-full h-full relative hidden">
+                    <div class="flex justify-center items-center gap-6 mb-2">
+                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-orange-500 inline-block"></span> NETLIFE</div>
+                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-sky-500 inline-block"></span> ECUANET</div>
+                    </div>
+                    <div class="relative w-full overflow-x-auto">
+                        <svg viewBox="0 0 900 340" class="w-full h-[320px] select-none">
+                            <line x1="50" y1="20" x2="870" y2="20" stroke="#e2e8f0" stroke-dasharray="4" />
+                            <line x1="50" y1="80" x2="870" y2="80" stroke="#e2e8f0" stroke-dasharray="4" />
+                            <line x1="50" y1="140" x2="870" y2="140" stroke="#e2e8f0" stroke-dasharray="4" />
+                            <line x1="50" y1="200" x2="870" y2="200" stroke="#e2e8f0" stroke-dasharray="4" />
+                            <line x1="50" y1="260" x2="870" y2="260" stroke="#e2e8f0" stroke-dasharray="4" />
+                            <line x1="50" y1="310" x2="870" y2="310" stroke="#cbd5e1" />
+
+                            <text x="35" y="25" font-size="11" fill="#64748b" text-anchor="end">40</text>
+                            <text x="35" y="85" font-size="11" fill="#64748b" text-anchor="end">30</text>
+                            <text x="35" y="145" font-size="11" fill="#64748b" text-anchor="end">20</text>
+                            <text x="35" y="205" font-size="11" fill="#64748b" text-anchor="end">10</text>
+                            <text x="35" y="315" font-size="11" fill="#64748b" text-anchor="end">0</text>
+
+                            <!-- Líneas Septiembre (Escala 0 a 40 -> factor 7.25 px por unidad) -->
+                            <path d="M 90 28.5 L 175 92.5 L 260 85.25 L 345 63.5 L 430 288.25 L 515 259.25 L 600 295.5 L 685 281 L 770 281 L 855 273.75" fill="none" stroke="#f97316" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M 90 143.25 L 175 215.75 L 260 201.25 L 345 165 L 430 266.5 L 515 237.5 L 600 310 L 685 266.5 L 770 201.25 L 855 281" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+
+                            <!-- Puntos Septiembre con valores exactos -->
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 01', 39, 23, 90, 40)" onmouseleave="hideTooltip()"><text x="90" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 90, 330)">STO PROV STO INT 01</text><circle cx="90" cy="28.5" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="90" cy="143.25" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 02', 30, 13, 175, 80)" onmouseleave="hideTooltip()"><text x="175" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 175, 330)">STO PROV STO INT 02</text><circle cx="175" cy="92.5" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="175" cy="215.75" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 03', 31, 15, 260, 70)" onmouseleave="hideTooltip()"><text x="260" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 260, 330)">STO PROV STO INT 03</text><circle cx="260" cy="85.25" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="260" cy="201.25" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 04', 34, 20, 345, 50)" onmouseleave="hideTooltip()"><text x="345" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 345, 330)">STO PROV STO INT 04</text><circle cx="345" cy="63.5" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="345" cy="165" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV PTQ INT 01', 3, 6, 430, 220)" onmouseleave="hideTooltip()"><text x="430" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 430, 330)">STO PROV PTQ INT 01</text><circle cx="430" cy="288.25" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="430" cy="266.5" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV LDA INT 01', 7, 10, 515, 200)" onmouseleave="hideTooltip()"><text x="515" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 515, 330)">STO PROV LDA INT 01</text><circle cx="515" cy="259.25" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="515" cy="237.5" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CAR INT 01', 2, 0, 600, 240)" onmouseleave="hideTooltip()"><text x="600" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 600, 330)">STO PROV CAR INT 01</text><circle cx="600" cy="295.5" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="600" cy="310" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV TAN INT 01', 4, 6, 685, 220)" onmouseleave="hideTooltip()"><text x="685" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 685, 330)">STO PROV TAN INT 01</text><circle cx="685" cy="281" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="685" cy="266.5" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV BAN INT 01', 4, 15, 770, 180)" onmouseleave="hideTooltip()"><text x="770" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 770, 330)">STO PROV BAN INT 01</text><circle cx="770" cy="281" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="770" cy="201.25" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CON INT 01', 5, 4, 855, 230)" onmouseleave="hideTooltip()"><text x="855" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 855, 330)">STO PROV CON INT 01</text><circle cx="855" cy="273.75" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="855" cy="281" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Tooltip Flotante Común -->
+                <div id="chart-tooltip" class="custom-tooltip absolute hidden bg-slate-900/95 text-white text-xs rounded-lg p-2.5 shadow-xl border border-slate-700 pointer-events-none z-30">
+                    <div id="tooltip-title" class="font-bold border-b border-slate-700 pb-1 mb-1"></div>
+                    <div id="tooltip-nl" class="text-orange-400"></div>
+                    <div id="tooltip-en" class="text-sky-400"></div>
                 </div>
             </div>
 
@@ -510,17 +484,21 @@
             } else {
                 title.innerText = `Cuadrillas Interurbanas - ${data.title}`;
                 
-                const isAgosto = selectedMonthKey === 'agosto';
-                const casosClass = isAgosto 
+                const hasInteractiveGraph = selectedMonthKey === 'agosto' || selectedMonthKey === 'septiembre';
+                const casosClass = hasInteractiveGraph 
                     ? "bg-slate-50 hover:bg-blue-50/70 cursor-pointer transition p-3 rounded-xl border border-slate-200/80 flex justify-between items-center group" 
                     : "bg-slate-50 p-3 rounded-xl border border-slate-200/80 flex justify-between items-center";
                 
-                const clickHint = isAgosto 
-                    ? `<span class="block text-[10px] text-blue-600 font-medium group-hover:underline mt-0.5">🔍 Haz clic para ver gráfico interactivo por tramo</span>` 
+                const clickHint = hasInteractiveGraph 
+                    ? `<span class="block text-[10px] text-blue-600 font-medium group-hover:underline mt-0.5">🔍 Haz clic para ver gráfico interactivo con tooltip</span>` 
                     : ``;
 
+                let clickAction = '';
+                if (selectedMonthKey === 'agosto') clickAction = "openImageModal('interurbanas_agosto')";
+                if (selectedMonthKey === 'septiembre') clickAction = "openImageModal('interurbanas_septiembre')";
+
                 content.innerHTML = `
-                    <div onclick="${isAgosto ? "openImageModal('interurbanas_agosto')" : ""}" class="${casosClass}">
+                    <div onclick="${clickAction}" class="${casosClass}">
                         <div>
                             <span class="text-xs font-bold text-slate-700 uppercase">Casos Gestionados</span>
                             ${clickHint}
@@ -560,18 +538,26 @@
             const imgModal = document.getElementById('image-modal');
             const imgTitle = document.getElementById('image-modal-title');
             const imgSrc = document.getElementById('image-modal-src');
-            const svgContainer = document.getElementById('interactive-svg-container');
+            const svgAgosto = document.getElementById('svg-container-agosto');
+            const svgSeptiembre = document.getElementById('svg-container-septiembre');
             const imgFooter = document.getElementById('image-modal-footer');
+
+            // Ocultar todos por defecto
+            imgSrc.classList.add('hidden');
+            svgAgosto.classList.add('hidden');
+            svgSeptiembre.classList.add('hidden');
 
             if (type === 'interurbanas_agosto') {
                 imgTitle.innerText = "Cuadrillas Interurbanas - Rendimiento por Tramo (Agosto 2026)";
-                imgSrc.classList.add('hidden');
-                svgContainer.classList.remove('hidden');
+                svgAgosto.classList.remove('hidden');
+                imgFooter.innerText = "Pasa el cursor sobre cada punto para ver el detalle de Netlife y Ecuanet";
+            } else if (type === 'interurbanas_septiembre') {
+                imgTitle.innerText = "Cuadrillas Interurbanas - Rendimiento por Tramo (Septiembre 2026)";
+                svgSeptiembre.classList.remove('hidden');
                 imgFooter.innerText = "Pasa el cursor sobre cada punto para ver el detalle de Netlife y Ecuanet";
             } else {
-                svgContainer.classList.add('hidden');
-                imgSrc.classList.remove('hidden');
                 imgTitle.innerText = "Vista Ampliada - Gráfica Geeos (Octubre 2026)";
+                imgSrc.classList.remove('hidden');
                 imgSrc.src = "image_19bed7.jpeg";
                 imgSrc.onerror = function() {
                     this.onerror = null;
