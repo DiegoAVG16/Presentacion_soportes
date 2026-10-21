@@ -194,7 +194,7 @@
                         <span class="px-2.5 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 text-[11px] font-semibold rounded-full">Qlik Sense</span>
                     </div>
 
-                    <!-- CONTENEDOR DE LA IMAGEN SIN RECORTAR HASTA ABAJO -->
+                    <!-- CONTENEDOR DE LA IMAGEN GEEOS -->
                     <div onclick="openImageModal('geeos')" class="cursor-pointer group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 hover:shadow-md transition flex items-center justify-center p-2">
                         <img id="geeos-img" src="image_19bed7.jpeg" onerror="this.onerror=null; this.src='image_19bed7.png'; if(!this.src.endsWith('.jpg')) this.src='image_19bed7.jpg';" alt="Gráfica Geeos" class="w-full h-auto max-h-[380px] object-contain rounded-lg transition duration-300 group-hover:scale-[1.005]">
                         <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-slate-900/20 transition flex items-center justify-center">
@@ -238,55 +238,43 @@
         </div>
     </div>
 
-    <!-- MODAL SUGERENCIA ESTRATÉGICA (INCREMENTO DE CUADRILLAS) -->
+    <!-- MODAL SUGERENCIA ESTRATÉGICA (2 CUADRILLAS DE SOPORTE) -->
     <div id="sugerencia-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4 md:p-6" onclick="closeSugerenciaModal()">
-        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl border border-slate-200 space-y-6 relative animate-in fade-in zoom-in duration-200" onclick="event.stopPropagation()">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 md:p-8 shadow-2xl border border-slate-200 space-y-6 relative animate-in fade-in zoom-in duration-200" onclick="event.stopPropagation()">
             
             <div class="flex justify-between items-start border-b border-slate-100 pb-4">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-lg">💡</div>
                     <div>
-                        <span class="text-[10px] uppercase font-bold text-emerald-600 tracking-wider">Propuesta Estratégica</span>
-                        <h3 class="font-extrabold text-slate-900 text-lg md:text-xl">Recomendación: Incremento de Cuadrillas</h3>
+                        <span class="text-[10px] uppercase font-bold text-emerald-600 tracking-wider">Recomendación de Personal</span>
+                        <h3 class="font-extrabold text-slate-900 text-lg md:text-xl">Sugerencia Operativa</h3>
                     </div>
                 </div>
                 <button onclick="closeSugerenciaModal()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold px-2 leading-none">&times;</button>
             </div>
 
-            <div class="space-y-4 text-sm text-slate-600">
-                <p class="text-xs md:text-sm leading-relaxed text-slate-700">
-                    Con base en el análisis acumulado de tiempos de respuesta y volumen de casos de soporte y red interurbana, se sugieren los siguientes dos escenarios de fortalecimiento operativo:
-                </p>
-
-                <!-- BLOQUE 1 CUADRILLA -->
-                <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200/90 space-y-2">
+            <div class="space-y-5 text-sm text-slate-600">
+                
+                <!-- TARJETA PRINCIPAL DE RECOMENDACIÓN -->
+                <div class="bg-emerald-50/80 rounded-2xl p-5 border border-emerald-200/80 space-y-3">
                     <div class="flex items-center justify-between">
-                        <span class="font-bold text-slate-900 text-sm flex items-center gap-2">
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> 1ª Cuadrilla Adicional de Soporte
+                        <span class="font-extrabold text-emerald-900 text-base flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-emerald-600"></span> 2 Cuadrillas de Soporte
                         </span>
-                        <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 font-bold text-xs rounded-full">Garantía 80 - 20</span>
+                        <span class="px-3 py-1 bg-emerald-600 text-white font-bold text-xs rounded-full shadow-sm">Meta: 90% Cierres</span>
                     </div>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Contratar una cuadrilla adicional de soporte asegura mantener de forma consistente la relación estándar del <strong class="text-slate-900">80-20 en los tiempos de gestión</strong> (&lt;4 horas), previniendo picos imprevistos de llamadas o saturación en periodos de alta demanda.
+                    
+                    <p class="text-xs md:text-sm text-slate-700 leading-relaxed pt-1">
+                        Se sugiere la incorporación de <strong class="text-slate-900 font-bold">2 cuadrillas de soporte adicionales</strong> para reforzar la operativa actual.
+                    </p>
+                    <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
+                        Este incremento permitirá absorber el volumen de incidencias de manera oportuna y garantizar de forma sostenida un nivel de cumplimiento del <strong class="text-emerald-800 font-bold">90% en tiempos de gestión menores a 4 horas</strong>.
                     </p>
                 </div>
 
-                <!-- BLOQUE 2ª CUADRILLA -->
-                <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200/90 space-y-2">
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-slate-900 text-sm flex items-center gap-2">
-                            <span class="w-2.5 h-2.5 rounded-full bg-sky-600"></span> 2ª Cuadrilla Adicional (Liberación Interurbana)
-                        </span>
-                        <span class="px-2.5 py-0.5 bg-sky-100 text-sky-800 font-bold text-xs rounded-full">Optimización de Red</span>
-                    </div>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        Añadir una segunda cuadrilla permite asumir el exceso de casos urbanos de soporte y <strong class="text-slate-900">liberar a las cuadrillas interurbanas</strong> para que se enfoquen exclusivamente en la atención de tramos largos, mejorando la disponibilidad de red y acortando los tiempos de viaje.
-                    </p>
-                </div>
-
-                <div class="bg-emerald-50 rounded-xl p-3.5 border border-emerald-200 text-xs text-emerald-900 flex items-start gap-2.5">
+                <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-200/80 text-xs text-slate-600 flex items-start gap-2.5">
                     <span class="text-base">📌</span>
-                    <span><strong>Conclusión:</strong> La incorporación de este recurso estabiliza la atención local y eleva sustancialmente los niveles de SLA en toda la zona interurbana.</span>
+                    <span><strong>Objetivo Operativo:</strong> Asegurar el cumplimiento continuo del SLA establecido y mantener la eficiencia de atención requerida por la operación.</span>
                 </div>
             </div>
 
