@@ -192,24 +192,78 @@
 
             </div>
 
-            <!-- SECCIÓN EXCLUSIVA DE JULIO: GRÁFICA DE HOY POR HORAS -->
+            <!-- SECCIÓN EXCLUSIVA DE JULIO: GRÁFICA INTERACTIVA DE DISTRIBUCIÓN POR HORAS -->
             <div id="julio-chart-section" class="space-y-4">
                 <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
                     <div class="flex justify-between items-center border-b border-slate-100 pb-2.5">
                         <div>
                             <h3 class="font-bold text-slate-900 text-base">Distribución por Horas - Julio 2026</h3>
-                            <p class="text-xs text-slate-500 mt-0.5">Evolución horaria de Abiertos, Cerrados, Cancelados y Cuadrillas. Haz clic para ampliar.</p>
+                            <p class="text-xs text-slate-500 mt-0.5">Evolución de Abiertos, Cerrados, Cancelados y Cuadrillas. Pasa el cursor por la gráfica o haz clic para ampliar.</p>
                         </div>
-                        <span class="px-2.5 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold rounded-full">Monitoreo Horario</span>
+                        <span class="px-2.5 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold rounded-full">Interactiva</span>
                     </div>
 
-                    <div onclick="openImageModal('julio_grafica')" class="cursor-pointer group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 hover:shadow-md transition flex items-center justify-center p-2">
-                        <img id="julio-img" src="image_ba6237.png" onerror="this.onerror=null; this.src='image_ba6237.jpeg'; if(!this.src.endsWith('.png')) this.src='image_ba6237.jpg';" alt="Distribución Horaria Julio" class="w-full h-auto max-h-[380px] object-contain rounded-lg transition duration-300 group-hover:scale-[1.005]">
-                        <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-slate-900/20 transition flex items-center justify-center">
-                            <span class="bg-white/95 backdrop-blur-sm text-slate-800 text-xs font-semibold px-4 py-2 rounded-xl shadow-md border border-slate-200 flex items-center gap-2 group-hover:scale-105 transition">
-                                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
-                                Haz clic para explorar la gráfica interactiva
-                            </span>
+                    <div onclick="openImageModal('julio_grafica')" class="cursor-pointer group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 hover:shadow-md transition flex items-center justify-center p-3">
+                        <div class="w-full flex justify-center items-center gap-6 mb-2">
+                            <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#529ab4] inline-block"></span> ABIERTO</div>
+                            <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#f3d350] inline-block"></span> CERRADO</div>
+                            <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#e75e52] inline-block"></span> CANCELADO</div>
+                            <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#18b965] inline-block"></span> CUADRILLAS</div>
+                        </div>
+
+                        <div class="relative w-full overflow-x-auto">
+                            <svg viewBox="0 0 900 320" class="w-full h-[280px] select-none">
+                                <!-- Líneas de Guía -->
+                                <line x1="40" y1="30" x2="870" y2="30" stroke="#f1f5f9" stroke-dasharray="3" />
+                                <line x1="40" y1="80" x2="870" y2="80" stroke="#f1f5f9" stroke-dasharray="3" />
+                                <line x1="40" y1="130" x2="870" y2="130" stroke="#f1f5f9" stroke-dasharray="3" />
+                                <line x1="40" y1="180" x2="870" y2="180" stroke="#f1f5f9" stroke-dasharray="3" />
+                                <line x1="40" y1="230" x2="870" y2="230" stroke="#f1f5f9" stroke-dasharray="3" />
+                                <line x1="40" y1="270" x2="870" y2="270" stroke="#cbd5e1" />
+
+                                <text x="30" y="35" font-size="10" fill="#94a3b8" text-anchor="end">100</text>
+                                <text x="30" y="85" font-size="10" fill="#94a3b8" text-anchor="end">80</text>
+                                <text x="30" y="135" font-size="10" fill="#94a3b8" text-anchor="end">60</text>
+                                <text x="30" y="185" font-size="10" fill="#94a3b8" text-anchor="end">40</text>
+                                <text x="30" y="235" font-size="10" fill="#94a3b8" text-anchor="end">20</text>
+                                <text x="30" y="274" font-size="10" fill="#94a3b8" text-anchor="end">0</text>
+
+                                <!-- Trazados Curvos -->
+                                <path d="M 50 268 L 95 263 L 140 220 L 185 122 L 230 110 L 275 102 L 320 92 L 365 120 L 410 130 L 455 133 L 500 120 L 545 140 L 590 122 L 635 178 L 680 202 L 725 210 L 770 248 L 815 250 L 860 258" fill="none" stroke="#529ab4" stroke-width="2.5" stroke-linecap="round" />
+                                <path d="M 50 270 L 95 270 L 140 270 L 185 222 L 230 158 L 275 118 L 320 98 L 365 116 L 410 117 L 455 106 L 500 87 L 545 70 L 590 98 L 635 158 L 680 174 L 725 188 L 770 241 L 815 265 L 860 270" fill="none" stroke="#f3d350" stroke-width="2.5" stroke-linecap="round" />
+                                <path d="M 50 270 L 95 270 L 140 265 L 185 225 L 230 236 L 275 236 L 320 238 L 365 236 L 410 241 L 455 244 L 500 229 L 545 220 L 590 231 L 635 243 L 680 238 L 725 255 L 770 265 L 815 270 L 860 268" fill="none" stroke="#e75e52" stroke-width="2.5" stroke-linecap="round" />
+                                <path d="M 50 270 L 95 270 L 140 268 L 185 263 L 230 263 L 275 258 L 320 258 L 365 253 L 410 253 L 455 253 L 500 253 L 545 253 L 590 255 L 635 260 L 680 260 L 725 265 L 770 265 L 815 270 L 860 270" fill="none" stroke="#18b965" stroke-width="2.5" stroke-linecap="round" />
+
+                                <!-- Punto Horario de Ejemplo Hora 19 (Interactivo) -->
+                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(19, 28, 40, 13, 4, 680, 110)" onmouseleave="hideJulioTooltip()">
+                                    <line x1="680" y1="30" x2="680" y2="270" stroke="#64748b" stroke-dasharray="3" stroke-width="1.5" />
+                                    <text x="680" y="288" font-size="11" fill="#1e293b" font-weight="bold" text-anchor="middle">19</text>
+                                    <circle cx="680" cy="202" r="5" fill="#529ab4" stroke="#fff" stroke-width="2" />
+                                    <circle cx="680" cy="174" r="5" fill="#f3d350" stroke="#fff" stroke-width="2" />
+                                    <circle cx="680" cy="238" r="5" fill="#e75e52" stroke="#fff" stroke-width="2" />
+                                    <circle cx="680" cy="260" r="5" fill="#18b965" stroke="#fff" stroke-width="2" />
+                                </g>
+
+                                <!-- Etiquetas Horarias generales -->
+                                <text x="50" y="288" font-size="10" fill="#64748b" text-anchor="middle">5</text>
+                                <text x="95" y="288" font-size="10" fill="#64748b" text-anchor="middle">6</text>
+                                <text x="140" y="288" font-size="10" fill="#64748b" text-anchor="middle">7</text>
+                                <text x="185" y="288" font-size="10" fill="#64748b" text-anchor="middle">8</text>
+                                <text x="230" y="288" font-size="10" fill="#64748b" text-anchor="middle">9</text>
+                                <text x="275" y="288" font-size="10" fill="#64748b" text-anchor="middle">10</text>
+                                <text x="320" y="288" font-size="10" fill="#64748b" text-anchor="middle">11</text>
+                                <text x="365" y="288" font-size="10" fill="#64748b" text-anchor="middle">12</text>
+                                <text x="410" y="288" font-size="10" fill="#64748b" text-anchor="middle">13</text>
+                                <text x="455" y="288" font-size="10" fill="#64748b" text-anchor="middle">14</text>
+                                <text x="500" y="288" font-size="10" fill="#64748b" text-anchor="middle">15</text>
+                                <text x="545" y="288" font-size="10" fill="#64748b" text-anchor="middle">16</text>
+                                <text x="590" y="288" font-size="10" fill="#64748b" text-anchor="middle">17</text>
+                                <text x="635" y="288" font-size="10" fill="#64748b" text-anchor="middle">18</text>
+                                <text x="725" y="288" font-size="10" fill="#64748b" text-anchor="middle">20</text>
+                                <text x="770" y="288" font-size="10" fill="#64748b" text-anchor="middle">21</text>
+                                <text x="815" y="288" font-size="10" fill="#64748b" text-anchor="middle">22</text>
+                                <text x="860" y="288" font-size="10" fill="#64748b" text-anchor="middle">23</text>
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -330,8 +384,45 @@
                 
                 <img id="image-modal-src" src="" alt="Gráfica Ampliada" class="w-full h-auto max-h-[75vh] object-contain rounded-lg hidden">
 
+                <!-- SVG INTERACTIVO JULIO DENTRO DEL MODAL -->
                 <div id="svg-container-julio" class="w-full h-full relative hidden">
-                    <img src="image_ba6237.png" onerror="this.onerror=null; this.src='image_ba6237.jpeg';" alt="Gráfica Julio" class="w-full h-auto max-h-[70vh] object-contain rounded-lg">
+                    <div class="flex justify-center items-center gap-6 mb-2">
+                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#529ab4] inline-block"></span> ABIERTO</div>
+                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#f3d350] inline-block"></span> CERRADO</div>
+                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#e75e52] inline-block"></span> CANCELADO</div>
+                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#18b965] inline-block"></span> CUADRILLAS</div>
+                    </div>
+                    <div class="relative w-full overflow-x-auto">
+                        <svg viewBox="0 0 900 320" class="w-full h-[320px] select-none">
+                            <line x1="40" y1="30" x2="870" y2="30" stroke="#e2e8f0" stroke-dasharray="3" />
+                            <line x1="40" y1="80" x2="870" y2="80" stroke="#e2e8f0" stroke-dasharray="3" />
+                            <line x1="40" y1="130" x2="870" y2="130" stroke="#e2e8f0" stroke-dasharray="3" />
+                            <line x1="40" y1="180" x2="870" y2="180" stroke="#e2e8f0" stroke-dasharray="3" />
+                            <line x1="40" y1="230" x2="870" y2="230" stroke="#e2e8f0" stroke-dasharray="3" />
+                            <line x1="40" y1="270" x2="870" y2="270" stroke="#cbd5e1" />
+
+                            <text x="30" y="35" font-size="11" fill="#64748b" text-anchor="end">100</text>
+                            <text x="30" y="85" font-size="11" fill="#64748b" text-anchor="end">80</text>
+                            <text x="30" y="135" font-size="11" fill="#64748b" text-anchor="end">60</text>
+                            <text x="30" y="185" font-size="11" fill="#64748b" text-anchor="end">40</text>
+                            <text x="30" y="235" font-size="11" fill="#64748b" text-anchor="end">20</text>
+                            <text x="30" y="274" font-size="11" fill="#64748b" text-anchor="end">0</text>
+
+                            <path d="M 50 268 L 95 263 L 140 220 L 185 122 L 230 110 L 275 102 L 320 92 L 365 120 L 410 130 L 455 133 L 500 120 L 545 140 L 590 122 L 635 178 L 680 202 L 725 210 L 770 248 L 815 250 L 860 258" fill="none" stroke="#529ab4" stroke-width="3" stroke-linecap="round" />
+                            <path d="M 50 270 L 95 270 L 140 270 L 185 222 L 230 158 L 275 118 L 320 98 L 365 116 L 410 117 L 455 106 L 500 87 L 545 70 L 590 98 L 635 158 L 680 174 L 725 188 L 770 241 L 815 265 L 860 270" fill="none" stroke="#f3d350" stroke-width="3" stroke-linecap="round" />
+                            <path d="M 50 270 L 95 270 L 140 265 L 185 225 L 230 236 L 275 236 L 320 238 L 365 236 L 410 241 L 455 244 L 500 229 L 545 220 L 590 231 L 635 243 L 680 238 L 725 255 L 770 265 L 815 270 L 860 268" fill="none" stroke="#e75e52" stroke-width="3" stroke-linecap="round" />
+                            <path d="M 50 270 L 95 270 L 140 268 L 185 263 L 230 263 L 275 258 L 320 258 L 365 253 L 410 253 L 455 253 L 500 253 L 545 253 L 590 255 L 635 260 L 680 260 L 725 265 L 770 265 L 815 270 L 860 270" fill="none" stroke="#18b965" stroke-width="3" stroke-linecap="round" />
+
+                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(19, 28, 40, 13, 4, 680, 90)" onmouseleave="hideJulioTooltip()">
+                                <line x1="680" y1="30" x2="680" y2="270" stroke="#475569" stroke-dasharray="3" stroke-width="1.5" />
+                                <text x="680" y="295" font-size="11" fill="#0f172a" font-weight="bold" text-anchor="middle">19</text>
+                                <circle cx="680" cy="202" r="6" fill="#529ab4" stroke="#fff" stroke-width="2" />
+                                <circle cx="680" cy="174" r="6" fill="#f3d350" stroke="#fff" stroke-width="2" />
+                                <circle cx="680" cy="238" r="6" fill="#e75e52" stroke="#fff" stroke-width="2" />
+                                <circle cx="680" cy="260" r="6" fill="#18b965" stroke="#fff" stroke-width="2" />
+                            </g>
+                        </svg>
+                    </div>
                 </div>
 
                 <div id="svg-container-agosto" class="w-full h-full relative hidden">
@@ -443,10 +534,10 @@
                     </div>
                 </div>
 
-                <div id="chart-tooltip" class="custom-tooltip absolute hidden bg-slate-900/95 text-white text-xs rounded-lg p-2.5 shadow-xl border border-slate-700 pointer-events-none z-30">
-                    <div id="tooltip-title" class="font-bold border-b border-slate-700 pb-1 mb-1"></div>
-                    <div id="tooltip-nl" class="text-orange-400"></div>
-                    <div id="tooltip-en" class="text-sky-400"></div>
+                <!-- TOOLTIP DINÁMICO MULTI-PROPÓSITO -->
+                <div id="chart-tooltip" class="custom-tooltip absolute hidden bg-slate-900/95 text-white text-xs rounded-xl p-3 shadow-2xl border border-slate-700 pointer-events-none z-30 min-w-[140px]">
+                    <div id="tooltip-title" class="font-bold border-b border-slate-700 pb-1 mb-1 text-center text-sm"></div>
+                    <div id="tooltip-body" class="space-y-0.5"></div>
                 </div>
             </div>
 
@@ -459,7 +550,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT INTERACTIVO -->
+    <!-- SCRIPT INTERACTIVO COMPLETO -->
     <script>
         let selectedMonthKey = 'julio';
 
@@ -712,7 +803,7 @@
             if (type === 'julio_grafica') {
                 imgTitle.innerText = "Vista Ampliada - Distribución por Horas (Julio 2026)";
                 svgJulio.classList.remove('hidden');
-                imgFooter.innerText = "Fuente: Monitoreo Horario de Operaciones - Julio 2026";
+                imgFooter.innerText = "Pasa el cursor sobre la línea o puntos para ver los detalles por hora";
             } else if (type === 'interurbanas_agosto') {
                 imgTitle.innerText = "Cuadrillas Interurbanas - Rendimiento por Tramo (Agosto 2026)";
                 svgAgosto.classList.remove('hidden');
@@ -748,15 +839,38 @@
             hideTooltip();
         }
 
+        /* TOOLTIP PARA INTERURBANAS */
         function showTooltip(tramoName, netlifeVal, ecuanetVal, posX, posY) {
             const tooltip = document.getElementById('chart-tooltip');
             document.getElementById('tooltip-title').innerText = tramoName;
-            document.getElementById('tooltip-nl').innerText = `NETLIFE: ${netlifeVal}`;
-            document.getElementById('tooltip-en').innerText = `ECUANET: ${ecuanetVal}`;
+            document.getElementById('tooltip-body').innerHTML = `
+                <div class="text-orange-400 font-semibold">NETLIFE: ${netlifeVal}</div>
+                <div class="text-sky-400 font-semibold">ECUANET: ${ecuanetVal}</div>
+            `;
             
             tooltip.style.left = `${posX}px`;
             tooltip.style.top = `${posY}px`;
             tooltip.classList.remove('hidden');
+        }
+
+        /* TOOLTIP EXCLUSIVO Y PERSONALIZADO PARA JULIO (ABIERTO, CERRADO, CANCELADO, CUADRILLAS) */
+        function showJulioTooltip(hora, abierto, cerrado, cancelado, cuadrillas, posX, posY) {
+            const tooltip = document.getElementById('chart-tooltip');
+            document.getElementById('tooltip-title').innerText = hora;
+            document.getElementById('tooltip-body').innerHTML = `
+                <div class="text-[#818cf8] font-semibold flex justify-between gap-4"><span>ABIERTO:</span> <span>${abierto}</span></div>
+                <div class="text-[#fde047] font-semibold flex justify-between gap-4"><span>CERRADO:</span> <span>${cerrado}</span></div>
+                <div class="text-[#f87171] font-semibold flex justify-between gap-4"><span>CANCELADO:</span> <span>${cancelado}</span></div>
+                <div class="text-[#4ade80] font-semibold flex justify-between gap-4"><span>CUADRILLAS:</span> <span>${cuadrillas}</span></div>
+            `;
+            
+            tooltip.style.left = `${posX}px`;
+            tooltip.style.top = `${posY}px`;
+            tooltip.classList.remove('hidden');
+        }
+
+        function hideJulioTooltip() {
+            hideTooltip();
         }
 
         function hideTooltip() {
