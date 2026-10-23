@@ -255,9 +255,9 @@
 
     </div>
 
-    <!-- MODAL DETALLE CUADRILLAS -->
+    <!-- MODAL DETALLE CUADRILLAS (CON IMAGEN DE GRÁFICO ESPECÍFICO POR MES) -->
     <div id="detail-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+        <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-slate-200 space-y-4">
             <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                 <h3 id="modal-title" class="font-bold text-base text-slate-900">Detalle de Cuadrillas</h3>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold px-2">&times;</button>
@@ -353,7 +353,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT INTERACTIVO COMPLETO Y CORREGIDO -->
+    <!-- SCRIPT INTERACTIVO CON MODALES DINÁMICOS RESTAURADOS -->
     <script>
         let selectedMonthKey = 'julio';
 
@@ -424,7 +424,6 @@
             }
         };
 
-        // DICCIONARIO CON TODOS LOS PUNTOS INTERACTIVOS COMPLETOS PARA CADA MES
         const hourlySvgTemplates = {
             julio: `<svg viewBox="0 0 900 340" class="w-full h-[320px] select-none">
                 <line x1="40" y1="30" x2="870" y2="30" stroke="#e2e8f0" stroke-dasharray="3" />
@@ -553,7 +552,6 @@
                 <path d="M 50 270 L 95 268 L 140 268 L 185 250 L 230 190 L 275 172 L 320 110 L 365 92 L 410 152 L 455 114 L 500 136 L 545 68 L 590 116 L 635 156 L 680 194 L 725 208 L 770 234 L 815 252 L 860 266" fill="none" stroke="#f3d350" stroke-width="3" stroke-linecap="round" />
                 <path d="M 50 270 L 95 268 L 140 258 L 185 248 L 230 224 L 275 218 L 320 228 L 365 232 L 410 230 L 455 238 L 500 226 L 545 226 L 590 228 L 635 240 L 680 246 L 725 244 L 770 260 L 815 260 L 860 266" fill="none" stroke="#e75e52" stroke-width="3" stroke-linecap="round" />
                 <path d="M 50 270 L 95 270 L 140 268 L 185 264 L 230 264 L 275 260 L 320 260 L 365 256 L 410 256 L 455 256 L 500 256 L 545 256 L 590 258 L 635 262 L 680 262 L 725 266 L 770 266 L 815 270 L 860 270" fill="none" stroke="#18b965" stroke-width="3" stroke-linecap="round" />
-                <!-- TODOS LOS PUNTOS INTERACTIVOS (HORA 5 A 23) -->
                 <g class="cursor-pointer" onmouseenter="showJulioTooltip(5, 1, 0, 0, 0, 50, 90)" onmouseleave="hideTooltip()"><circle cx="50" cy="268" r="5" fill="#529ab4"/><circle cx="50" cy="270" r="5" fill="#f3d350"/><circle cx="50" cy="270" r="5" fill="#e75e52"/><circle cx="50" cy="270" r="5" fill="#18b965"/></g>
                 <g class="cursor-pointer" onmouseenter="showJulioTooltip(6, 8, 1, 1, 0, 95, 90)" onmouseleave="hideTooltip()"><circle cx="95" cy="254" r="5" fill="#529ab4"/><circle cx="95" cy="268" r="5" fill="#f3d350"/><circle cx="95" cy="268" r="5" fill="#e75e52"/><circle cx="95" cy="270" r="5" fill="#18b965"/></g>
                 <g class="cursor-pointer" onmouseenter="showJulioTooltip(7, 30, 1, 6, 1, 140, 90)" onmouseleave="hideTooltip()"><circle cx="140" cy="210" r="5" fill="#529ab4"/><circle cx="140" cy="268" r="5" fill="#f3d350"/><circle cx="140" cy="258" r="5" fill="#e75e52"/><circle cx="140" cy="268" r="5" fill="#18b965"/></g>
@@ -609,7 +607,6 @@
                 <path d="M 50 270 L 95 270 L 140 261 L 185 222 L 230 156 L 275 120 L 320 126 L 365 72 L 410 57 L 455 117 L 500 90 L 545 84 L 590 120 L 635 168 L 680 222 L 725 222 L 770 216 L 815 261 L 860 270" fill="none" stroke="#f3d350" stroke-width="3" stroke-linecap="round" />
                 <path d="M 50 270 L 95 270 L 140 240 L 185 210 L 230 216 L 275 204 L 320 210 L 365 210 L 410 186 L 455 222 L 500 180 L 545 180 L 590 222 L 635 216 L 680 222 L 725 222 L 770 246 L 815 264 L 860 264" fill="none" stroke="#e75e52" stroke-width="3" stroke-linecap="round" />
                 <path d="M 50 270 L 95 270 L 140 267 L 185 255 L 230 255 L 275 246 L 320 246 L 365 234 L 410 234 L 455 234 L 500 234 L 545 234 L 590 240 L 635 252 L 680 252 L 725 261 L 770 261 L 815 270 L 860 270" fill="none" stroke="#18b965" stroke-width="3" stroke-linecap="round" />
-                <!-- TODOS LOS PUNTOS INTERACTIVOS (HORA 3 A 23) -->
                 <g class="cursor-pointer" onmouseenter="showJulioTooltip(3, 1, 0, 0, 0, 50, 90)" onmouseleave="hideTooltip()"><circle cx="50" cy="264" r="5" fill="#529ab4"/><circle cx="50" cy="270" r="5" fill="#f3d350"/><circle cx="50" cy="270" r="5" fill="#e75e52"/><circle cx="50" cy="270" r="5" fill="#18b965"/></g>
                 <g class="cursor-pointer" onmouseenter="showJulioTooltip(6, 2, 0, 0, 0, 95, 90)" onmouseleave="hideTooltip()"><circle cx="95" cy="260" r="5" fill="#529ab4"/><circle cx="95" cy="270" r="5" fill="#f3d350"/><circle cx="95" cy="270" r="5" fill="#e75e52"/><circle cx="95" cy="270" r="5" fill="#18b965"/></g>
                 <g class="cursor-pointer" onmouseenter="showJulioTooltip(7, 14, 2, 5, 1, 140, 90)" onmouseleave="hideTooltip()"><circle cx="140" cy="186" r="5" fill="#529ab4"/><circle cx="140" cy="261" r="5" fill="#f3d350"/><circle cx="140" cy="240" r="5" fill="#e75e52"/><circle cx="140" cy="267" r="5" fill="#18b965"/></g>
@@ -701,7 +698,6 @@
 
             document.getElementById('footer-total-text').innerText = `*Porcentajes calculados en relación al Total General de ${data.totalGeneral} gestiones`;
 
-            // ACTUALIZAR GRÁFICO PRINCIPAL DE HORAS
             document.getElementById('hourly-chart-title').innerText = `Distribución por Horas - ${data.title}`;
             document.getElementById('main-hourly-svg-wrapper').innerHTML = hourlySvgTemplates[monthKey] || hourlySvgTemplates['julio'];
 
@@ -725,26 +721,38 @@
             const content = document.getElementById('modal-content');
             const data = monthData[selectedMonthKey];
 
+            // Asignar los nombres de archivo de imagen correctos para cada mes[cite: 14, 15, 16]
+            const monthImages = {
+                julio: 'image_bca834.png', // Usando referencia o imagen base
+                agosto: 'image_bca834.png',
+                septiembre: 'image_bcabd2.png',
+                octubre: 'image_bcafb1.png'
+            };
+
+            const currentImg = monthImages[selectedMonthKey] || 'image_bca834.png';
+
             if (type === 'soporte') {
                 title.innerText = `Cuadrillas de Soporte - ${data.title}`;
                 content.innerHTML = `
-                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200/80 flex justify-between items-center">
-                        <span class="text-xs font-bold text-slate-700 uppercase">Gestiones Totales</span>
-                        <span class="text-base font-bold text-emerald-800">${data.qSoporteCases} gestiones</span>
-                    </div>
-                    <div class="space-y-2 pt-1">
-                        <div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-200/60">
-                            <span class="font-medium text-slate-700">NL + EN + Tareas:</span>
-                            <div class="text-right">
-                                <span class="font-bold text-slate-900">${data.qSoporteNlEn}</span>
-                                <span class="block text-xs font-semibold text-emerald-600">${data.qSoporteNlEnPct} (del subtotal)</span>
+                    <div class="space-y-3">
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200/80 flex justify-between items-center">
+                            <span class="text-xs font-bold text-slate-700 uppercase">Gestiones Totales de Soporte</span>
+                            <span class="text-base font-bold text-emerald-800">${data.qSoporteCases} gestiones (${data.qSoportePct})</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-200/60">
+                                <span class="text-slate-500 block">NL + EN + Tareas:</span>
+                                <strong class="text-slate-900 text-sm">${data.qSoporteNlEn}</strong> <span class="text-emerald-600 font-semibold">(${data.qSoporteNlEnPct})</span>
+                            </div>
+                            <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-200/60">
+                                <span class="text-slate-500 block">Casos TN:</span>
+                                <strong class="text-slate-900 text-sm">${data.qSoporteTn}</strong> <span class="text-amber-600 font-semibold">(${data.qSoporteTnPct})</span>
                             </div>
                         </div>
-                        <div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-200/60">
-                            <span class="font-medium text-slate-700">Casos TN:</span>
-                            <div class="text-right">
-                                <span class="font-bold text-slate-900">${data.qSoporteTn}</span>
-                                <span class="block text-xs font-semibold text-amber-600">${data.qSoporteTnPct} (del subtotal)</span>
+                        <div class="pt-2">
+                            <p class="text-xs font-semibold text-slate-700 mb-1.5">Gráfica horaria de Cuadrillas:</p>
+                            <div class="rounded-xl overflow-hidden border border-slate-200 bg-slate-50 p-2 flex justify-center">
+                                <img src="${currentImg}" alt="Gráfica de Cuadrillas ${data.title}" class="w-full h-auto max-h-[220px] object-contain rounded-lg">
                             </div>
                         </div>
                     </div>
@@ -752,23 +760,25 @@
             } else {
                 title.innerText = `Cuadrillas Interurbanas - ${data.title}`;
                 content.innerHTML = `
-                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200/80 flex justify-between items-center">
-                        <span class="text-xs font-bold text-slate-700 uppercase">Gestiones Totales</span>
-                        <span class="text-base font-bold text-slate-700">${data.qInterCases} gestiones</span>
-                    </div>
-                    <div class="space-y-2 pt-1">
-                        <div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-200/60">
-                            <span class="font-medium text-slate-700">NL + EN + Tareas:</span>
-                            <div class="text-right">
-                                <span class="font-bold text-slate-900">${data.qInterNlEn}</span>
-                                <span class="block text-xs font-semibold text-emerald-600">${data.qInterNlEnPct} (del subtotal)</span>
+                    <div class="space-y-3">
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200/80 flex justify-between items-center">
+                            <span class="text-xs font-bold text-slate-700 uppercase">Gestiones Totales Interurbanas</span>
+                            <span class="text-base font-bold text-slate-700">${data.qInterCases} gestiones (${data.qInterPct})</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-200/60">
+                                <span class="text-slate-500 block">NL + EN + Tareas:</span>
+                                <strong class="text-slate-900 text-sm">${data.qInterNlEn}</strong> <span class="text-emerald-600 font-semibold">(${data.qInterNlEnPct})</span>
+                            </div>
+                            <div class="bg-slate-50 p-2.5 rounded-lg border border-slate-200/60">
+                                <span class="text-slate-500 block">Casos TN:</span>
+                                <strong class="text-slate-900 text-sm">${data.qInterTn}</strong> <span class="text-amber-600 font-semibold">(${data.qInterTnPct})</span>
                             </div>
                         </div>
-                        <div class="flex justify-between items-center bg-slate-50 p-3 rounded-xl border border-slate-200/60">
-                            <span class="font-medium text-slate-700">Casos TN:</span>
-                            <div class="text-right">
-                                <span class="font-bold text-slate-900">${data.qInterTn}</span>
-                                <span class="block text-xs font-semibold text-amber-600">${data.qInterTnPct} (del subtotal)</span>
+                        <div class="pt-2">
+                            <p class="text-xs font-semibold text-slate-700 mb-1.5">Gráfica horaria de Cuadrillas Interurbanas:</p>
+                            <div class="rounded-xl overflow-hidden border border-slate-200 bg-slate-50 p-2 flex justify-center">
+                                <img src="${currentImg}" alt="Gráfica Interurbanas ${data.title}" class="w-full h-auto max-h-[220px] object-contain rounded-lg">
                             </div>
                         </div>
                     </div>
