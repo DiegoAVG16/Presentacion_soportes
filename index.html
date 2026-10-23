@@ -35,7 +35,7 @@
             </div>
         </header>
 
-        <!-- TARJETAS SUPERIORES DE MESES CON NÚMEROS RECALCULADOS -->
+        <!-- TARJETAS SUPERIORES DE MESES -->
         <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80">
             <p class="text-xs font-medium text-slate-400 mb-3 uppercase tracking-wider">Selecciona un mes para ver el detalle</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -79,7 +79,7 @@
                 <p id="section-description" class="text-sm text-slate-500 mt-1">1051 gestiones totales en julio (935 casos + 116 tareas). Excelente eficiencia alcanzando un 90.91% de cierres en menos de 4 horas.</p>
             </div>
 
-            <!-- 5 TARJETAS DE MÉTRICAS (SUMAN 100% SOBRE EL TOTAL GENERAL) -->
+            <!-- 5 TARJETAS DE MÉTRICAS -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                 <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
                     <span class="text-xs font-bold tracking-wider text-orange-600 uppercase">CASOS NL</span>
@@ -190,6 +190,29 @@
                     </div>
                 </div>
 
+            </div>
+
+            <!-- SECCIÓN EXCLUSIVA DE JULIO: GRÁFICA DE HOY POR HORAS -->
+            <div id="julio-chart-section" class="space-y-4">
+                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-100 pb-2.5">
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-base">Distribución por Horas - Julio 2026</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Evolución horaria de Abiertos, Cerrados, Cancelados y Cuadrillas. Haz clic para ampliar.</p>
+                        </div>
+                        <span class="px-2.5 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold rounded-full">Monitoreo Horario</span>
+                    </div>
+
+                    <div onclick="openImageModal('julio_grafica')" class="cursor-pointer group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 hover:shadow-md transition flex items-center justify-center p-2">
+                        <img id="julio-img" src="image_ba6237.png" onerror="this.onerror=null; this.src='image_ba6237.jpeg'; if(!this.src.endsWith('.png')) this.src='image_ba6237.jpg';" alt="Distribución Horaria Julio" class="w-full h-auto max-h-[380px] object-contain rounded-lg transition duration-300 group-hover:scale-[1.005]">
+                        <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-slate-900/20 transition flex items-center justify-center">
+                            <span class="bg-white/95 backdrop-blur-sm text-slate-800 text-xs font-semibold px-4 py-2 rounded-xl shadow-md border border-slate-200 flex items-center gap-2 group-hover:scale-105 transition">
+                                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                                Haz clic para explorar la gráfica interactiva
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- SECCIÓN EXCLUSIVA DE OCTUBRE -->
@@ -306,6 +329,10 @@
             <div id="modal-content-box" class="bg-slate-50 rounded-xl border border-slate-200/80 p-4 relative flex items-center justify-center min-h-[460px]">
                 
                 <img id="image-modal-src" src="" alt="Gráfica Ampliada" class="w-full h-auto max-h-[75vh] object-contain rounded-lg hidden">
+
+                <div id="svg-container-julio" class="w-full h-full relative hidden">
+                    <img src="image_ba6237.png" onerror="this.onerror=null; this.src='image_ba6237.jpeg';" alt="Gráfica Julio" class="w-full h-auto max-h-[70vh] object-contain rounded-lg">
+                </div>
 
                 <div id="svg-container-agosto" class="w-full h-full relative hidden">
                     <div class="flex justify-center items-center gap-6 mb-2">
@@ -432,7 +459,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT INTERACTIVO CON DATOS DINÁMICOS Y RECALCULADOS -->
+    <!-- SCRIPT INTERACTIVO -->
     <script>
         let selectedMonthKey = 'julio';
 
@@ -553,6 +580,13 @@
 
             document.getElementById('footer-total-text').innerText = `*Porcentajes calculados en relación al Total General de ${data.totalGeneral} gestiones`;
 
+            const julioSection = document.getElementById('julio-chart-section');
+            if (monthKey === 'julio') {
+                julioSection.classList.remove('hidden');
+            } else {
+                julioSection.classList.add('hidden');
+            }
+
             const geeosSection = document.getElementById('geeos-section');
             if (monthKey === 'octubre') {
                 geeosSection.classList.remove('hidden');
@@ -663,17 +697,23 @@
             const imgModal = document.getElementById('image-modal');
             const imgTitle = document.getElementById('image-modal-title');
             const imgSrc = document.getElementById('image-modal-src');
+            const svgJulio = document.getElementById('svg-container-julio');
             const svgAgosto = document.getElementById('svg-container-agosto');
             const svgSeptiembre = document.getElementById('svg-container-septiembre');
             const svgOctubre = document.getElementById('svg-container-octubre');
             const imgFooter = document.getElementById('image-modal-footer');
 
             imgSrc.classList.add('hidden');
+            svgJulio.classList.add('hidden');
             svgAgosto.classList.add('hidden');
             svgSeptiembre.classList.add('hidden');
             svgOctubre.classList.add('hidden');
 
-            if (type === 'interurbanas_agosto') {
+            if (type === 'julio_grafica') {
+                imgTitle.innerText = "Vista Ampliada - Distribución por Horas (Julio 2026)";
+                svgJulio.classList.remove('hidden');
+                imgFooter.innerText = "Fuente: Monitoreo Horario de Operaciones - Julio 2026";
+            } else if (type === 'interurbanas_agosto') {
                 imgTitle.innerText = "Cuadrillas Interurbanas - Rendimiento por Tramo (Agosto 2026)";
                 svgAgosto.classList.remove('hidden');
                 imgFooter.innerText = "Pasa el cursor sobre cada punto para ver el detalle de Netlife y Ecuanet";
