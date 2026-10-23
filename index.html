@@ -821,6 +821,51 @@
             const content = document.getElementById('modal-content');
             const data = monthData[selectedMonthKey];
 
+            // TABLAS ESPECÍFICAS POR CADA MES
+            const tablasSoporte = {
+                julio: `
+                    <tbody class="divide-y divide-slate-100 bg-white">
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV CON STN 01</td><td class="py-2 px-2 text-center">45</td><td class="py-2 px-2 text-center">72</td><td class="py-2 px-2 text-center">18</td><td class="py-2 px-2 text-center">59</td><td class="py-2 px-2 text-center text-rose-600">40</td><td class="py-2 px-2 text-center font-bold text-slate-900">154</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">7.00</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV STO SNL 02</td><td class="py-2 px-2 text-center">73</td><td class="py-2 px-2 text-center">89</td><td class="py-2 px-2 text-center">0</td><td class="py-2 px-2 text-center">10</td><td class="py-2 px-2 text-center text-rose-600">23</td><td class="py-2 px-2 text-center font-bold text-slate-900">149</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">6.77</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV STO STN 01</td><td class="py-2 px-2 text-center">50</td><td class="py-2 px-2 text-center">41</td><td class="py-2 px-2 text-center">21</td><td class="py-2 px-2 text-center">46</td><td class="py-2 px-2 text-center text-rose-600">15</td><td class="py-2 px-2 text-center font-bold text-slate-900">143</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">6.50</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV CAR SNL 01</td><td class="py-2 px-2 text-center">45</td><td class="py-2 px-2 text-center">66</td><td class="py-2 px-2 text-center">4</td><td class="py-2 px-2 text-center">46</td><td class="py-2 px-2 text-center text-rose-600">15</td><td class="py-2 px-2 text-center font-bold text-slate-900">146</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">6.64</td></tr>
+                        <tr class="hover:bg-slate-50 transition bg-emerald-50/30"><td class="py-2 px-3 font-bold text-emerald-900">STO PROV STO SNL 01</td><td class="py-2 px-2 text-center">45</td><td class="py-2 px-2 text-center">74</td><td class="py-2 px-2 text-center">18</td><td class="py-2 px-2 text-center">49</td><td class="py-2 px-2 text-center text-rose-600">25</td><td class="py-2 px-2 text-center font-extrabold text-emerald-800">161</td><td class="py-2 px-2 text-right font-extrabold text-emerald-800">7.32</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV CAR STN 01</td><td class="py-2 px-2 text-center">35</td><td class="py-2 px-2 text-center">72</td><td class="py-2 px-2 text-center">4</td><td class="py-2 px-2 text-center">45</td><td class="py-2 px-2 text-center text-rose-600">15</td><td class="py-2 px-2 text-center font-bold text-slate-900">141</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">6.41</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV STO SNL 03</td><td class="py-2 px-2 text-center">40</td><td class="py-2 px-2 text-center">53</td><td class="py-2 px-2 text-center">12</td><td class="py-2 px-2 text-center">64</td><td class="py-2 px-2 text-center text-rose-600">12</td><td class="py-2 px-2 text-center font-bold text-slate-900">157</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">7.14</td></tr>
+                    </tbody>
+                `,
+                agosto: `
+                    <tbody class="divide-y divide-slate-100 bg-white">
+                        <tr class="hover:bg-slate-50 transition bg-emerald-50/30"><td class="py-2 px-3 font-bold text-emerald-900">STO PROV STO SNL 01</td><td class="py-2 px-2 text-center">50</td><td class="py-2 px-2 text-center">92</td><td class="py-2 px-2 text-center">20</td><td class="py-2 px-2 text-center">66</td><td class="py-2 px-2 text-center text-rose-600">30</td><td class="py-2 px-2 text-center font-extrabold text-emerald-800">228</td><td class="py-2 px-2 text-right font-extrabold text-emerald-800">10.36</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV STO SNL 02</td><td class="py-2 px-2 text-center">80</td><td class="py-2 px-2 text-center">105</td><td class="py-2 px-2 text-center">0</td><td class="py-2 px-2 text-center">19</td><td class="py-2 px-2 text-center text-rose-600">23</td><td class="py-2 px-2 text-center font-bold text-slate-900">204</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">9.27</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV STO STN 01</td><td class="py-2 px-2 text-center">22</td><td class="py-2 px-2 text-center">37</td><td class="py-2 px-2 text-center">24</td><td class="py-2 px-2 text-center">71</td><td class="py-2 px-2 text-center text-rose-600">15</td><td class="py-2 px-2 text-center font-bold text-slate-900">154</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">7.00</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV CAR STN 01</td><td class="py-2 px-2 text-center">34</td><td class="py-2 px-2 text-center">69</td><td class="py-2 px-2 text-center">5</td><td class="py-2 px-2 text-center">46</td><td class="py-2 px-2 text-center text-rose-600">15</td><td class="py-2 px-2 text-center font-bold text-slate-900">154</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">7.00</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV CAR SNL 01</td><td class="py-2 px-2 text-center">40</td><td class="py-2 px-2 text-center">31</td><td class="py-2 px-2 text-center">6</td><td class="py-2 px-2 text-center">97</td><td class="py-2 px-2 text-center text-rose-600">9</td><td class="py-2 px-2 text-center font-bold text-slate-900">174</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">7.91</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV CON STN 01</td><td class="py-2 px-2 text-center">56</td><td class="py-2 px-2 text-center">34</td><td class="py-2 px-2 text-center">5</td><td class="py-2 px-2 text-center">102</td><td class="py-2 px-2 text-center text-rose-600">27</td><td class="py-2 px-2 text-center font-bold text-slate-900">197</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">8.95</td></tr>
+                    </tbody>
+                `,
+                septiembre: `
+                    <tbody class="divide-y divide-slate-100 bg-white">
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV STO SNL 01</td><td class="py-2 px-2 text-center">65</td><td class="py-2 px-2 text-center">82</td><td class="py-2 px-2 text-center">10</td><td class="py-2 px-2 text-center">45</td><td class="py-2 px-2 text-center text-rose-600">34</td><td class="py-2 px-2 text-center font-bold text-slate-900">202</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">9.18</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV STO SNL 02</td><td class="py-2 px-2 text-center">70</td><td class="py-2 px-2 text-center">83</td><td class="py-2 px-2 text-center">5</td><td class="py-2 px-2 text-center">44</td><td class="py-2 px-2 text-center text-rose-600">34</td><td class="py-2 px-2 text-center font-bold text-slate-900">202</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">9.18</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV STO STN 01</td><td class="py-2 px-2 text-center">25</td><td class="py-2 px-2 text-center">48</td><td class="py-2 px-2 text-center">24</td><td class="py-2 px-2 text-center">57</td><td class="py-2 px-2 text-center text-rose-600">15</td><td class="py-2 px-2 text-center font-bold text-slate-900">154</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">7.00</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV CAR STN 01</td><td class="py-2 px-2 text-center">28</td><td class="py-2 px-2 text-center">42</td><td class="py-2 px-2 text-center">7</td><td class="py-2 px-2 text-center">55</td><td class="py-2 px-2 text-center text-rose-600">17</td><td class="py-2 px-2 text-center font-bold text-slate-900">154</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">7.00</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV CAR SNL 01</td><td class="py-2 px-2 text-center">35</td><td class="py-2 px-2 text-center">50</td><td class="py-2 px-2 text-center">4</td><td class="py-2 px-2 text-center">76</td><td class="py-2 px-2 text-center text-rose-600">10</td><td class="py-2 px-2 text-center font-bold text-slate-900">165</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">7.50</td></tr>
+                        <tr class="hover:bg-slate-50 transition bg-emerald-50/30"><td class="py-2 px-3 font-bold text-emerald-900">STO PROV CON STN 01</td><td class="py-2 px-2 text-center">65</td><td class="py-2 px-2 text-center">43</td><td class="py-2 px-2 text-center">9</td><td class="py-2 px-2 text-center">88</td><td class="py-2 px-2 text-center text-rose-600">32</td><td class="py-2 px-2 text-center font-extrabold text-emerald-800">205</td><td class="py-2 px-2 text-right font-extrabold text-emerald-800">9.32</td></tr>
+                    </tbody>
+                `,
+                octubre: `
+                    <tbody class="divide-y divide-slate-100 bg-white">
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV STO SNL 01</td><td class="py-2 px-2 text-center">55</td><td class="py-2 px-2 text-center">75</td><td class="py-2 px-2 text-center">18</td><td class="py-2 px-2 text-center">47</td><td class="py-2 px-2 text-center text-rose-600">30</td><td class="py-2 px-2 text-center font-bold text-slate-900">165</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">7.50</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV STO SNL 02</td><td class="py-2 px-2 text-center">62</td><td class="py-2 px-2 text-center">80</td><td class="py-2 px-2 text-center">5</td><td class="py-2 px-2 text-center">48</td><td class="py-2 px-2 text-center text-rose-600">23</td><td class="py-2 px-2 text-center font-bold text-slate-900">172</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">7.82</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV STO STN 01</td><td class="py-2 px-2 text-center">25</td><td class="py-2 px-2 text-center">47</td><td class="py-2 px-2 text-center">24</td><td class="py-2 px-2 text-center">99</td><td class="py-2 px-2 text-center text-rose-600">15</td><td class="py-2 px-2 text-center font-bold text-slate-900">180</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">8.18</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV CAR STN 01</td><td class="py-2 px-2 text-center">35</td><td class="py-2 px-2 text-center">65</td><td class="py-2 px-2 text-center">7</td><td class="py-2 px-2 text-center">88</td><td class="py-2 px-2 text-center text-rose-600">15</td><td class="py-2 px-2 text-center font-bold text-slate-900">180</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">8.18</td></tr>
+                        <tr class="hover:bg-slate-50 transition bg-emerald-50/30"><td class="py-2 px-3 font-bold text-emerald-900">STO PROV CAR SNL 01</td><td class="py-2 px-2 text-center">36</td><td class="py-2 px-2 text-center">48</td><td class="py-2 px-2 text-center">4</td><td class="py-2 px-2 text-center">107</td><td class="py-2 px-2 text-center text-rose-600">9</td><td class="py-2 px-2 text-center font-extrabold text-emerald-800">186</td><td class="py-2 px-2 text-right font-extrabold text-emerald-800">8.45</td></tr>
+                        <tr class="hover:bg-slate-50 transition"><td class="py-2 px-3 font-medium text-slate-800">STO PROV CON STN 01</td><td class="py-2 px-2 text-center">61</td><td class="py-2 px-2 text-center">40</td><td class="py-2 px-2 text-center">9</td><td class="py-2 px-2 text-center">85</td><td class="py-2 px-2 text-center text-rose-600">32</td><td class="py-2 px-2 text-center font-bold text-slate-900">163</td><td class="py-2 px-2 text-right font-semibold text-emerald-700">7.41</td></tr>
+                    </tbody>
+                `
+            };
+
             if (type === 'soporte') {
                 title.innerText = `Cuadrillas de Soporte - ${data.title}`;
                 content.innerHTML = `
@@ -840,9 +885,9 @@
                             </div>
                         </div>
 
-                        <!-- TABLA ESTÁTICA ACTUALIZADA DE CUADRILLAS DE SOPORTE -->
+                        <!-- TABLA DINÁMICA DE CUADRILLAS DE SOPORTE -->
                         <div class="pt-2 space-y-2">
-                            <p class="text-xs font-bold text-slate-800 uppercase tracking-wider">Desglose Operativo por Cuadrilla (Julio):</p>
+                            <p class="text-xs font-bold text-slate-800 uppercase tracking-wider">Desglose Operativo por Cuadrilla (${data.title}):</p>
                             <div class="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
                                 <table class="w-full text-left text-xs text-slate-600">
                                     <thead class="bg-slate-800 text-slate-100 uppercase text-[10px] tracking-wider">
@@ -857,78 +902,7 @@
                                             <th class="py-2.5 px-2 font-semibold text-right">PROM. DIARIO</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="divide-y divide-slate-100 bg-white">
-                                        <tr class="hover:bg-slate-50 transition">
-                                            <td class="py-2 px-3 font-medium text-slate-800">STO PROV CON STN 01</td>
-                                            <td class="py-2 px-2 text-center">45</td>
-                                            <td class="py-2 px-2 text-center">72</td>
-                                            <td class="py-2 px-2 text-center">18</td>
-                                            <td class="py-2 px-2 text-center">59</td>
-                                            <td class="py-2 px-2 text-center text-rose-600">40</td>
-                                            <td class="py-2 px-2 text-center font-bold text-slate-900">154</td>
-                                            <td class="py-2 px-2 text-right font-semibold text-emerald-700">7.00</td>
-                                        </tr>
-                                        <tr class="hover:bg-slate-50 transition">
-                                            <td class="py-2 px-3 font-medium text-slate-800">STO PROV STO SNL 02</td>
-                                            <td class="py-2 px-2 text-center">73</td>
-                                            <td class="py-2 px-2 text-center">89</td>
-                                            <td class="py-2 px-2 text-center">0</td>
-                                            <td class="py-2 px-2 text-center">10</td>
-                                            <td class="py-2 px-2 text-center text-rose-600">23</td>
-                                            <td class="py-2 px-2 text-center font-bold text-slate-900">149</td>
-                                            <td class="py-2 px-2 text-right font-semibold text-emerald-700">6.77</td>
-                                        </tr>
-                                        <tr class="hover:bg-slate-50 transition">
-                                            <td class="py-2 px-3 font-medium text-slate-800">STO PROV STO STN 01</td>
-                                            <td class="py-2 px-2 text-center">50</td>
-                                            <td class="py-2 px-2 text-center">41</td>
-                                            <td class="py-2 px-2 text-center">21</td>
-                                            <td class="py-2 px-2 text-center">46</td>
-                                            <td class="py-2 px-2 text-center text-rose-600">15</td>
-                                            <td class="py-2 px-2 text-center font-bold text-slate-900">143</td>
-                                            <td class="py-2 px-2 text-right font-semibold text-emerald-700">6.50</td>
-                                        </tr>
-                                        <tr class="hover:bg-slate-50 transition">
-                                            <td class="py-2 px-3 font-medium text-slate-800">STO PROV CAR SNL 01</td>
-                                            <td class="py-2 px-2 text-center">45</td>
-                                            <td class="py-2 px-2 text-center">66</td>
-                                            <td class="py-2 px-2 text-center">4</td>
-                                            <td class="py-2 px-2 text-center">46</td>
-                                            <td class="py-2 px-2 text-center text-rose-600">15</td>
-                                            <td class="py-2 px-2 text-center font-bold text-slate-900">146</td>
-                                            <td class="py-2 px-2 text-right font-semibold text-emerald-700">6.64</td>
-                                        </tr>
-                                        <tr class="hover:bg-slate-50 transition bg-emerald-50/30">
-                                            <td class="py-2 px-3 font-bold text-emerald-900">STO PROV STO SNL 01</td>
-                                            <td class="py-2 px-2 text-center">45</td>
-                                            <td class="py-2 px-2 text-center">74</td>
-                                            <td class="py-2 px-2 text-center">18</td>
-                                            <td class="py-2 px-2 text-center">49</td>
-                                            <td class="py-2 px-2 text-center text-rose-600">25</td>
-                                            <td class="py-2 px-2 text-center font-extrabold text-emerald-800">161</td>
-                                            <td class="py-2 px-2 text-right font-extrabold text-emerald-800">7.32</td>
-                                        </tr>
-                                        <tr class="hover:bg-slate-50 transition">
-                                            <td class="py-2 px-3 font-medium text-slate-800">STO PROV CAR STN 01</td>
-                                            <td class="py-2 px-2 text-center">35</td>
-                                            <td class="py-2 px-2 text-center">72</td>
-                                            <td class="py-2 px-2 text-center">4</td>
-                                            <td class="py-2 px-2 text-center">45</td>
-                                            <td class="py-2 px-2 text-center text-rose-600">15</td>
-                                            <td class="py-2 px-2 text-center font-bold text-slate-900">141</td>
-                                            <td class="py-2 px-2 text-right font-semibold text-emerald-700">6.41</td>
-                                        </tr>
-                                        <tr class="hover:bg-slate-50 transition">
-                                            <td class="py-2 px-3 font-medium text-slate-800">STO PROV STO SNL 03</td>
-                                            <td class="py-2 px-2 text-center">40</td>
-                                            <td class="py-2 px-2 text-center">53</td>
-                                            <td class="py-2 px-2 text-center">12</td>
-                                            <td class="py-2 px-2 text-center">64</td>
-                                            <td class="py-2 px-2 text-center text-rose-600">12</td>
-                                            <td class="py-2 px-2 text-center font-bold text-slate-900">157</td>
-                                            <td class="py-2 px-2 text-right font-semibold text-emerald-700">7.14</td>
-                                        </tr>
-                                    </tbody>
+                                    ${tablasSoporte[selectedMonthKey] || tablasSoporte['julio']}
                                 </table>
                             </div>
                         </div>
