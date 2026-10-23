@@ -79,8 +79,8 @@
                 <p id="section-description" class="text-sm text-slate-500 mt-1">935 casos gestionados en julio. Excelente eficiencia global alcanzando un 91.87% de cierres en menos de 4 horas.</p>
             </div>
 
-            <!-- 4 TARJETAS DE MÉTRICAS -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- 5 TARJETAS DE MÉTRICAS (INCLUYENDO TAREAS Y TOTAL SUMADO) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                 <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
                     <span class="text-xs font-bold tracking-wider text-orange-600 uppercase">CASOS NL</span>
                     <div class="flex items-baseline gap-3 mt-2">
@@ -105,10 +105,21 @@
                     </div>
                 </div>
 
+                <!-- NUEVA TARJETA: TAREAS -->
                 <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
-                    <span class="text-xs font-bold tracking-wider text-slate-500 uppercase">TOTAL CASOS</span>
+                    <span class="text-xs font-bold tracking-wider text-indigo-600 uppercase">TAREAS</span>
+                    <div class="flex items-baseline gap-3 mt-2">
+                        <span id="m-tareas-count" class="text-3xl font-bold text-slate-900">116</span>
+                        <span id="m-tareas-pct" class="text-sm font-semibold text-indigo-600">11.04%</span>
+                    </div>
+                </div>
+
+                <!-- TOTAL GENERAL (CASOS + TAREAS) -->
+                <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+                    <span class="text-xs font-bold tracking-wider text-slate-500 uppercase">TOTAL GENERAL</span>
                     <div class="mt-2">
-                        <span id="m-total-count" class="text-3xl font-bold text-slate-900">935</span>
+                        <span id="m-total-count" class="text-3xl font-bold text-slate-900">1051</span>
+                        <span id="m-subtotal-text" class="block text-[11px] text-slate-400 mt-0.5">(935 casos + 116 tareas)</span>
                     </div>
                 </div>
             </div>
@@ -177,13 +188,13 @@
                     </div>
 
                     <div id="footer-total-text" class="text-xs text-slate-400 text-right pt-2 border-t border-slate-100">
-                        *Porcentajes calculados en relación al Total General de 935 casos
+                        *Porcentajes calculados en relación al Total de 935 casos
                     </div>
                 </div>
 
             </div>
 
-            <!-- SECCIÓN EXCLUSIVA DE OCTUBRE: GRÁFICA GEEOS + BOTÓN SUGERENCIA -->
+            <!-- SECCIÓN EXCLUSIVA DE OCTUBRE -->
             <div id="geeos-section" class="hidden space-y-4">
                 <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
                     <div class="flex justify-between items-center border-b border-slate-100 pb-2.5">
@@ -194,7 +205,6 @@
                         <span class="px-2.5 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 text-[11px] font-semibold rounded-full">Qlik Sense</span>
                     </div>
 
-                    <!-- CONTENEDOR DE LA IMAGEN GEEOS -->
                     <div onclick="openImageModal('geeos')" class="cursor-pointer group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 hover:shadow-md transition flex items-center justify-center p-2">
                         <img id="geeos-img" src="image_19bed7.jpeg" onerror="this.onerror=null; this.src='image_19bed7.png'; if(!this.src.endsWith('.jpg')) this.src='image_19bed7.jpg';" alt="Gráfica Geeos" class="w-full h-auto max-h-[380px] object-contain rounded-lg transition duration-300 group-hover:scale-[1.005]">
                         <div class="absolute inset-0 bg-slate-900/10 group-hover:bg-slate-900/20 transition flex items-center justify-center">
@@ -206,9 +216,9 @@
                     </div>
                 </div>
 
-                <!-- BOTÓN SUGERENCIA DE OPTIMIZACIÓN OPERATIVA -->
+                <!-- BOTÓN SUGERENCIA OPERATIVA -->
                 <div class="flex justify-center pt-2">
-                    <button onclick="openSugerenciaSoporteModal()" class="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold text-sm px-6 py-3.5 rounded-2xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-emerald-500/20">
+                    <button onclick="abrirSoporte90Modal()" class="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold text-sm px-6 py-3.5 rounded-2xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-emerald-500/20">
                         <span class="w-2.5 h-2.5 rounded-full bg-emerald-200 animate-pulse"></span>
                         💡 SUGERENCIA DE OPTIMIZACIÓN OPERATIVA
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
@@ -220,9 +230,9 @@
 
     </div>
 
-    <!-- MODAL CUADRILLAS -->
+    <!-- MODAL DETALLE CUADRILLAS -->
     <div id="detail-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4 animate-in fade-in zoom-in duration-200">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4">
             <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                 <h3 id="modal-title" class="font-bold text-base text-slate-900">Detalle de Cuadrillas</h3>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold px-2">&times;</button>
@@ -238,19 +248,19 @@
         </div>
     </div>
 
-    <!-- MODAL NUEVA SUGERENCIA OPERATIVA (SOLO 2 CUADRILLAS DE SOPORTE) -->
-    <div id="sugerencia-soporte-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4 md:p-6" onclick="closeSugerenciaSoporteModal()">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 shadow-2xl border border-slate-200 space-y-6 relative animate-in fade-in zoom-in duration-200" onclick="event.stopPropagation()">
+    <!-- MODAL SUGERENCIA DE 2 CUADRILLAS DE SOPORTE -->
+    <div id="modal-final-soporte-90" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4 md:p-6" onclick="cerrarSoporte90Modal()">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 md:p-8 shadow-2xl border border-slate-200 space-y-6 relative" onclick="event.stopPropagation()">
             
             <div class="flex justify-between items-start border-b border-slate-100 pb-4">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-lg">💡</div>
                     <div>
-                        <span class="text-[10px] uppercase font-bold text-emerald-600 tracking-wider">Plan de Fortalecimiento</span>
-                        <h3 class="font-extrabold text-slate-900 text-lg md:text-xl">Sugerencia Operativa</h3>
+                        <span class="text-[10px] uppercase font-bold text-emerald-600 tracking-wider">Plan Operativo de Soporte</span>
+                        <h3 class="font-extrabold text-slate-900 text-lg md:text-xl">Recomendación Estratégica</h3>
                     </div>
                 </div>
-                <button onclick="closeSugerenciaSoporteModal()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold px-2 leading-none">&times;</button>
+                <button onclick="cerrarSoporte90Modal()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold px-2 leading-none">&times;</button>
             </div>
 
             <div class="space-y-5 text-sm text-slate-600">
@@ -263,28 +273,28 @@
                     </div>
                     
                     <p class="text-xs md:text-sm text-slate-700 leading-relaxed pt-1">
-                        Se sugiere contratar <strong class="text-slate-900 font-bold">2 cuadrillas adicionales de soporte</strong> para consolidar la estructura operativa.
+                        Se recomienda la incorporación de <strong class="text-slate-900 font-bold">2 cuadrillas de soporte</strong> para fortalecer la capacidad de atención en campo.
                     </p>
                     <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
-                        Con este recurso se garantiza de forma sostenida alcanzar y mantener un <strong class="text-emerald-800 font-bold">90% de casos cerrados en menos de 4 horas</strong>.
+                        Esta medida garantiza alcanzar y mantener un cumplimiento constante del <strong class="text-emerald-800 font-bold">90% de casos cerrados en menos de 4 horas</strong>.
                     </p>
                 </div>
 
                 <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-200/80 text-xs text-slate-600 flex items-start gap-2.5">
                     <span class="text-base">📌</span>
-                    <span><strong>Objetivo:</strong> Maximizar la eficiencia de respuesta ante el incremento en la demanda de atención de casos de soporte.</span>
+                    <span><strong>Objetivo:</strong> Optimizar los tiempos de respuesta y asegurar los indicadores de calidad del servicio de soporte.</span>
                 </div>
             </div>
 
             <div class="pt-3 border-t border-slate-100 flex justify-end">
-                <button onclick="closeSugerenciaSoporteModal()" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs px-5 py-2.5 rounded-xl transition shadow-sm">
+                <button onclick="cerrarSoporte90Modal()" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs px-5 py-2.5 rounded-xl transition shadow-sm">
                     Entendido / Cerrar
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL AMPLIADO PARA GRÁFICAS INTERACTIVAS SVG -->
+    <!-- MODAL GRÁFICAS -->
     <div id="image-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4 md:p-8" onclick="closeImageModal()">
         <div class="bg-white rounded-2xl max-w-5xl w-full p-6 shadow-2xl border border-slate-200 space-y-4 relative" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center border-b border-slate-100 pb-3">
@@ -295,13 +305,10 @@
                 <button onclick="closeImageModal()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold px-2 leading-none">&times;</button>
             </div>
             
-            <!-- Contenedor Visualizador -->
             <div id="modal-content-box" class="bg-slate-50 rounded-xl border border-slate-200/80 p-4 relative flex items-center justify-center min-h-[460px]">
                 
-                <!-- Imagen normal (Octubre Geeos) -->
                 <img id="image-modal-src" src="" alt="Gráfica Ampliada" class="w-full h-auto max-h-[75vh] object-contain rounded-lg hidden">
 
-                <!-- Gráfico Interactivo SVG de Agosto -->
                 <div id="svg-container-agosto" class="w-full h-full relative hidden">
                     <div class="flex justify-center items-center gap-6 mb-2">
                         <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-orange-500 inline-block"></span> NETLIFE</div>
@@ -338,7 +345,6 @@
                     </div>
                 </div>
 
-                <!-- Gráfico Interactivo SVG de Septiembre -->
                 <div id="svg-container-septiembre" class="w-full h-full relative hidden">
                     <div class="flex justify-center items-center gap-6 mb-2">
                         <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-orange-500 inline-block"></span> NETLIFE</div>
@@ -376,7 +382,6 @@
                     </div>
                 </div>
 
-                <!-- Gráfico Interactivo SVG de Octubre -->
                 <div id="svg-container-octubre" class="w-full h-full relative hidden">
                     <div class="flex justify-center items-center gap-6 mb-2">
                         <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-orange-500 inline-block"></span> NETLIFE</div>
@@ -408,12 +413,11 @@
                             <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CAR INT 01', 2, 1, 600, 210)" onmouseleave="hideTooltip()"><text x="600" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 600, 295)">STO PROV CAR INT 01</text><circle cx="600" cy="246" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="600" cy="258" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
                             <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV TAN INT 01', 2, 3, 685, 210)" onmouseleave="hideTooltip()"><text x="685" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 685, 295)">STO PROV TAN INT 01</text><circle cx="685" cy="246" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="685" cy="234" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
                             <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV BAN INT 01', 3, 7, 770, 160)" onmouseleave="hideTooltip()"><text x="770" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 770, 295)">STO PROV BAN INT 01</text><circle cx="770" cy="234" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="770" cy="186" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CON INT 01', 1, 3, 855, 210)" onmouseleave="hideTooltip()"><text x="855" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 855, 295)">STO PROV CON INT 01</text><circle cx="855" cy="258" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="855" cy="234" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
+                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CON INT 01', 1, 3, 855, 210)" onmouseleave="hideTooltip()"><text x="855" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 855, 230)">STO PROV CON INT 01</text><circle cx="855" cy="258" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="855" cy="234" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
                         </svg>
                     </div>
                 </div>
 
-                <!-- Tooltip Flotante Común -->
                 <div id="chart-tooltip" class="custom-tooltip absolute hidden bg-slate-900/95 text-white text-xs rounded-lg p-2.5 shadow-xl border border-slate-700 pointer-events-none z-30">
                     <div id="tooltip-title" class="font-bold border-b border-slate-700 pb-1 mb-1"></div>
                     <div id="tooltip-nl" class="text-orange-400"></div>
@@ -430,7 +434,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT INTERACTIVO -->
+    <!-- SCRIPT -->
     <script>
         let selectedMonthKey = 'julio';
 
@@ -438,12 +442,14 @@
             julio: {
                 title: "Julio 2026",
                 update: "Última actualización: 31/07",
-                desc: "935 casos gestionados en julio. Excelente eficiencia global alcanzando un 91.87% de cierres en menos de 4 horas.",
+                desc: "1051 gestiones totales en julio (935 casos + 116 tareas). Excelente eficiencia alcanzando un 91.87% de cierres en menos de 4 horas.",
                 avgPct: "91.87%",
                 nlCount: 431, nlPct: "46.10%", 
                 enCount: 428, enPct: "45.78%", 
                 tnCount: 76, tnPct: "8.13%", 
-                total: 935,
+                tareasCount: 116, tareasPct: "11.04%",
+                casosTotal: 935,
+                totalGeneral: 1051,
                 barNl: 93.57, barEn: 93.22, barTn: 74.68,
                 qSoporteCases: 789, qSoportePct: "84.39%", qSoporteNlEn: 726, qSoporteNlEnPct: "91.76%", qSoporteTn: 63, qSoporteTnPct: "7.98%",
                 qInterCases: 146, qInterPct: "15.61%", qInterNlEn: 133, qInterNlEnPct: "91.10%", qInterTn: 13, qInterTnPct: "8.90%"
@@ -451,12 +457,14 @@
             agosto: {
                 title: "Agosto 2026",
                 update: "Última actualización: 31/08",
-                desc: "966 casos gestionados en agosto. Nivel de cierre de <4h alcanzando un 85.96% promedio.",
+                desc: "1124 gestiones totales en agosto (966 casos + 158 tareas). Nivel de cierre de <4h alcanzando un 85.96% promedio.",
                 avgPct: "85.96%",
                 nlCount: 509, nlPct: "52.69%", 
                 enCount: 373, enPct: "38.61%", 
                 tnCount: 84, tnPct: "8.70%", 
-                total: 966,
+                tareasCount: 158, tareasPct: "14.06%",
+                casosTotal: 966,
+                totalGeneral: 1124,
                 barNl: 88.01, barEn: 84.67, barTn: 79.29,
                 qSoporteCases: 796, qSoportePct: "82.40%", qSoporteNlEn: 734, qSoporteNlEnPct: "92.21%", qSoporteTn: 62, qSoporteTnPct: "7.79%",
                 qInterCases: 170, qInterPct: "17.60%", qInterNlEn: 148, qInterNlEnPct: "87.06%", qInterTn: 22, qInterTnPct: "12.94%"
@@ -464,12 +472,14 @@
             septiembre: {
                 title: "Septiembre 2026",
                 update: "Última actualización: 30/09",
-                desc: "998 casos gestionados en septiembre. El cierre en menos de 4 horas mantiene un promedio ponderado de 80.93%.",
+                desc: "1200 gestiones totales en septiembre (998 casos + 202 tareas). El cierre en menos de 4 horas mantiene un promedio de 80.93%.",
                 avgPct: "80.93%",
                 nlCount: 517, nlPct: "51.80%", 
                 enCount: 385, enPct: "38.58%", 
                 tnCount: 96, tnPct: "9.62%", 
-                total: 998,
+                tareasCount: 202, tareasPct: "16.83%",
+                casosTotal: 998,
+                totalGeneral: 1200,
                 barNl: 81.50, barEn: 80.72, barTn: 78.73,
                 qSoporteCases: 771, qSoportePct: "77.25%", qSoporteNlEn: 712, qSoporteNlEnPct: "92.35%", qSoporteTn: 59, qSoporteTnPct: "7.65%",
                 qInterCases: 227, qInterPct: "22.75%", qInterNlEn: 190, qInterNlEnPct: "83.70%", qInterTn: 37, qInterTnPct: "16.30%"
@@ -477,12 +487,14 @@
             octubre: {
                 title: "Octubre 2026",
                 update: "Última actualización: 31/10",
-                desc: "844 casos gestionados en octubre. Sólida efectividad operativa con un 87.53% de resoluciones en menos de 4 horas.",
+                desc: "993 gestiones totales en octubre (844 casos + 149 tareas). Sólida efectividad operativa con un 87.53% de resoluciones en menos de 4 horas.",
                 avgPct: "87.53%",
                 nlCount: 457, nlPct: "54.15%", 
                 enCount: 340, enPct: "40.28%", 
                 tnCount: 47, tnPct: "5.57%", 
-                total: 844,
+                tareasCount: 149, tareasPct: "15.01%",
+                casosTotal: 844,
+                totalGeneral: 993,
                 barNl: 88.33, barEn: 87.22, barTn: 81.97,
                 qSoporteCases: 661, qSoportePct: "78.32%", qSoporteNlEn: 629, qSoporteNlEnPct: "95.16%", qSoporteTn: 32, qSoporteTnPct: "4.84%",
                 qInterCases: 180, qInterPct: "21.33%", qInterNlEn: 165, qInterNlEnPct: "91.67%", qInterTn: 15, qInterTnPct: "8.33%"
@@ -518,7 +530,12 @@
             document.getElementById('m-en-pct').innerText = data.enPct;
             document.getElementById('m-tn-count').innerText = data.tnCount;
             document.getElementById('m-tn-pct').innerText = data.tnPct;
-            document.getElementById('m-total-count').innerText = data.total;
+            
+            document.getElementById('m-tareas-count').innerText = data.tareasCount;
+            document.getElementById('m-tareas-pct').innerText = data.tareasPct;
+
+            document.getElementById('m-total-count').innerText = data.totalGeneral;
+            document.getElementById('m-subtotal-text').innerText = `(${data.casosTotal} casos + ${data.tareasCount} tareas)`;
 
             document.getElementById('bar-nl').style.height = `${data.barNl}%`;
             document.getElementById('bar-nl-val').innerText = `${data.barNl}%`;
@@ -532,7 +549,7 @@
             document.getElementById('q-inter-pct').innerText = data.qInterPct;
             document.getElementById('q-inter-bar').style.width = data.qInterPct;
 
-            document.getElementById('footer-total-text').innerText = `*Porcentajes calculados en relación al Total General de ${data.total} casos`;
+            document.getElementById('footer-total-text').innerText = `*Porcentajes calculados en relación al Total de ${data.casosTotal} casos`;
 
             const geeosSection = document.getElementById('geeos-section');
             if (monthKey === 'octubre') {
@@ -628,14 +645,14 @@
             modal.classList.add('hidden');
         }
 
-        function openSugerenciaSoporteModal() {
-            const modal = document.getElementById('sugerencia-soporte-modal');
+        function abrirSoporte90Modal() {
+            const modal = document.getElementById('modal-final-soporte-90');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
         }
 
-        function closeSugerenciaSoporteModal() {
-            const modal = document.getElementById('sugerencia-soporte-modal');
+        function cerrarSoporte90Modal() {
+            const modal = document.getElementById('modal-final-soporte-90');
             modal.classList.remove('flex');
             modal.classList.add('hidden');
         }
@@ -649,7 +666,6 @@
             const svgOctubre = document.getElementById('svg-container-octubre');
             const imgFooter = document.getElementById('image-modal-footer');
 
-            // Ocultar todos por defecto
             imgSrc.classList.add('hidden');
             svgAgosto.classList.add('hidden');
             svgSeptiembre.classList.add('hidden');
