@@ -35,7 +35,7 @@
             </div>
         </header>
 
-        <!-- TARJETAS SUPERIORES DE MESES -->
+        <!-- TARJETAS SUPERIORES DE MESES CON NÚMEROS RECALCULADOS -->
         <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80">
             <p class="text-xs font-medium text-slate-400 mb-3 uppercase tracking-wider">Selecciona un mes para ver el detalle</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -43,29 +43,29 @@
                 <!-- JULIO -->
                 <button onclick="selectMonth('julio')" id="card-julio" class="month-card text-left bg-blue-50/60 rounded-xl p-5 border border-blue-300 transition group focus:outline-none focus:ring-2 focus:ring-blue-500/20">
                     <span class="text-xs font-semibold tracking-wider text-blue-600 uppercase">JULIO</span>
-                    <div class="text-3xl font-bold text-slate-900 mt-2">91.87%</div>
-                    <p class="text-xs text-slate-500 mt-1">casos cerrados en &lt;4h (859 casos)</p>
+                    <div id="card-julio-val" class="text-3xl font-bold text-slate-900 mt-2">90.91%</div>
+                    <p id="card-julio-sub" class="text-xs text-slate-500 mt-1">casos cerrados en &lt;4h (850 casos)</p>
                 </button>
 
                 <!-- AGOSTO -->
                 <button onclick="selectMonth('agosto')" id="card-agosto" class="month-card text-left bg-slate-50/70 rounded-xl p-5 border border-slate-200/60 hover:bg-blue-50/50 hover:border-blue-200 transition group focus:outline-none focus:ring-2 focus:ring-blue-500/20">
                     <span class="text-xs font-semibold tracking-wider text-slate-600 group-hover:text-blue-600 uppercase">AGOSTO</span>
-                    <div class="text-3xl font-bold text-slate-900 mt-2">85.96%</div>
-                    <p class="text-xs text-slate-500 mt-1">casos cerrados en &lt;4h (830 casos)</p>
+                    <div id="card-agosto-val" class="text-3xl font-bold text-slate-900 mt-2">85.40%</div>
+                    <p id="card-agosto-sub" class="text-xs text-slate-500 mt-1">casos cerrados en &lt;4h (825 casos)</p>
                 </button>
 
                 <!-- SEPTIEMBRE -->
                 <button onclick="selectMonth('septiembre')" id="card-septiembre" class="month-card text-left bg-slate-50/70 rounded-xl p-5 border border-slate-200/60 hover:bg-blue-50/50 hover:border-blue-200 transition group focus:outline-none focus:ring-2 focus:ring-blue-500/20">
                     <span class="text-xs font-semibold tracking-wider text-slate-600 group-hover:text-blue-600 uppercase">SEPTIEMBRE</span>
-                    <div class="text-3xl font-bold text-slate-900 mt-2">80.93%</div>
-                    <p class="text-xs text-slate-500 mt-1">casos cerrados en &lt;4h (808 casos)</p>
+                    <div id="card-septiembre-val" class="text-3xl font-bold text-slate-900 mt-2">80.76%</div>
+                    <p id="card-septiembre-sub" class="text-xs text-slate-500 mt-1">casos cerrados en &lt;4h (806 casos)</p>
                 </button>
 
                 <!-- OCTUBRE -->
                 <button onclick="selectMonth('octubre')" id="card-octubre" class="month-card text-left bg-slate-50/70 rounded-xl p-5 border border-slate-200/60 hover:bg-blue-50/50 hover:border-blue-200 transition group focus:outline-none focus:ring-2 focus:ring-blue-500/20">
                     <span class="text-xs font-semibold tracking-wider text-slate-600 group-hover:text-blue-600 uppercase">OCTUBRE</span>
-                    <div class="text-3xl font-bold text-slate-900 mt-2">87.53%</div>
-                    <p class="text-xs text-slate-500 mt-1">casos cerrados en &lt;4h (739 casos)</p>
+                    <div id="card-octubre-val" class="text-3xl font-bold text-slate-900 mt-2">85.29%</div>
+                    <p id="card-octubre-sub" class="text-xs text-slate-500 mt-1">casos cerrados en &lt;4h (858 casos)</p>
                 </button>
 
             </div>
@@ -76,7 +76,7 @@
             <div>
                 <span class="text-xs font-bold tracking-wider text-blue-600 uppercase">ARISTA 3</span>
                 <h2 class="text-xl md:text-2xl font-bold text-slate-900 mt-0.5">Soporte y atención de casos</h2>
-                <p id="section-description" class="text-sm text-slate-500 mt-1">1051 gestiones totales en julio (935 casos + 116 tareas). Excelente eficiencia alcanzando un 91.87% de cierres en menos de 4 horas.</p>
+                <p id="section-description" class="text-sm text-slate-500 mt-1">1051 gestiones totales en julio (935 casos + 116 tareas). Excelente eficiencia alcanzando un 90.91% de cierres en menos de 4 horas.</p>
             </div>
 
             <!-- 5 TARJETAS DE MÉTRICAS (SUMAN 100% SOBRE EL TOTAL GENERAL) -->
@@ -129,7 +129,7 @@
                 <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
                     <div>
                         <h3 class="font-semibold text-slate-900">% cierre en menos de 4 horas por categoría</h3>
-                        <p id="chart-avg-text" class="text-xs text-slate-500 mt-0.5">Promedio ponderado del mes: 91.87%</p>
+                        <p id="chart-avg-text" class="text-xs text-slate-500 mt-0.5">Promedio ponderado del mes: 90.91%</p>
                     </div>
 
                     <div class="h-64 flex items-end justify-around gap-4 pt-8 pb-2 px-4 border-b border-slate-100 mt-4">
@@ -432,7 +432,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT INTERACTIVO -->
+    <!-- SCRIPT INTERACTIVO CON DATOS DINÁMICOS Y RECALCULADOS -->
     <script>
         let selectedMonthKey = 'julio';
 
@@ -440,8 +440,9 @@
             julio: {
                 title: "Julio 2026",
                 update: "Última actualización: 31/07",
-                desc: "1051 gestiones totales en julio (935 casos + 116 tareas). Excelente eficiencia alcanzando un 91.87% de cierres en menos de 4 horas.",
-                avgPct: "91.87%",
+                desc: "1051 gestiones totales en julio (935 casos + 116 tareas). Excelente eficiencia alcanzando un 90.91% de cierres en menos de 4 horas.",
+                avgPct: "90.91%",
+                closedCases: 850,
                 nlCount: 431, nlPct: "41.01%", 
                 enCount: 428, enPct: "40.72%", 
                 tnCount: 76, tnPct: "7.23%", 
@@ -455,8 +456,9 @@
             agosto: {
                 title: "Agosto 2026",
                 update: "Última actualización: 31/08",
-                desc: "1124 gestiones totales en agosto (966 casos + 158 tareas). Nivel de cierre de <4h alcanzando un 85.96% promedio.",
-                avgPct: "85.96%",
+                desc: "1124 gestiones totales en agosto (966 casos + 158 tareas). Nivel de cierre de <4h alcanzando un 85.40% promedio.",
+                avgPct: "85.40%",
+                closedCases: 825,
                 nlCount: 509, nlPct: "45.28%", 
                 enCount: 373, enPct: "33.19%", 
                 tnCount: 84, tnPct: "7.47%", 
@@ -470,8 +472,9 @@
             septiembre: {
                 title: "Septiembre 2026",
                 update: "Última actualización: 30/09",
-                desc: "1200 gestiones totales en septiembre (998 casos + 202 tareas). El cierre en menos de 4 horas mantiene un promedio de 80.93%.",
-                avgPct: "80.93%",
+                desc: "1200 gestiones totales en septiembre (998 casos + 202 tareas). El cierre en menos de 4 horas mantiene un promedio de 80.76%.",
+                avgPct: "80.76%",
+                closedCases: 806,
                 nlCount: 517, nlPct: "43.08%", 
                 enCount: 385, enPct: "32.08%", 
                 tnCount: 96, tnPct: "8.00%", 
@@ -485,8 +488,9 @@
             octubre: {
                 title: "Octubre 2026",
                 update: "Última actualización: 31/10",
-                desc: "1207 gestiones totales en octubre (1006 casos + 201 tareas). Sólida efectividad operativa con un 87.53% de resoluciones en menos de 4 horas.",
-                avgPct: "87.53%",
+                desc: "1207 gestiones totales en octubre (1006 casos + 201 tareas). Sólida efectividad operativa con un 85.29% de resoluciones en menos de 4 horas.",
+                avgPct: "85.29%",
+                closedCases: 858,
                 nlCount: 544, nlPct: "45.07%", 
                 enCount: 403, enPct: "33.39%", 
                 tnCount: 59, tnPct: "4.89%", 
