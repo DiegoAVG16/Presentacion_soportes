@@ -721,17 +721,23 @@
             const content = document.getElementById('modal-content');
             const data = monthData[selectedMonthKey];
 
-            // Asignar los nombres de archivo de imagen correctos para cada mes[cite: 14, 15, 16]
-            const monthImages = {
-                julio: 'image_bca834.png', // Usando referencia o imagen base
-                agosto: 'image_bca834.png',
-                septiembre: 'image_bcabd2.png',
-                octubre: 'image_bcafb1.png'
+            // Mapeo exacto según el listado de archivos de tu proyecto
+            const monthImagesSoporte = {
+                julio: 'image_bca834.jpeg',
+                agosto: 'image_bca834.jpeg',
+                septiembre: 'image_bcabd2.jpeg',
+                octubre: 'image_bcafb1.jpeg'
             };
 
-            const currentImg = monthImages[selectedMonthKey] || 'image_bca834.png';
+            const monthImagesInterurbanas = {
+                julio: 'int_agosto.jpeg', // Fallback
+                agosto: 'int_agosto.jpeg',
+                septiembre: 'int_septiembre.jpeg',
+                octubre: 'int_octubre.jpeg'
+            };
 
             if (type === 'soporte') {
+                const currentImg = monthImagesSoporte[selectedMonthKey] || 'image_bca834.jpeg';
                 title.innerText = `Cuadrillas de Soporte - ${data.title}`;
                 content.innerHTML = `
                     <div class="space-y-3">
@@ -750,14 +756,15 @@
                             </div>
                         </div>
                         <div class="pt-2">
-                            <p class="text-xs font-semibold text-slate-700 mb-1.5">Gráfica horaria de Cuadrillas:</p>
+                            <p class="text-xs font-semibold text-slate-700 mb-1.5">Gráfica horaria de Cuadrillas de Soporte:</p>
                             <div class="rounded-xl overflow-hidden border border-slate-200 bg-slate-50 p-2 flex justify-center">
-                                <img src="${currentImg}" alt="Gráfica de Cuadrillas ${data.title}" class="w-full h-auto max-h-[220px] object-contain rounded-lg">
+                                <img src="${currentImg}" alt="Gráfica de Cuadrillas Soporte ${data.title}" class="w-full h-auto max-h-[220px] object-contain rounded-lg">
                             </div>
                         </div>
                     </div>
                 `;
             } else {
+                const currentImg = monthImagesInterurbanas[selectedMonthKey] || 'int_agosto.jpeg';
                 title.innerText = `Cuadrillas Interurbanas - ${data.title}`;
                 content.innerHTML = `
                     <div class="space-y-3">
@@ -778,7 +785,7 @@
                         <div class="pt-2">
                             <p class="text-xs font-semibold text-slate-700 mb-1.5">Gráfica horaria de Cuadrillas Interurbanas:</p>
                             <div class="rounded-xl overflow-hidden border border-slate-200 bg-slate-50 p-2 flex justify-center">
-                                <img src="${currentImg}" alt="Gráfica Interurbanas ${data.title}" class="w-full h-auto max-h-[220px] object-contain rounded-lg">
+                                <img src="${currentImg}" alt="Gráfica Cuadrillas Interurbanas ${data.title}" class="w-full h-auto max-h-[220px] object-contain rounded-lg">
                             </div>
                         </div>
                     </div>
