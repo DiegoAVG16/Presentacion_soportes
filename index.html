@@ -192,18 +192,18 @@
 
             </div>
 
-            <!-- SECCIÓN EXCLUSIVA DE JULIO: GRÁFICA INTERACTIVA DE DISTRIBUCIÓN POR HORAS (CENTRADA) -->
-            <div id="julio-chart-section" class="space-y-4">
+            <!-- SECCIÓN DE GRÁFICA DE DISTRIBUCIÓN POR HORAS (CENTRADA Y DINÁMICA POR MES) -->
+            <div id="hourly-chart-section" class="space-y-4">
                 <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
                     <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                         <div>
-                            <h3 class="font-bold text-slate-900 text-base">Distribución por Horas - Julio 2026</h3>
+                            <h3 id="hourly-chart-title" class="font-bold text-slate-900 text-base">Distribución por Horas - Julio 2026</h3>
                             <p class="text-xs text-slate-500 mt-0.5">Evolución horaria 100% interactiva. Pasa el cursor sobre cualquier hora o haz clic para ampliar.</p>
                         </div>
                         <span class="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold rounded-full">Interactiva</span>
                     </div>
 
-                    <div onclick="openImageModal('julio_grafica')" class="cursor-pointer group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 hover:shadow-md transition flex flex-col items-center justify-center p-4">
+                    <div onclick="openCurrentMonthChartModal()" class="cursor-pointer group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 hover:shadow-md transition flex flex-col items-center justify-center p-4">
                         <div class="w-full flex justify-center items-center gap-6 mb-3">
                             <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#529ab4] inline-block"></span> ABIERTO</div>
                             <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#f3d350] inline-block"></span> CERRADO</div>
@@ -211,70 +211,9 @@
                             <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#18b965] inline-block"></span> CUADRILLAS</div>
                         </div>
 
-                        <div class="relative w-full max-w-5xl mx-auto overflow-x-auto flex justify-center">
-                            <svg viewBox="0 0 900 320" class="w-full h-[300px] select-none">
-                                <line x1="40" y1="30" x2="870" y2="30" stroke="#f1f5f9" stroke-dasharray="3" />
-                                <line x1="40" y1="80" x2="870" y2="80" stroke="#f1f5f9" stroke-dasharray="3" />
-                                <line x1="40" y1="130" x2="870" y2="130" stroke="#f1f5f9" stroke-dasharray="3" />
-                                <line x1="40" y1="180" x2="870" y2="180" stroke="#f1f5f9" stroke-dasharray="3" />
-                                <line x1="40" y1="230" x2="870" y2="230" stroke="#f1f5f9" stroke-dasharray="3" />
-                                <line x1="40" y1="270" x2="870" y2="270" stroke="#cbd5e1" />
-
-                                <text x="30" y="35" font-size="10" fill="#94a3b8" text-anchor="end">100</text>
-                                <text x="30" y="85" font-size="10" fill="#94a3b8" text-anchor="end">80</text>
-                                <text x="30" y="135" font-size="10" fill="#94a3b8" text-anchor="end">60</text>
-                                <text x="30" y="185" font-size="10" fill="#94a3b8" text-anchor="end">40</text>
-                                <text x="30" y="235" font-size="10" fill="#94a3b8" text-anchor="end">20</text>
-                                <text x="30" y="274" font-size="10" fill="#94a3b8" text-anchor="end">0</text>
-
-                                <!-- Trazados Curvos -->
-                                <path d="M 50 268 L 95 263 L 140 220 L 185 122 L 230 110 L 275 102 L 320 92 L 365 120 L 410 130 L 455 133 L 500 120 L 545 140 L 590 122 L 635 178 L 680 202 L 725 210 L 770 248 L 815 250 L 860 258" fill="none" stroke="#529ab4" stroke-width="2.5" stroke-linecap="round" />
-                                <path d="M 50 270 L 95 270 L 140 270 L 185 222 L 230 158 L 275 118 L 320 98 L 365 116 L 410 117 L 455 106 L 500 87 L 545 70 L 590 98 L 635 158 L 680 174 L 725 188 L 770 241 L 815 265 L 860 270" fill="none" stroke="#f3d350" stroke-width="2.5" stroke-linecap="round" />
-                                <path d="M 50 270 L 95 270 L 140 265 L 185 225 L 230 236 L 275 236 L 320 238 L 365 236 L 410 241 L 455 244 L 500 229 L 545 220 L 590 231 L 635 243 L 680 238 L 725 255 L 770 265 L 815 270 L 860 268" fill="none" stroke="#e75e52" stroke-width="2.5" stroke-linecap="round" />
-                                <path d="M 50 270 L 95 270 L 140 268 L 185 263 L 230 263 L 275 258 L 320 258 L 365 253 L 410 253 L 455 253 L 500 253 L 545 253 L 590 255 L 635 260 L 680 260 L 725 265 L 770 265 L 815 270 L 860 270" fill="none" stroke="#18b965" stroke-width="2.5" stroke-linecap="round" />
-
-                                <!-- PUNTOS INTERACTIVOS HORARIOS (5 a 23) -->
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(5, 1, 0, 0, 0, 50, 150)" onmouseleave="hideJulioTooltip()"><circle cx="50" cy="268" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="50" cy="270" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="50" cy="270" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="50" cy="270" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(6, 3, 0, 0, 0, 95, 150)" onmouseleave="hideJulioTooltip()"><circle cx="95" cy="263" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="95" cy="270" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="95" cy="270" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="95" cy="270" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(7, 20, 0, 2, 1, 140, 150)" onmouseleave="hideJulioTooltip()"><circle cx="140" cy="220" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="140" cy="270" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="140" cy="265" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="140" cy="268" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(8, 61, 20, 18, 3, 185, 130)" onmouseleave="hideJulioTooltip()"><circle cx="185" cy="122" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="185" cy="222" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="185" cy="225" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="185" cy="263" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(9, 66, 47, 14, 3, 230, 110)" onmouseleave="hideJulioTooltip()"><circle cx="230" cy="110" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="230" cy="158" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="230" cy="236" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="230" cy="263" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(10, 70, 63, 14, 5, 275, 100)" onmouseleave="hideJulioTooltip()"><circle cx="275" cy="102" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="275" cy="118" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="275" cy="236" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="275" cy="258" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(11, 74, 71, 13, 5, 320, 90)" onmouseleave="hideJulioTooltip()"><circle cx="320" cy="92" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="320" cy="98" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="320" cy="238" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="320" cy="258" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(12, 63, 64, 14, 7, 365, 100)" onmouseleave="hideJulioTooltip()"><circle cx="365" cy="120" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="365" cy="116" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="365" cy="236" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="365" cy="253" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(13, 58, 64, 12, 7, 410, 110)" onmouseleave="hideJulioTooltip()"><circle cx="410" cy="130" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="410" cy="117" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="410" cy="241" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="410" cy="253" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(14, 57, 68, 11, 7, 455, 110)" onmouseleave="hideJulioTooltip()"><circle cx="455" cy="133" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="455" cy="106" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="455" cy="244" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="455" cy="253" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(15, 62, 76, 17, 7, 500, 80)" onmouseleave="hideJulioTooltip()"><circle cx="500" cy="120" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="500" cy="87" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="500" cy="229" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="500" cy="253" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(16, 54, 83, 21, 7, 545, 60)" onmouseleave="hideJulioTooltip()"><circle cx="545" cy="140" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="545" cy="70" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="545" cy="220" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="545" cy="253" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(17, 61, 71, 16, 6, 590, 80)" onmouseleave="hideJulioTooltip()"><circle cx="590" cy="122" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="590" cy="98" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="590" cy="231" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="590" cy="255" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(18, 38, 59, 11, 4, 635, 120)" onmouseleave="hideJulioTooltip()"><circle cx="635" cy="178" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="635" cy="158" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="635" cy="243" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="635" cy="260" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(19, 28, 40, 13, 4, 680, 140)" onmouseleave="hideJulioTooltip()"><circle cx="680" cy="202" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="680" cy="174" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="680" cy="238" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="680" cy="260" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(20, 25, 34, 6, 2, 725, 150)" onmouseleave="hideJulioTooltip()"><circle cx="725" cy="210" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="725" cy="188" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="725" cy="255" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="725" cy="265" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(21, 9, 12, 2, 2, 770, 200)" onmouseleave="hideJulioTooltip()"><circle cx="770" cy="248" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="770" cy="241" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="770" cy="265" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="770" cy="265" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(22, 8, 2, 0, 0, 815, 210)" onmouseleave="hideJulioTooltip()"><circle cx="815" cy="250" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="815" cy="265" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="815" cy="270" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="815" cy="270" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-                                <g class="cursor-pointer" onmouseenter="showJulioTooltip(23, 5, 0, 1, 0, 860, 210)" onmouseleave="hideJulioTooltip()"><circle cx="860" cy="258" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="860" cy="270" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="860" cy="268" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="860" cy="270" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
-
-                                <!-- Etiquetas Horarias -->
-                                <text x="50" y="292" font-size="10" fill="#64748b" text-anchor="middle">5</text>
-                                <text x="95" y="292" font-size="10" fill="#64748b" text-anchor="middle">6</text>
-                                <text x="140" y="292" font-size="10" fill="#64748b" text-anchor="middle">7</text>
-                                <text x="185" y="292" font-size="10" fill="#64748b" text-anchor="middle">8</text>
-                                <text x="230" y="292" font-size="10" fill="#64748b" text-anchor="middle">9</text>
-                                <text x="275" y="292" font-size="10" fill="#64748b" text-anchor="middle">10</text>
-                                <text x="320" y="292" font-size="10" fill="#64748b" text-anchor="middle">11</text>
-                                <text x="365" y="292" font-size="10" fill="#64748b" text-anchor="middle">12</text>
-                                <text x="410" y="292" font-size="10" fill="#64748b" text-anchor="middle">13</text>
-                                <text x="455" y="292" font-size="10" fill="#64748b" text-anchor="middle">14</text>
-                                <text x="500" y="292" font-size="10" fill="#64748b" text-anchor="middle">15</text>
-                                <text x="545" y="292" font-size="10" fill="#64748b" text-anchor="middle">16</text>
-                                <text x="590" y="292" font-size="10" fill="#64748b" text-anchor="middle">17</text>
-                                <text x="635" y="292" font-size="10" fill="#64748b" text-anchor="middle">18</text>
-                                <text x="680" y="292" font-size="10" fill="#64748b" text-anchor="middle">19</text>
-                                <text x="725" y="292" font-size="10" fill="#64748b" text-anchor="middle">20</text>
-                                <text x="770" y="292" font-size="10" fill="#64748b" text-anchor="middle">21</text>
-                                <text x="815" y="292" font-size="10" fill="#64748b" text-anchor="middle">22</text>
-                                <text x="860" y="292" font-size="10" fill="#64748b" text-anchor="middle">23</text>
-                            </svg>
+                        <!-- CONTENEDOR CENTRADO DE SVG DE HORAS -->
+                        <div class="relative w-full max-w-5xl mx-auto overflow-x-auto flex justify-center" id="main-hourly-svg-wrapper">
+                            <!-- Inyectado dinámicamente por JS -->
                         </div>
                     </div>
                 </div>
@@ -380,7 +319,7 @@
         </div>
     </div>
 
-    <!-- MODAL GRÁFICAS -->
+    <!-- MODAL GRÁFICAS AMPLIADAS -->
     <div id="image-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4 md:p-8" onclick="closeImageModal()">
         <div class="bg-white rounded-2xl max-w-5xl w-full p-6 shadow-2xl border border-slate-200 space-y-4 relative" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center border-b border-slate-100 pb-3">
@@ -395,188 +334,8 @@
                 
                 <img id="image-modal-src" src="" alt="Gráfica Ampliada" class="w-full h-auto max-h-[75vh] object-contain rounded-lg hidden">
 
-                <!-- SVG INTERACTIVO JULIO DENTRO DEL MODAL (Con suficiente espacio vertical para el Eje X) -->
-                <div id="svg-container-julio" class="w-full h-full relative hidden">
-                    <div class="flex justify-center items-center gap-6 mb-3">
-                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#529ab4] inline-block"></span> ABIERTO</div>
-                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#f3d350] inline-block"></span> CERRADO</div>
-                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#e75e52] inline-block"></span> CANCELADO</div>
-                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#18b965] inline-block"></span> CUADRILLAS</div>
-                    </div>
-                    <div class="relative w-full overflow-x-auto flex justify-center">
-                        <svg viewBox="0 0 900 340" class="w-full h-[330px] select-none">
-                            <line x1="40" y1="30" x2="870" y2="30" stroke="#e2e8f0" stroke-dasharray="3" />
-                            <line x1="40" y1="80" x2="870" y2="80" stroke="#e2e8f0" stroke-dasharray="3" />
-                            <line x1="40" y1="130" x2="870" y2="130" stroke="#e2e8f0" stroke-dasharray="3" />
-                            <line x1="40" y1="180" x2="870" y2="180" stroke="#e2e8f0" stroke-dasharray="3" />
-                            <line x1="40" y1="230" x2="870" y2="230" stroke="#e2e8f0" stroke-dasharray="3" />
-                            <line x1="40" y1="270" x2="870" y2="270" stroke="#cbd5e1" />
-
-                            <text x="30" y="35" font-size="11" fill="#64748b" text-anchor="end">100</text>
-                            <text x="30" y="85" font-size="11" fill="#64748b" text-anchor="end">80</text>
-                            <text x="30" y="135" font-size="11" fill="#64748b" text-anchor="end">60</text>
-                            <text x="30" y="185" font-size="11" fill="#64748b" text-anchor="end">40</text>
-                            <text x="30" y="235" font-size="11" fill="#64748b" text-anchor="end">20</text>
-                            <text x="30" y="274" font-size="11" fill="#64748b" text-anchor="end">0</text>
-
-                            <path d="M 50 268 L 95 263 L 140 220 L 185 122 L 230 110 L 275 102 L 320 92 L 365 120 L 410 130 L 455 133 L 500 120 L 545 140 L 590 122 L 635 178 L 680 202 L 725 210 L 770 248 L 815 250 L 860 258" fill="none" stroke="#529ab4" stroke-width="3" stroke-linecap="round" />
-                            <path d="M 50 270 L 95 270 L 140 270 L 185 222 L 230 158 L 275 118 L 320 98 L 365 116 L 410 117 L 455 106 L 500 87 L 545 70 L 590 98 L 635 158 L 680 174 L 725 188 L 770 241 L 815 265 L 860 270" fill="none" stroke="#f3d350" stroke-width="3" stroke-linecap="round" />
-                            <path d="M 50 270 L 95 270 L 140 265 L 185 225 L 230 236 L 275 236 L 320 238 L 365 236 L 410 241 L 455 244 L 500 229 L 545 220 L 590 231 L 635 243 L 680 238 L 725 255 L 770 265 L 815 270 L 860 268" fill="none" stroke="#e75e52" stroke-width="3" stroke-linecap="round" />
-                            <path d="M 50 270 L 95 270 L 140 268 L 185 263 L 230 263 L 275 258 L 320 258 L 365 253 L 410 253 L 455 253 L 500 253 L 545 253 L 590 255 L 635 260 L 680 260 L 725 265 L 770 265 L 815 270 L 860 270" fill="none" stroke="#18b965" stroke-width="3" stroke-linecap="round" />
-
-                            <!-- PUNTOS INTERACTIVOS MODAL (5 a 23) -->
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(5, 1, 0, 0, 0, 50, 90)" onmouseleave="hideJulioTooltip()"><circle cx="50" cy="268" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="50" cy="270" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="50" cy="270" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="50" cy="270" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(6, 3, 0, 0, 0, 95, 90)" onmouseleave="hideJulioTooltip()"><circle cx="95" cy="263" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="95" cy="270" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="95" cy="270" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="95" cy="270" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(7, 20, 0, 2, 1, 140, 90)" onmouseleave="hideJulioTooltip()"><circle cx="140" cy="220" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="140" cy="270" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="140" cy="265" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="140" cy="268" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(8, 61, 20, 18, 3, 185, 90)" onmouseleave="hideJulioTooltip()"><circle cx="185" cy="122" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="185" cy="222" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="185" cy="225" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="185" cy="263" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(9, 66, 47, 14, 3, 230, 90)" onmouseleave="hideJulioTooltip()"><circle cx="230" cy="110" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="230" cy="158" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="230" cy="236" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="230" cy="263" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(10, 70, 63, 14, 5, 275, 90)" onmouseleave="hideJulioTooltip()"><circle cx="275" cy="102" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="275" cy="118" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="275" cy="236" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="275" cy="258" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(11, 74, 71, 13, 5, 320, 90)" onmouseleave="hideJulioTooltip()"><circle cx="320" cy="92" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="320" cy="98" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="320" cy="238" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="320" cy="258" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(12, 63, 64, 14, 7, 365, 90)" onmouseleave="hideJulioTooltip()"><circle cx="365" cy="120" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="365" cy="116" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="365" cy="236" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="365" cy="253" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(13, 58, 64, 12, 7, 410, 90)" onmouseleave="hideJulioTooltip()"><circle cx="410" cy="130" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="410" cy="117" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="410" cy="241" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="410" cy="253" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(14, 57, 68, 11, 7, 455, 90)" onmouseleave="hideJulioTooltip()"><circle cx="455" cy="133" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="455" cy="106" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="455" cy="244" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="455" cy="253" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(15, 62, 76, 17, 7, 500, 90)" onmouseleave="hideJulioTooltip()"><circle cx="500" cy="120" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="500" cy="87" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="500" cy="229" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="500" cy="253" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(16, 54, 83, 21, 7, 545, 90)" onmouseleave="hideJulioTooltip()"><circle cx="545" cy="140" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="545" cy="70" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="545" cy="220" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="545" cy="253" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(17, 61, 71, 16, 6, 590, 90)" onmouseleave="hideJulioTooltip()"><circle cx="590" cy="122" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="590" cy="98" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="590" cy="231" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="590" cy="255" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(18, 38, 59, 11, 4, 635, 90)" onmouseleave="hideJulioTooltip()"><circle cx="635" cy="178" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="635" cy="158" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="635" cy="243" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="635" cy="260" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(19, 28, 40, 13, 4, 680, 90)" onmouseleave="hideJulioTooltip()"><circle cx="680" cy="202" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="680" cy="174" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="680" cy="238" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="680" cy="260" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(20, 25, 34, 6, 2, 725, 90)" onmouseleave="hideJulioTooltip()"><circle cx="725" cy="210" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="725" cy="188" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="725" cy="255" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="725" cy="265" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(21, 9, 12, 2, 2, 770, 90)" onmouseleave="hideJulioTooltip()"><circle cx="770" cy="248" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="770" cy="241" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="770" cy="265" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="770" cy="265" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(22, 8, 2, 0, 0, 815, 90)" onmouseleave="hideJulioTooltip()"><circle cx="815" cy="250" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="815" cy="265" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="815" cy="270" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="815" cy="270" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-                            <g class="cursor-pointer" onmouseenter="showJulioTooltip(23, 5, 0, 1, 0, 860, 90)" onmouseleave="hideJulioTooltip()"><circle cx="860" cy="258" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="860" cy="270" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="860" cy="268" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="860" cy="270" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
-
-                            <!-- Etiquetas Horarias seguras en y="295" -->
-                            <text x="50" y="295" font-size="11" fill="#64748b" text-anchor="middle">5</text>
-                            <text x="95" y="295" font-size="11" fill="#64748b" text-anchor="middle">6</text>
-                            <text x="140" y="295" font-size="11" fill="#64748b" text-anchor="middle">7</text>
-                            <text x="185" y="295" font-size="11" fill="#64748b" text-anchor="middle">8</text>
-                            <text x="230" y="295" font-size="11" fill="#64748b" text-anchor="middle">9</text>
-                            <text x="275" y="295" font-size="11" fill="#64748b" text-anchor="middle">10</text>
-                            <text x="320" y="295" font-size="11" fill="#64748b" text-anchor="middle">11</text>
-                            <text x="365" y="295" font-size="11" fill="#64748b" text-anchor="middle">12</text>
-                            <text x="410" y="295" font-size="11" fill="#64748b" text-anchor="middle">13</text>
-                            <text x="455" y="295" font-size="11" fill="#64748b" text-anchor="middle">14</text>
-                            <text x="500" y="295" font-size="11" fill="#64748b" text-anchor="middle">15</text>
-                            <text x="545" y="295" font-size="11" fill="#64748b" text-anchor="middle">16</text>
-                            <text x="590" y="295" font-size="11" fill="#64748b" text-anchor="middle">17</text>
-                            <text x="635" y="295" font-size="11" fill="#64748b" text-anchor="middle">18</text>
-                            <text x="680" y="295" font-size="11" fill="#64748b" text-anchor="middle">19</text>
-                            <text x="725" y="295" font-size="11" fill="#64748b" text-anchor="middle">20</text>
-                            <text x="770" y="295" font-size="11" fill="#64748b" text-anchor="middle">21</text>
-                            <text x="815" y="295" font-size="11" fill="#64748b" text-anchor="middle">22</text>
-                            <text x="860" y="295" font-size="11" fill="#64748b" text-anchor="middle">23</text>
-                        </svg>
-                    </div>
-                </div>
-
-                <div id="svg-container-agosto" class="w-full h-full relative hidden">
-                    <div class="flex justify-center items-center gap-6 mb-2">
-                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-orange-500 inline-block"></span> NETLIFE</div>
-                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-sky-500 inline-block"></span> ECUANET</div>
-                    </div>
-                    <div class="relative w-full overflow-x-auto flex justify-center">
-                        <svg viewBox="0 0 900 340" class="w-full h-[320px] select-none">
-                            <line x1="50" y1="30" x2="870" y2="30" stroke="#e2e8f0" stroke-dasharray="4" />
-                            <line x1="50" y1="90" x2="870" y2="90" stroke="#e2e8f0" stroke-dasharray="4" />
-                            <line x1="50" y1="150" x2="870" y2="150" stroke="#e2e8f0" stroke-dasharray="4" />
-                            <line x1="50" y1="210" x2="870" y2="210" stroke="#e2e8f0" stroke-dasharray="4" />
-                            <line x1="50" y1="270" x2="870" y2="270" stroke="#cbd5e1" />
-
-                            <text x="35" y="35" font-size="11" fill="#64748b" text-anchor="end">25</text>
-                            <text x="35" y="95" font-size="11" fill="#64748b" text-anchor="end">20</text>
-                            <text x="35" y="155" font-size="11" fill="#64748b" text-anchor="end">15</text>
-                            <text x="35" y="215" font-size="11" fill="#64748b" text-anchor="end">10</text>
-                            <text x="35" y="275" font-size="11" fill="#64748b" text-anchor="end">0</text>
-
-                            <path d="M 90 96 L 175 240 L 260 36 L 345 96 L 430 216 L 515 246 L 600 270 L 685 240 L 770 270 L 855 240" fill="none" stroke="#f97316" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M 90 96 L 175 240 L 260 198 L 345 210 L 430 180 L 515 192 L 600 270 L 685 180 L 770 222 L 855 240" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 01', 16, 16, 90, 80)" onmouseleave="hideTooltip()"><text x="90" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 90, 295)">STO PROV STO INT 01</text><circle cx="90" cy="96" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="90" cy="96" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 02', 2, 2, 175, 220)" onmouseleave="hideTooltip()"><text x="175" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 175, 295)">STO PROV STO INT 02</text><circle cx="175" cy="240" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="175" cy="240" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 03', 22, 8, 260, 20)" onmouseleave="hideTooltip()"><text x="260" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 260, 295)">STO PROV STO INT 03</text><circle cx="260" cy="36" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="260" cy="198" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 04', 15, 7, 345, 80)" onmouseleave="hideTooltip()"><text x="345" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 345, 295)">STO PROV STO INT 04</text><circle cx="345" cy="96" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="345" cy="210" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV PTQ INT 01', 8, 10, 430, 160)" onmouseleave="hideTooltip()"><text x="430" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 430, 295)">STO PROV PTQ INT 01</text><circle cx="430" cy="216" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="430" cy="180" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV LDA INT 01', 4, 9, 515, 170)" onmouseleave="hideTooltip()"><text x="515" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 515, 295)">STO PROV LDA INT 01</text><circle cx="515" cy="246" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="515" cy="192" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CAR INT 01', 1, 1, 600, 230)" onmouseleave="hideTooltip()"><text x="600" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 600, 295)">STO PROV CAR INT 01</text><circle cx="600" cy="270" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="600" cy="270" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV TAN INT 01', 5, 9, 685, 160)" onmouseleave="hideTooltip()"><text x="685" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 685, 295)">STO PROV TAN INT 01</text><circle cx="685" cy="240" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="685" cy="180" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV BAN INT 01', 0, 6, 770, 200)" onmouseleave="hideTooltip()"><text x="770" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 770, 295)">STO PROV BAN INT 01</text><circle cx="770" cy="270" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="770" cy="222" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CON INT 01', 2, 2, 855, 220)" onmouseleave="hideTooltip()"><text x="855" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 855, 295)">STO PROV CON INT 01</text><circle cx="855" cy="240" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="855" cy="240" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                        </svg>
-                    </div>
-                </div>
-
-                <div id="svg-container-septiembre" class="w-full h-full relative hidden">
-                    <div class="flex justify-center items-center gap-6 mb-2">
-                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-orange-500 inline-block"></span> NETLIFE</div>
-                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-sky-500 inline-block"></span> ECUANET</div>
-                    </div>
-                    <div class="relative w-full overflow-x-auto flex justify-center">
-                        <svg viewBox="0 0 900 340" class="w-full h-[320px] select-none">
-                            <line x1="50" y1="20" x2="870" y2="20" stroke="#e2e8f0" stroke-dasharray="4" />
-                            <line x1="50" y1="80" x2="870" y2="80" stroke="#e2e8f0" stroke-dasharray="4" />
-                            <line x1="50" y1="140" x2="870" y2="140" stroke="#e2e8f0" stroke-dasharray="4" />
-                            <line x1="50" y1="200" x2="870" y2="200" stroke="#e2e8f0" stroke-dasharray="4" />
-                            <line x1="50" y1="260" x2="870" y2="260" stroke="#e2e8f0" stroke-dasharray="4" />
-                            <line x1="50" y1="310" x2="870" y2="310" stroke="#cbd5e1" />
-
-                            <text x="35" y="25" font-size="11" fill="#64748b" text-anchor="end">40</text>
-                            <text x="35" y="85" font-size="11" fill="#64748b" text-anchor="end">30</text>
-                            <text x="35" y="145" font-size="11" fill="#64748b" text-anchor="end">20</text>
-                            <text x="35" y="205" font-size="11" fill="#64748b" text-anchor="end">10</text>
-                            <text x="35" y="315" font-size="11" fill="#64748b" text-anchor="end">0</text>
-
-                            <path d="M 90 28.5 L 175 92.5 L 260 85.25 L 345 63.5 L 430 288.25 L 515 259.25 L 600 295.5 L 685 281 L 770 281 L 855 273.75" fill="none" stroke="#f97316" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M 90 143.25 L 175 215.75 L 260 201.25 L 345 165 L 430 266.5 L 515 237.5 L 600 310 L 685 266.5 L 770 201.25 L 855 281" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 01', 39, 23, 90, 40)" onmouseleave="hideTooltip()"><text x="90" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 90, 330)">STO PROV STO INT 01</text><circle cx="90" cy="28.5" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="90" cy="143.25" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 02', 30, 13, 175, 80)" onmouseleave="hideTooltip()"><text x="175" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 175, 330)">STO PROV STO INT 02</text><circle cx="175" cy="92.5" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="175" cy="215.75" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 03', 31, 15, 260, 70)" onmouseleave="hideTooltip()"><text x="260" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 260, 330)">STO PROV STO INT 03</text><circle cx="260" cy="85.25" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="260" cy="201.25" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 04', 34, 20, 345, 50)" onmouseleave="hideTooltip()"><text x="345" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 345, 330)">STO PROV STO INT 04</text><circle cx="345" cy="63.5" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="345" cy="165" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV PTQ INT 01', 3, 6, 430, 220)" onmouseleave="hideTooltip()"><text x="430" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 430, 330)">STO PROV PTQ INT 01</text><circle cx="430" cy="288.25" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="430" cy="266.5" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV LDA INT 01', 7, 10, 515, 200)" onmouseleave="hideTooltip()"><text x="515" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 515, 330)">STO PROV LDA INT 01</text><circle cx="515" cy="259.25" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="515" cy="237.5" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CAR INT 01', 2, 0, 600, 240)" onmouseleave="hideTooltip()"><text x="600" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 600, 240)">STO PROV CAR INT 01</text><circle cx="600" cy="295.5" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="600" cy="310" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV TAN INT 01', 4, 6, 685, 220)" onmouseleave="hideTooltip()"><text x="685" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 685, 330)">STO PROV TAN INT 01</text><circle cx="685" cy="281" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="685" cy="266.5" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV BAN INT 01', 4, 15, 770, 180)" onmouseleave="hideTooltip()"><text x="770" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 770, 330)">STO PROV BAN INT 01</text><circle cx="770" cy="281" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="770" cy="201.25" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CON INT 01', 5, 4, 855, 230)" onmouseleave="hideTooltip()"><text x="855" y="330" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 855, 230)">STO PROV CON INT 01</text><circle cx="855" cy="273.75" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="855" cy="281" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                        </svg>
-                    </div>
-                </div>
-
-                <div id="svg-container-octubre" class="w-full h-full relative hidden">
-                    <div class="flex justify-center items-center gap-6 mb-2">
-                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-orange-500 inline-block"></span> NETLIFE</div>
-                        <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-sky-500 inline-block"></span> ECUANET</div>
-                    </div>
-                    <div class="relative w-full overflow-x-auto flex justify-center">
-                        <svg viewBox="0 0 900 340" class="w-full h-[320px] select-none">
-                            <line x1="50" y1="30" x2="870" y2="30" stroke="#e2e8f0" stroke-dasharray="4" />
-                            <line x1="50" y1="90" x2="870" y2="90" stroke="#e2e8f0" stroke-dasharray="4" />
-                            <line x1="50" y1="150" x2="870" y2="150" stroke="#e2e8f0" stroke-dasharray="4" />
-                            <line x1="50" y1="210" x2="870" y2="210" stroke="#e2e8f0" stroke-dasharray="4" />
-                            <line x1="50" y1="270" x2="870" y2="270" stroke="#cbd5e1" />
-
-                            <text x="35" y="35" font-size="11" fill="#64748b" text-anchor="end">20</text>
-                            <text x="35" y="95" font-size="11" fill="#64748b" text-anchor="end">15</text>
-                            <text x="35" y="155" font-size="11" fill="#64748b" text-anchor="end">10</text>
-                            <text x="35" y="215" font-size="11" fill="#64748b" text-anchor="end">5</text>
-                            <text x="35" y="275" font-size="11" fill="#64748b" text-anchor="end">0</text>
-
-                            <path d="M 90 150 L 175 102 L 260 126 L 345 162 L 430 258 L 515 210 L 600 246 L 685 246 L 770 234 L 855 258" fill="none" stroke="#f97316" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M 90 102 L 175 42 L 260 210 L 345 198 L 430 174 L 515 234 L 600 258 L 685 234 L 770 186 L 855 234" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 01', 10, 14, 90, 80)" onmouseleave="hideTooltip()"><text x="90" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 90, 295)">STO PROV STO INT 01</text><circle cx="90" cy="150" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="90" cy="102" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 02', 14, 19, 175, 40)" onmouseleave="hideTooltip()"><text x="175" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 175, 295)">STO PROV STO INT 02</text><circle cx="175" cy="102" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="175" cy="42" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 03', 12, 5, 260, 100)" onmouseleave="hideTooltip()"><text x="260" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 260, 295)">STO PROV STO INT 03</text><circle cx="260" cy="126" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="260" cy="210" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV STO INT 04', 9, 6, 345, 120)" onmouseleave="hideTooltip()"><text x="345" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 345, 295)">STO PROV STO INT 04</text><circle cx="345" cy="162" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="345" cy="198" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV PTQ INT 01', 1, 8, 430, 160)" onmouseleave="hideTooltip()"><text x="430" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 430, 295)">STO PROV PTQ INT 01</text><circle cx="430" cy="258" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="430" cy="174" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV LDA INT 01', 5, 3, 515, 170)" onmouseleave="hideTooltip()"><text x="515" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 515, 295)">STO PROV LDA INT 01</text><circle cx="515" cy="210" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="515" cy="234" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CAR INT 01', 2, 1, 600, 210)" onmouseleave="hideTooltip()"><text x="600" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 600, 210)">STO PROV CAR INT 01</text><circle cx="600" cy="246" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="600" cy="258" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV TAN INT 01', 2, 3, 685, 210)" onmouseleave="hideTooltip()"><text x="685" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 685, 295)">STO PROV TAN INT 01</text><circle cx="685" cy="246" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="685" cy="234" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV BAN INT 01', 3, 7, 770, 160)" onmouseleave="hideTooltip()"><text x="770" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 770, 295)">STO PROV BAN INT 01</text><circle cx="770" cy="234" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="770" cy="186" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                            <g class="cursor-pointer" onmouseenter="showTooltip('STO PROV CON INT 01', 1, 3, 855, 210)" onmouseleave="hideTooltip()"><text x="855" y="295" font-size="9" fill="#475569" text-anchor="end" transform="rotate(-35, 855, 230)">STO PROV CON INT 01</text><circle cx="855" cy="258" r="6" fill="#f97316" stroke="#fff" stroke-width="2" /><circle cx="855" cy="234" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2" /></g>
-                        </svg>
-                    </div>
-                </div>
+                <!-- CONTENEDOR DINÁMICO DE SVGS INTERACTIVOS DENTRO DEL MODAL -->
+                <div id="modal-svg-dynamic-wrapper" class="w-full h-full relative flex flex-col items-center justify-center"></div>
 
                 <!-- TOOLTIP DINÁMICO MULTI-PROPÓSITO -->
                 <div id="chart-tooltip" class="custom-tooltip absolute hidden bg-slate-900/95 text-white text-xs rounded-xl p-3 shadow-2xl border border-slate-700 pointer-events-none z-30 min-w-[140px]">
@@ -594,7 +353,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT INTERACTIVO COMPLETO -->
+    <!-- SCRIPT INTERACTIVO CON TODOS LOS MESES -->
     <script>
         let selectedMonthKey = 'julio';
 
@@ -665,6 +424,201 @@
             }
         };
 
+        // DICCIONARIO DE SVG INTERACTIVOS DE HORAS POR MES
+        const hourlySvgTemplates = {
+            julio: `<svg viewBox="0 0 900 340" class="w-full h-[320px] select-none">
+                <line x1="40" y1="30" x2="870" y2="30" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="80" x2="870" y2="80" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="130" x2="870" y2="130" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="180" x2="870" y2="180" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="230" x2="870" y2="230" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="270" x2="870" y2="270" stroke="#cbd5e1" />
+                <text x="30" y="35" font-size="11" fill="#64748b" text-anchor="end">100</text>
+                <text x="30" y="85" font-size="11" fill="#64748b" text-anchor="end">80</text>
+                <text x="30" y="135" font-size="11" fill="#64748b" text-anchor="end">60</text>
+                <text x="30" y="185" font-size="11" fill="#64748b" text-anchor="end">40</text>
+                <text x="30" y="235" font-size="11" fill="#64748b" text-anchor="end">20</text>
+                <text x="30" y="274" font-size="11" fill="#64748b" text-anchor="end">0</text>
+                <path d="M 50 268 L 95 263 L 140 220 L 185 122 L 230 110 L 275 102 L 320 92 L 365 120 L 410 130 L 455 133 L 500 120 L 545 140 L 590 122 L 635 178 L 680 202 L 725 210 L 770 248 L 815 250 L 860 258" fill="none" stroke="#529ab4" stroke-width="3" stroke-linecap="round" />
+                <path d="M 50 270 L 95 270 L 140 270 L 185 222 L 230 158 L 275 118 L 320 98 L 365 116 L 410 117 L 455 106 L 500 87 L 545 70 L 590 98 L 635 158 L 680 174 L 725 188 L 770 241 L 815 265 L 860 270" fill="none" stroke="#f3d350" stroke-width="3" stroke-linecap="round" />
+                <path d="M 50 270 L 95 270 L 140 265 L 185 225 L 230 236 L 275 236 L 320 238 L 365 236 L 410 241 L 455 244 L 500 229 L 545 220 L 590 231 L 635 243 L 680 238 L 725 255 L 770 265 L 815 270 L 860 268" fill="none" stroke="#e75e52" stroke-width="3" stroke-linecap="round" />
+                <path d="M 50 270 L 95 270 L 140 268 L 185 263 L 230 263 L 275 258 L 320 258 L 365 253 L 410 253 L 455 253 L 500 253 L 545 253 L 590 255 L 635 260 L 680 260 L 725 265 L 770 265 L 815 270 L 860 270" fill="none" stroke="#18b965" stroke-width="3" stroke-linecap="round" />
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(5, 1, 0, 0, 0, 50, 90)" onmouseleave="hideTooltip()"><circle cx="50" cy="268" r="6" fill="#529ab4"/><circle cx="50" cy="270" r="6" fill="#f3d350"/><circle cx="50" cy="270" r="6" fill="#e75e52"/><circle cx="50" cy="270" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(6, 3, 0, 0, 0, 95, 90)" onmouseleave="hideTooltip()"><circle cx="95" cy="263" r="6" fill="#529ab4"/><circle cx="95" cy="270" r="6" fill="#f3d350"/><circle cx="95" cy="270" r="6" fill="#e75e52"/><circle cx="95" cy="270" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(7, 20, 0, 2, 1, 140, 90)" onmouseleave="hideTooltip()"><circle cx="140" cy="220" r="6" fill="#529ab4"/><circle cx="140" cy="270" r="6" fill="#f3d350"/><circle cx="140" cy="265" r="6" fill="#e75e52"/><circle cx="140" cy="268" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(8, 61, 20, 18, 3, 185, 90)" onmouseleave="hideTooltip()"><circle cx="185" cy="122" r="6" fill="#529ab4"/><circle cx="185" cy="222" r="6" fill="#f3d350"/><circle cx="185" cy="225" r="6" fill="#e75e52"/><circle cx="185" cy="263" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(9, 66, 47, 14, 3, 230, 90)" onmouseleave="hideTooltip()"><circle cx="230" cy="110" r="6" fill="#529ab4"/><circle cx="230" cy="158" r="6" fill="#f3d350"/><circle cx="230" cy="236" r="6" fill="#e75e52"/><circle cx="230" cy="263" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(10, 70, 63, 14, 5, 275, 90)" onmouseleave="hideTooltip()"><circle cx="275" cy="102" r="6" fill="#529ab4"/><circle cx="275" cy="118" r="6" fill="#f3d350"/><circle cx="275" cy="236" r="6" fill="#e75e52"/><circle cx="275" cy="258" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(11, 74, 71, 13, 5, 320, 90)" onmouseleave="hideTooltip()"><circle cx="320" cy="92" r="6" fill="#529ab4"/><circle cx="320" cy="98" r="6" fill="#f3d350"/><circle cx="320" cy="238" r="6" fill="#e75e52"/><circle cx="320" cy="258" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(12, 63, 64, 14, 7, 365, 90)" onmouseleave="hideTooltip()"><circle cx="365" cy="120" r="6" fill="#529ab4"/><circle cx="365" cy="116" r="6" fill="#f3d350"/><circle cx="365" cy="236" r="6" fill="#e75e52"/><circle cx="365" cy="253" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(13, 58, 64, 12, 7, 410, 90)" onmouseleave="hideTooltip()"><circle cx="410" cy="130" r="6" fill="#529ab4"/><circle cx="410" cy="117" r="6" fill="#f3d350"/><circle cx="410" cy="241" r="6" fill="#e75e52"/><circle cx="410" cy="253" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(14, 57, 68, 11, 7, 455, 90)" onmouseleave="hideTooltip()"><circle cx="455" cy="133" r="6" fill="#529ab4"/><circle cx="455" cy="106" r="6" fill="#f3d350"/><circle cx="455" cy="244" r="6" fill="#e75e52"/><circle cx="455" cy="253" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(15, 62, 76, 17, 7, 500, 90)" onmouseleave="hideTooltip()"><circle cx="500" cy="120" r="6" fill="#529ab4"/><circle cx="500" cy="87" r="6" fill="#f3d350"/><circle cx="500" cy="229" r="6" fill="#e75e52"/><circle cx="500" cy="253" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(16, 54, 83, 21, 7, 545, 90)" onmouseleave="hideTooltip()"><circle cx="545" cy="140" r="6" fill="#529ab4"/><circle cx="545" cy="70" r="6" fill="#f3d350"/><circle cx="545" cy="220" r="6" fill="#e75e52"/><circle cx="545" cy="253" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(17, 61, 71, 16, 6, 590, 90)" onmouseleave="hideTooltip()"><circle cx="590" cy="122" r="6" fill="#529ab4"/><circle cx="590" cy="98" r="6" fill="#f3d350"/><circle cx="590" cy="231" r="6" fill="#e75e52"/><circle cx="590" cy="255" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(18, 38, 59, 11, 4, 635, 90)" onmouseleave="hideTooltip()"><circle cx="635" cy="178" r="6" fill="#529ab4"/><circle cx="635" cy="158" r="6" fill="#f3d350"/><circle cx="635" cy="243" r="6" fill="#e75e52"/><circle cx="635" cy="260" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(19, 28, 40, 13, 4, 680, 90)" onmouseleave="hideTooltip()"><circle cx="680" cy="202" r="6" fill="#529ab4"/><circle cx="680" cy="174" r="6" fill="#f3d350"/><circle cx="680" cy="238" r="6" fill="#e75e52"/><circle cx="680" cy="260" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(20, 25, 34, 6, 2, 725, 90)" onmouseleave="hideTooltip()"><circle cx="725" cy="210" r="6" fill="#529ab4"/><circle cx="725" cy="188" r="6" fill="#f3d350"/><circle cx="725" cy="255" r="6" fill="#e75e52"/><circle cx="725" cy="265" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(21, 9, 12, 2, 2, 770, 90)" onmouseleave="hideTooltip()"><circle cx="770" cy="248" r="6" fill="#529ab4"/><circle cx="770" cy="241" r="6" fill="#f3d350"/><circle cx="770" cy="265" r="6" fill="#e75e52"/><circle cx="770" cy="265" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(22, 8, 2, 0, 0, 815, 90)" onmouseleave="hideTooltip()"><circle cx="815" cy="250" r="6" fill="#529ab4"/><circle cx="815" cy="265" r="6" fill="#f3d350"/><circle cx="815" cy="270" r="6" fill="#e75e52"/><circle cx="815" cy="270" r="6" fill="#18b965"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(23, 5, 0, 1, 0, 860, 90)" onmouseleave="hideTooltip()"><circle cx="860" cy="258" r="6" fill="#529ab4"/><circle cx="860" cy="270" r="6" fill="#f3d350"/><circle cx="860" cy="268" r="6" fill="#e75e52"/><circle cx="860" cy="270" r="6" fill="#18b965"/></g>
+                <text x="50" y="295" font-size="11" fill="#64748b" text-anchor="middle">5</text>
+                <text x="95" y="295" font-size="11" fill="#64748b" text-anchor="middle">6</text>
+                <text x="140" y="295" font-size="11" fill="#64748b" text-anchor="middle">7</text>
+                <text x="185" y="295" font-size="11" fill="#64748b" text-anchor="middle">8</text>
+                <text x="230" y="295" font-size="11" fill="#64748b" text-anchor="middle">9</text>
+                <text x="275" y="295" font-size="11" fill="#64748b" text-anchor="middle">10</text>
+                <text x="320" y="295" font-size="11" fill="#64748b" text-anchor="middle">11</text>
+                <text x="365" y="295" font-size="11" fill="#64748b" text-anchor="middle">12</text>
+                <text x="410" y="295" font-size="11" fill="#64748b" text-anchor="middle">13</text>
+                <text x="455" y="295" font-size="11" fill="#64748b" text-anchor="middle">14</text>
+                <text x="500" y="295" font-size="11" fill="#64748b" text-anchor="middle">15</text>
+                <text x="545" y="295" font-size="11" fill="#64748b" text-anchor="middle">16</text>
+                <text x="590" y="295" font-size="11" fill="#64748b" text-anchor="middle">17</text>
+                <text x="635" y="295" font-size="11" fill="#64748b" text-anchor="middle">18</text>
+                <text x="680" y="295" font-size="11" fill="#64748b" text-anchor="middle">19</text>
+                <text x="725" y="295" font-size="11" fill="#64748b" text-anchor="middle">20</text>
+                <text x="770" y="295" font-size="11" fill="#64748b" text-anchor="middle">21</text>
+                <text x="815" y="295" font-size="11" fill="#64748b" text-anchor="middle">22</text>
+                <text x="860" y="295" font-size="11" fill="#64748b" text-anchor="middle">23</text>
+            </svg>`,
+
+            agosto: `<svg viewBox="0 0 900 340" class="w-full h-[320px] select-none">
+                <line x1="40" y1="30" x2="870" y2="30" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="90" x2="870" y2="90" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="150" x2="870" y2="150" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="210" x2="870" y2="210" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="270" x2="870" y2="270" stroke="#cbd5e1" />
+                <text x="30" y="35" font-size="11" fill="#64748b" text-anchor="end">80</text>
+                <text x="30" y="95" font-size="11" fill="#64748b" text-anchor="end">60</text>
+                <text x="30" y="155" font-size="11" fill="#64748b" text-anchor="end">40</text>
+                <text x="30" y="215" font-size="11" fill="#64748b" text-anchor="end">20</text>
+                <text x="30" y="274" font-size="11" fill="#64748b" text-anchor="end">0</text>
+                <path d="M 50 260 L 95 252 L 140 189 L 185 126 L 230 78 L 275 114 L 320 102 L 365 111 L 410 96 L 455 132 L 500 45 L 545 120 L 590 78 L 635 141 L 680 171 L 725 210 L 770 237 L 815 228 L 860 255" fill="none" stroke="#529ab4" stroke-width="3" stroke-linecap="round" />
+                <path d="M 50 264 L 95 267 L 140 264 L 185 249 L 230 165 L 275 96 L 320 87 L 365 111 L 410 72 L 455 117 L 500 84 L 545 36 L 590 66 L 635 126 L 680 138 L 725 168 L 770 204 L 815 249 L 860 270" fill="none" stroke="#f3d350" stroke-width="3" stroke-linecap="round" />
+                <path d="M 50 264 L 95 267 L 140 261 L 185 264 L 230 243 L 275 258 L 320 255 L 365 252 L 410 246 L 455 258 L 500 252 L 545 246 L 590 243 L 635 258 L 680 246 L 725 252 L 770 270 L 815 261 L 860 270" fill="none" stroke="#e75e52" stroke-width="3" stroke-linecap="round" />
+                <path d="M 50 270 L 95 270 L 140 267 L 185 261 L 230 261 L 275 255 L 320 255 L 365 249 L 410 249 L 455 249 L 500 249 L 545 249 L 590 252 L 635 258 L 680 258 L 725 264 L 770 264 L 815 270 L 860 270" fill="none" stroke="#18b965" stroke-width="3" stroke-linecap="round" />
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(0, 3, 2, 2, 0, 50, 90)" onmouseleave="hideTooltip()"><circle cx="50" cy="260" r="6" fill="#529ab4"/><circle cx="50" cy="264" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(6, 6, 1, 1, 0, 95, 90)" onmouseleave="hideTooltip()"><circle cx="95" cy="252" r="6" fill="#529ab4"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(7, 27, 2, 3, 1, 140, 90)" onmouseleave="hideTooltip()"><circle cx="140" cy="189" r="6" fill="#529ab4"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(8, 48, 7, 2, 3, 185, 90)" onmouseleave="hideTooltip()"><circle cx="185" cy="126" r="6" fill="#529ab4"/><circle cx="185" cy="249" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(9, 64, 35, 9, 3, 230, 90)" onmouseleave="hideTooltip()"><circle cx="230" cy="78" r="6" fill="#529ab4"/><circle cx="230" cy="165" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(10, 52, 58, 4, 5, 275, 90)" onmouseleave="hideTooltip()"><circle cx="275" cy="114" r="6" fill="#529ab4"/><circle cx="275" cy="96" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(11, 56, 61, 5, 5, 320, 90)" onmouseleave="hideTooltip()"><circle cx="320" cy="102" r="6" fill="#529ab4"/><circle cx="320" cy="87" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(12, 53, 53, 6, 7, 365, 90)" onmouseleave="hideTooltip()"><circle cx="365" cy="111" r="6" fill="#529ab4"/><circle cx="365" cy="111" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(13, 58, 66, 8, 7, 410, 90)" onmouseleave="hideTooltip()"><circle cx="410" cy="96" r="6" fill="#529ab4"/><circle cx="410" cy="72" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(14, 46, 51, 4, 7, 455, 90)" onmouseleave="hideTooltip()"><circle cx="455" cy="132" r="6" fill="#529ab4"/><circle cx="455" cy="117" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(15, 75, 62, 6, 7, 500, 90)" onmouseleave="hideTooltip()"><circle cx="500" cy="45" r="6" fill="#529ab4"/><circle cx="500" cy="84" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(16, 50, 78, 8, 7, 545, 90)" onmouseleave="hideTooltip()"><circle cx="545" cy="120" r="6" fill="#529ab4"/><circle cx="545" cy="36" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(17, 64, 68, 9, 6, 590, 90)" onmouseleave="hideTooltip()"><circle cx="590" cy="78" r="6" fill="#529ab4"/><circle cx="590" cy="66" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(18, 43, 48, 4, 4, 635, 90)" onmouseleave="hideTooltip()"><circle cx="635" cy="141" r="6" fill="#529ab4"/><circle cx="635" cy="126" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(19, 33, 44, 8, 4, 680, 90)" onmouseleave="hideTooltip()"><circle cx="680" cy="171" r="6" fill="#529ab4"/><circle cx="680" cy="138" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(20, 20, 34, 6, 2, 725, 90)" onmouseleave="hideTooltip()"><circle cx="725" cy="210" r="6" fill="#529ab4"/><circle cx="725" cy="168" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(21, 11, 22, 0, 2, 770, 90)" onmouseleave="hideTooltip()"><circle cx="770" cy="237" r="6" fill="#529ab4"/><circle cx="770" cy="204" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(22, 14, 7, 3, 0, 815, 90)" onmouseleave="hideTooltip()"><circle cx="815" cy="228" r="6" fill="#529ab4"/><circle cx="815" cy="249" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(23, 5, 0, 0, 0, 860, 90)" onmouseleave="hideTooltip()"><circle cx="860" cy="255" r="6" fill="#529ab4"/></g>
+                <text x="50" y="295" font-size="11" fill="#64748b" text-anchor="middle">0</text>
+                <text x="95" y="295" font-size="11" fill="#64748b" text-anchor="middle">6</text>
+                <text x="140" y="295" font-size="11" fill="#64748b" text-anchor="middle">7</text>
+                <text x="185" y="295" font-size="11" fill="#64748b" text-anchor="middle">8</text>
+                <text x="230" y="295" font-size="11" fill="#64748b" text-anchor="middle">9</text>
+                <text x="275" y="295" font-size="11" fill="#64748b" text-anchor="middle">10</text>
+                <text x="320" y="295" font-size="11" fill="#64748b" text-anchor="middle">11</text>
+                <text x="365" y="295" font-size="11" fill="#64748b" text-anchor="middle">12</text>
+                <text x="410" y="295" font-size="11" fill="#64748b" text-anchor="middle">13</text>
+                <text x="455" y="295" font-size="11" fill="#64748b" text-anchor="middle">14</text>
+                <text x="500" y="295" font-size="11" fill="#64748b" text-anchor="middle">15</text>
+                <text x="545" y="295" font-size="11" fill="#64748b" text-anchor="middle">16</text>
+                <text x="590" y="295" font-size="11" fill="#64748b" text-anchor="middle">17</text>
+                <text x="635" y="295" font-size="11" fill="#64748b" text-anchor="middle">18</text>
+                <text x="680" y="295" font-size="11" fill="#64748b" text-anchor="middle">19</text>
+                <text x="725" y="295" font-size="11" fill="#64748b" text-anchor="middle">20</text>
+                <text x="770" y="295" font-size="11" fill="#64748b" text-anchor="middle">21</text>
+                <text x="815" y="295" font-size="11" fill="#64748b" text-anchor="middle">22</text>
+                <text x="860" y="295" font-size="11" fill="#64748b" text-anchor="middle">23</text>
+            </svg>`,
+
+            septiembre: `<svg viewBox="0 0 900 340" class="w-full h-[320px] select-none">
+                <line x1="40" y1="30" x2="870" y2="30" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="90" x2="870" y2="90" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="150" x2="870" y2="150" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="210" x2="870" y2="210" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="270" x2="870" y2="270" stroke="#cbd5e1" />
+                <text x="30" y="35" font-size="11" fill="#64748b" text-anchor="end">120</text>
+                <text x="30" y="95" font-size="11" fill="#64748b" text-anchor="end">100</text>
+                <text x="30" y="155" font-size="11" fill="#64748b" text-anchor="end">60</text>
+                <text x="30" y="215" font-size="11" fill="#64748b" text-anchor="end">20</text>
+                <text x="30" y="274" font-size="11" fill="#64748b" text-anchor="end">0</text>
+                <path d="M 50 268 L 95 254 L 140 210 L 185 124 L 230 120 L 275 140 L 320 144 L 365 142 L 410 104 L 455 134 L 500 126 L 545 168 L 590 151 L 635 190 L 680 212 L 725 210 L 770 222 L 815 246 L 860 260" fill="none" stroke="#529ab4" stroke-width="3" stroke-linecap="round" />
+                <path d="M 50 270 L 95 268 L 140 268 L 185 250 L 230 190 L 275 172 L 320 110 L 365 92 L 410 152 L 455 114 L 500 136 L 545 68 L 590 116 L 635 156 L 680 194 L 725 208 L 770 234 L 815 252 L 860 266" fill="none" stroke="#f3d350" stroke-width="3" stroke-linecap="round" />
+                <path d="M 50 270 L 95 268 L 140 258 L 185 248 L 230 224 L 275 218 L 320 228 L 365 232 L 410 230 L 455 238 L 500 226 L 545 226 L 590 228 L 635 240 L 680 246 L 725 244 L 770 260 L 815 260 L 860 266" fill="none" stroke="#e75e52" stroke-width="3" stroke-linecap="round" />
+                <path d="M 50 270 L 95 270 L 140 268 L 185 264 L 230 264 L 275 260 L 320 260 L 365 256 L 410 256 L 455 256 L 500 256 L 545 256 L 590 258 L 635 262 L 680 262 L 725 266 L 770 266 L 815 270 L 860 270" fill="none" stroke="#18b965" stroke-width="3" stroke-linecap="round" />
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(5, 1, 0, 0, 0, 50, 90)" onmouseleave="hideTooltip()"><circle cx="50" cy="268" r="6" fill="#529ab4"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(8, 73, 10, 11, 3, 185, 90)" onmouseleave="hideTooltip()"><circle cx="185" cy="124" r="6" fill="#529ab4"/><circle cx="185" cy="250" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(12, 64, 89, 19, 7, 365, 90)" onmouseleave="hideTooltip()"><circle cx="365" cy="142" r="6" fill="#529ab4"/><circle cx="365" cy="92" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(16, 51, 101, 22, 7, 545, 90)" onmouseleave="hideTooltip()"><circle cx="545" cy="168" r="6" fill="#529ab4"/><circle cx="545" cy="68" r="6" fill="#f3d350"/></g>
+                <text x="50" y="295" font-size="11" fill="#64748b" text-anchor="middle">5</text>
+                <text x="95" y="295" font-size="11" fill="#64748b" text-anchor="middle">6</text>
+                <text x="140" y="295" font-size="11" fill="#64748b" text-anchor="middle">7</text>
+                <text x="185" y="295" font-size="11" fill="#64748b" text-anchor="middle">8</text>
+                <text x="230" y="295" font-size="11" fill="#64748b" text-anchor="middle">9</text>
+                <text x="275" y="295" font-size="11" fill="#64748b" text-anchor="middle">10</text>
+                <text x="320" y="295" font-size="11" fill="#64748b" text-anchor="middle">11</text>
+                <text x="365" y="295" font-size="11" fill="#64748b" text-anchor="middle">12</text>
+                <text x="410" y="295" font-size="11" fill="#64748b" text-anchor="middle">13</text>
+                <text x="455" y="295" font-size="11" fill="#64748b" text-anchor="middle">14</text>
+                <text x="500" y="295" font-size="11" fill="#64748b" text-anchor="middle">15</text>
+                <text x="545" y="295" font-size="11" fill="#64748b" text-anchor="middle">16</text>
+                <text x="590" y="295" font-size="11" fill="#64748b" text-anchor="middle">17</text>
+                <text x="635" y="295" font-size="11" fill="#64748b" text-anchor="middle">18</text>
+                <text x="680" y="295" font-size="11" fill="#64748b" text-anchor="middle">19</text>
+                <text x="725" y="295" font-size="11" fill="#64748b" text-anchor="middle">20</text>
+                <text x="770" y="295" font-size="11" fill="#64748b" text-anchor="middle">21</text>
+                <text x="815" y="295" font-size="11" fill="#64748b" text-anchor="middle">22</text>
+                <text x="860" y="295" font-size="11" fill="#64748b" text-anchor="middle">23</text>
+            </svg>`,
+
+            octubre: `<svg viewBox="0 0 900 340" class="w-full h-[320px] select-none">
+                <line x1="40" y1="30" x2="870" y2="30" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="90" x2="870" y2="90" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="150" x2="870" y2="150" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="210" x2="870" y2="210" stroke="#e2e8f0" stroke-dasharray="3" />
+                <line x1="40" y1="270" x2="870" y2="270" stroke="#cbd5e1" />
+                <text x="30" y="35" font-size="11" fill="#64748b" text-anchor="end">50</text>
+                <text x="30" y="95" font-size="11" fill="#64748b" text-anchor="end">40</text>
+                <text x="30" y="155" font-size="11" fill="#64748b" text-anchor="end">30</text>
+                <text x="30" y="215" font-size="11" fill="#64748b" text-anchor="end">10</text>
+                <text x="30" y="274" font-size="11" fill="#64748b" text-anchor="end">0</text>
+                <path d="M 50 264 L 95 260 L 140 186 L 185 132 L 230 45 L 275 108 L 320 117 L 365 150 L 410 102 L 455 132 L 500 144 L 545 171 L 590 171 L 635 210 L 680 174 L 725 189 L 770 240 L 815 252 L 860 240" fill="none" stroke="#529ab4" stroke-width="3" stroke-linecap="round" />
+                <path d="M 50 270 L 95 270 L 140 261 L 185 222 L 230 156 L 275 120 L 320 126 L 365 72 L 410 57 L 455 117 L 500 90 L 545 84 L 590 120 L 635 168 L 680 222 L 725 222 L 770 216 L 815 261 L 860 270" fill="none" stroke="#f3d350" stroke-width="3" stroke-linecap="round" />
+                <path d="M 50 270 L 95 270 L 140 240 L 185 210 L 230 216 L 275 204 L 320 210 L 365 210 L 410 186 L 455 222 L 500 180 L 545 180 L 590 222 L 635 216 L 680 222 L 725 222 L 770 246 L 815 264 L 860 264" fill="none" stroke="#e75e52" stroke-width="3" stroke-linecap="round" />
+                <path d="M 50 270 L 95 270 L 140 267 L 185 255 L 230 255 L 275 246 L 320 246 L 365 234 L 410 234 L 455 234 L 500 234 L 545 234 L 590 240 L 635 252 L 680 252 L 725 261 L 770 261 L 815 270 L 860 270" fill="none" stroke="#18b965" stroke-width="3" stroke-linecap="round" />
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(3, 1, 0, 0, 0, 50, 90)" onmouseleave="hideTooltip()"><circle cx="50" cy="264" r="6" fill="#529ab4"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(9, 45, 23, 11, 3, 230, 90)" onmouseleave="hideTooltip()"><circle cx="230" cy="45" r="6" fill="#529ab4"/><circle cx="230" cy="156" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(13, 34, 44, 16, 7, 410, 90)" onmouseleave="hideTooltip()"><circle cx="410" cy="102" r="6" fill="#529ab4"/><circle cx="410" cy="57" r="6" fill="#f3d350"/></g>
+                <g class="cursor-pointer" onmouseenter="showJulioTooltip(16, 21, 39, 17, 7, 545, 90)" onmouseleave="hideTooltip()"><circle cx="545" cy="171" r="6" fill="#529ab4"/><circle cx="545" cy="84" r="6" fill="#f3d350"/></g>
+                <text x="50" y="295" font-size="11" fill="#64748b" text-anchor="middle">3</text>
+                <text x="95" y="295" font-size="11" fill="#64748b" text-anchor="middle">6</text>
+                <text x="140" y="295" font-size="11" fill="#64748b" text-anchor="middle">7</text>
+                <text x="185" y="295" font-size="11" fill="#64748b" text-anchor="middle">8</text>
+                <text x="230" y="295" font-size="11" fill="#64748b" text-anchor="middle">9</text>
+                <text x="275" y="295" font-size="11" fill="#64748b" text-anchor="middle">10</text>
+                <text x="320" y="295" font-size="11" fill="#64748b" text-anchor="middle">11</text>
+                <text x="365" y="295" font-size="11" fill="#64748b" text-anchor="middle">12</text>
+                <text x="410" y="295" font-size="11" fill="#64748b" text-anchor="middle">13</text>
+                <text x="455" y="295" font-size="11" fill="#64748b" text-anchor="middle">14</text>
+                <text x="500" y="295" font-size="11" fill="#64748b" text-anchor="middle">15</text>
+                <text x="545" y="295" font-size="11" fill="#64748b" text-anchor="middle">16</text>
+                <text x="590" y="295" font-size="11" fill="#64748b" text-anchor="middle">17</text>
+                <text x="635" y="295" font-size="11" fill="#64748b" text-anchor="middle">18</text>
+                <text x="680" y="295" font-size="11" fill="#64748b" text-anchor="middle">19</text>
+                <text x="725" y="295" font-size="11" fill="#64748b" text-anchor="middle">20</text>
+                <text x="770" y="295" font-size="11" fill="#64748b" text-anchor="middle">21</text>
+                <text x="815" y="295" font-size="11" fill="#64748b" text-anchor="middle">22</text>
+                <text x="860" y="295" font-size="11" fill="#64748b" text-anchor="middle">23</text>
+            </svg>`
+        };
+
         function selectMonth(monthKey) {
             selectedMonthKey = monthKey;
             const data = monthData[monthKey];
@@ -715,12 +669,9 @@
 
             document.getElementById('footer-total-text').innerText = `*Porcentajes calculados en relación al Total General de ${data.totalGeneral} gestiones`;
 
-            const julioSection = document.getElementById('julio-chart-section');
-            if (monthKey === 'julio') {
-                julioSection.classList.remove('hidden');
-            } else {
-                julioSection.classList.add('hidden');
-            }
+            // ACTUALIZAR GRÁFICO PRINCIPAL DE HORAS
+            document.getElementById('hourly-chart-title').innerText = `Distribución por Horas - ${data.title}`;
+            document.getElementById('main-hourly-svg-wrapper').innerHTML = hourlySvgTemplates[monthKey] || hourlySvgTemplates['julio'];
 
             const geeosSection = document.getElementById('geeos-section');
             if (monthKey === 'octubre') {
@@ -730,6 +681,10 @@
             }
 
             document.getElementById('details-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openCurrentMonthChartModal() {
+            openImageModal(`hourly_${selectedMonthKey}`);
         }
 
         function openModal(type) {
@@ -764,27 +719,9 @@
                 `;
             } else {
                 title.innerText = `Cuadrillas Interurbanas - ${data.title}`;
-                
-                const hasInteractiveGraph = selectedMonthKey === 'agosto' || selectedMonthKey === 'septiembre' || selectedMonthKey === 'octubre';
-                const casosClass = hasInteractiveGraph 
-                    ? "bg-slate-50 hover:bg-blue-50/70 cursor-pointer transition p-3 rounded-xl border border-slate-200/80 flex justify-between items-center group" 
-                    : "bg-slate-50 p-3 rounded-xl border border-slate-200/80 flex justify-between items-center";
-                
-                const clickHint = hasInteractiveGraph 
-                    ? `<span class="block text-[10px] text-blue-600 font-medium group-hover:underline mt-0.5">🔍 Haz clic para ver gráfico interactivo con tooltip</span>` 
-                    : ``;
-
-                let clickAction = '';
-                if (selectedMonthKey === 'agosto') clickAction = "openImageModal('interurbanas_agosto')";
-                if (selectedMonthKey === 'septiembre') clickAction = "openImageModal('interurbanas_septiembre')";
-                if (selectedMonthKey === 'octubre') clickAction = "openImageModal('interurbanas_octubre')";
-
                 content.innerHTML = `
-                    <div onclick="${clickAction}" class="${casosClass}">
-                        <div>
-                            <span class="text-xs font-bold text-slate-700 uppercase">Gestiones Totales</span>
-                            ${clickHint}
-                        </div>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200/80 flex justify-between items-center">
+                        <span class="text-xs font-bold text-slate-700 uppercase">Gestiones Totales</span>
                         <span class="text-base font-bold text-slate-700">${data.qInterCases} gestiones</span>
                     </div>
                     <div class="space-y-2 pt-1">
@@ -832,35 +769,19 @@
             const imgModal = document.getElementById('image-modal');
             const imgTitle = document.getElementById('image-modal-title');
             const imgSrc = document.getElementById('image-modal-src');
-            const svgJulio = document.getElementById('svg-container-julio');
-            const svgAgosto = document.getElementById('svg-container-agosto');
-            const svgSeptiembre = document.getElementById('svg-container-septiembre');
-            const svgOctubre = document.getElementById('svg-container-octubre');
+            const wrapper = document.getElementById('modal-svg-dynamic-wrapper');
             const imgFooter = document.getElementById('image-modal-footer');
 
             imgSrc.classList.add('hidden');
-            svgJulio.classList.add('hidden');
-            svgAgosto.classList.add('hidden');
-            svgSeptiembre.classList.add('hidden');
-            svgOctubre.classList.add('hidden');
+            wrapper.innerHTML = '';
 
-            if (type === 'julio_grafica') {
-                imgTitle.innerText = "Vista Ampliada - Distribución por Horas (Julio 2026)";
-                svgJulio.classList.remove('hidden');
-                imgFooter.innerText = "Pasa el cursor sobre cualquier hora (5 a 23) para ver el desglose operativo";
-            } else if (type === 'interurbanas_agosto') {
-                imgTitle.innerText = "Cuadrillas Interurbanas - Rendimiento por Tramo (Agosto 2026)";
-                svgAgosto.classList.remove('hidden');
-                imgFooter.innerText = "Pasa el cursor sobre cada punto para ver el detalle de Netlife y Ecuanet";
-            } else if (type === 'interurbanas_septiembre') {
-                imgTitle.innerText = "Cuadrillas Interurbanas - Rendimiento por Tramo (Septiembre 2026)";
-                svgSeptiembre.classList.remove('hidden');
-                imgFooter.innerText = "Pasa el cursor sobre cada punto para ver el detalle de Netlife y Ecuanet";
-            } else if (type === 'interurbanas_octubre') {
-                imgTitle.innerText = "Cuadrillas Interurbanas - Rendimiento por Tramo (Octubre 2026)";
-                svgOctubre.classList.remove('hidden');
-                imgFooter.innerText = "Pasa el cursor sobre cada punto para ver el detalle de Netlife y Ecuanet";
-            } else {
+            if (type.startsWith('hourly_')) {
+                const monthKey = type.replace('hourly_', '');
+                const mData = monthData[monthKey];
+                imgTitle.innerText = `Vista Ampliada - Distribución por Horas (${mData.title})`;
+                wrapper.innerHTML = hourlySvgTemplates[monthKey] || hourlySvgTemplates['julio'];
+                imgFooter.innerText = "Pasa el cursor sobre cualquier hora para ver el desglose operativo";
+            } else if (type === 'geeos') {
                 imgTitle.innerText = "Vista Ampliada - Gráfica Geeos (Octubre 2026)";
                 imgSrc.classList.remove('hidden');
                 imgSrc.src = "image_19bed7.jpeg";
@@ -883,24 +804,9 @@
             hideTooltip();
         }
 
-        /* TOOLTIP PARA INTERURBANAS */
-        function showTooltip(tramoName, netlifeVal, ecuanetVal, posX, posY) {
-            const tooltip = document.getElementById('chart-tooltip');
-            document.getElementById('tooltip-title').innerText = tramoName;
-            document.getElementById('tooltip-body').innerHTML = `
-                <div class="text-orange-400 font-semibold">NETLIFE: ${netlifeVal}</div>
-                <div class="text-sky-400 font-semibold">ECUANET: ${ecuanetVal}</div>
-            `;
-            
-            tooltip.style.left = `${posX}px`;
-            tooltip.style.top = `${posY}px`;
-            tooltip.classList.remove('hidden');
-        }
-
-        /* TOOLTIP EXCLUSIVO Y PERSONALIZADO PARA JULIO (ABIERTO, CERRADO, CANCELADO, CUADRILLAS) */
         function showJulioTooltip(hora, abierto, cerrado, cancelado, cuadrillas, posX, posY) {
             const tooltip = document.getElementById('chart-tooltip');
-            document.getElementById('tooltip-title').innerText = hora;
+            document.getElementById('tooltip-title').innerText = `Hora: ${hora}:00`;
             document.getElementById('tooltip-body').innerHTML = `
                 <div class="text-[#818cf8] font-semibold flex justify-between gap-4"><span>ABIERTO:</span> <span>${abierto}</span></div>
                 <div class="text-[#fde047] font-semibold flex justify-between gap-4"><span>CERRADO:</span> <span>${cerrado}</span></div>
@@ -913,14 +819,15 @@
             tooltip.classList.remove('hidden');
         }
 
-        function hideJulioTooltip() {
-            hideTooltip();
-        }
-
         function hideTooltip() {
             const tooltip = document.getElementById('chart-tooltip');
-            tooltip.classList.add('hidden');
+            if (tooltip) tooltip.classList.add('hidden');
         }
+
+        // Inicialización
+        window.onload = function() {
+            selectMonth('julio');
+        };
     </script>
 </body>
 </html>
