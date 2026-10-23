@@ -192,27 +192,27 @@
 
             </div>
 
-            <!-- SECCIÓN EXCLUSIVA DE JULIO: GRÁFICA INTERACTIVA DE DISTRIBUCIÓN POR HORAS -->
+            <!-- SECCIÓN EXCLUSIVA DE JULIO: GRÁFICA INTERACTIVA DE DISTRIBUCIÓN POR HORAS (CENTRADA) -->
             <div id="julio-chart-section" class="space-y-4">
-                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
-                    <div class="flex justify-between items-center border-b border-slate-100 pb-2.5">
+                <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-100 pb-3">
                         <div>
                             <h3 class="font-bold text-slate-900 text-base">Distribución por Horas - Julio 2026</h3>
                             <p class="text-xs text-slate-500 mt-0.5">Evolución horaria 100% interactiva. Pasa el cursor sobre cualquier hora o haz clic para ampliar.</p>
                         </div>
-                        <span class="px-2.5 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold rounded-full">Interactiva</span>
+                        <span class="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold rounded-full">Interactiva</span>
                     </div>
 
-                    <div onclick="openImageModal('julio_grafica')" class="cursor-pointer group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 hover:shadow-md transition flex items-center justify-center p-3">
-                        <div class="w-full flex justify-center items-center gap-6 mb-2">
+                    <div onclick="openImageModal('julio_grafica')" class="cursor-pointer group relative overflow-hidden rounded-xl border border-slate-200/80 bg-slate-50 hover:shadow-md transition flex flex-col items-center justify-center p-4">
+                        <div class="w-full flex justify-center items-center gap-6 mb-3">
                             <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#529ab4] inline-block"></span> ABIERTO</div>
                             <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#f3d350] inline-block"></span> CERRADO</div>
                             <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#e75e52] inline-block"></span> CANCELADO</div>
                             <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#18b965] inline-block"></span> CUADRILLAS</div>
                         </div>
 
-                        <div class="relative w-full overflow-x-auto">
-                            <svg viewBox="0 0 900 320" class="w-full h-[280px] select-none">
+                        <div class="relative w-full max-w-5xl mx-auto overflow-x-auto flex justify-center">
+                            <svg viewBox="0 0 900 320" class="w-full h-[300px] select-none">
                                 <line x1="40" y1="30" x2="870" y2="30" stroke="#f1f5f9" stroke-dasharray="3" />
                                 <line x1="40" y1="80" x2="870" y2="80" stroke="#f1f5f9" stroke-dasharray="3" />
                                 <line x1="40" y1="130" x2="870" y2="130" stroke="#f1f5f9" stroke-dasharray="3" />
@@ -255,25 +255,25 @@
                                 <g class="cursor-pointer" onmouseenter="showJulioTooltip(23, 5, 0, 1, 0, 860, 210)" onmouseleave="hideJulioTooltip()"><circle cx="860" cy="258" r="5" fill="#529ab4" stroke="#fff" stroke-width="1.5"/><circle cx="860" cy="270" r="5" fill="#f3d350" stroke="#fff" stroke-width="1.5"/><circle cx="860" cy="268" r="5" fill="#e75e52" stroke="#fff" stroke-width="1.5"/><circle cx="860" cy="270" r="5" fill="#18b965" stroke="#fff" stroke-width="1.5"/></g>
 
                                 <!-- Etiquetas Horarias -->
-                                <text x="50" y="288" font-size="10" fill="#64748b" text-anchor="middle">5</text>
-                                <text x="95" y="288" font-size="10" fill="#64748b" text-anchor="middle">6</text>
-                                <text x="140" y="288" font-size="10" fill="#64748b" text-anchor="middle">7</text>
-                                <text x="185" y="288" font-size="10" fill="#64748b" text-anchor="middle">8</text>
-                                <text x="230" y="288" font-size="10" fill="#64748b" text-anchor="middle">9</text>
-                                <text x="275" y="288" font-size="10" fill="#64748b" text-anchor="middle">10</text>
-                                <text x="320" y="288" font-size="10" fill="#64748b" text-anchor="middle">11</text>
-                                <text x="365" y="288" font-size="10" fill="#64748b" text-anchor="middle">12</text>
-                                <text x="410" y="288" font-size="10" fill="#64748b" text-anchor="middle">13</text>
-                                <text x="455" y="288" font-size="10" fill="#64748b" text-anchor="middle">14</text>
-                                <text x="500" y="288" font-size="10" fill="#64748b" text-anchor="middle">15</text>
-                                <text x="545" y="288" font-size="10" fill="#64748b" text-anchor="middle">16</text>
-                                <text x="590" y="288" font-size="10" fill="#64748b" text-anchor="middle">17</text>
-                                <text x="635" y="288" font-size="10" fill="#64748b" text-anchor="middle">18</text>
-                                <text x="680" y="288" font-size="10" fill="#64748b" text-anchor="middle">19</text>
-                                <text x="725" y="288" font-size="10" fill="#64748b" text-anchor="middle">20</text>
-                                <text x="770" y="288" font-size="10" fill="#64748b" text-anchor="middle">21</text>
-                                <text x="815" y="288" font-size="10" fill="#64748b" text-anchor="middle">22</text>
-                                <text x="860" y="288" font-size="10" fill="#64748b" text-anchor="middle">23</text>
+                                <text x="50" y="292" font-size="10" fill="#64748b" text-anchor="middle">5</text>
+                                <text x="95" y="292" font-size="10" fill="#64748b" text-anchor="middle">6</text>
+                                <text x="140" y="292" font-size="10" fill="#64748b" text-anchor="middle">7</text>
+                                <text x="185" y="292" font-size="10" fill="#64748b" text-anchor="middle">8</text>
+                                <text x="230" y="292" font-size="10" fill="#64748b" text-anchor="middle">9</text>
+                                <text x="275" y="292" font-size="10" fill="#64748b" text-anchor="middle">10</text>
+                                <text x="320" y="292" font-size="10" fill="#64748b" text-anchor="middle">11</text>
+                                <text x="365" y="292" font-size="10" fill="#64748b" text-anchor="middle">12</text>
+                                <text x="410" y="292" font-size="10" fill="#64748b" text-anchor="middle">13</text>
+                                <text x="455" y="292" font-size="10" fill="#64748b" text-anchor="middle">14</text>
+                                <text x="500" y="292" font-size="10" fill="#64748b" text-anchor="middle">15</text>
+                                <text x="545" y="292" font-size="10" fill="#64748b" text-anchor="middle">16</text>
+                                <text x="590" y="292" font-size="10" fill="#64748b" text-anchor="middle">17</text>
+                                <text x="635" y="292" font-size="10" fill="#64748b" text-anchor="middle">18</text>
+                                <text x="680" y="292" font-size="10" fill="#64748b" text-anchor="middle">19</text>
+                                <text x="725" y="292" font-size="10" fill="#64748b" text-anchor="middle">20</text>
+                                <text x="770" y="292" font-size="10" fill="#64748b" text-anchor="middle">21</text>
+                                <text x="815" y="292" font-size="10" fill="#64748b" text-anchor="middle">22</text>
+                                <text x="860" y="292" font-size="10" fill="#64748b" text-anchor="middle">23</text>
                             </svg>
                         </div>
                     </div>
@@ -395,16 +395,16 @@
                 
                 <img id="image-modal-src" src="" alt="Gráfica Ampliada" class="w-full h-auto max-h-[75vh] object-contain rounded-lg hidden">
 
-                <!-- SVG INTERACTIVO JULIO DENTRO DEL MODAL (Todas las horas 5 a 23) -->
+                <!-- SVG INTERACTIVO JULIO DENTRO DEL MODAL (Con suficiente espacio vertical para el Eje X) -->
                 <div id="svg-container-julio" class="w-full h-full relative hidden">
-                    <div class="flex justify-center items-center gap-6 mb-2">
+                    <div class="flex justify-center items-center gap-6 mb-3">
                         <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#529ab4] inline-block"></span> ABIERTO</div>
                         <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#f3d350] inline-block"></span> CERRADO</div>
                         <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#e75e52] inline-block"></span> CANCELADO</div>
                         <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-[#18b965] inline-block"></span> CUADRILLAS</div>
                     </div>
-                    <div class="relative w-full overflow-x-auto">
-                        <svg viewBox="0 0 900 320" class="w-full h-[320px] select-none">
+                    <div class="relative w-full overflow-x-auto flex justify-center">
+                        <svg viewBox="0 0 900 340" class="w-full h-[330px] select-none">
                             <line x1="40" y1="30" x2="870" y2="30" stroke="#e2e8f0" stroke-dasharray="3" />
                             <line x1="40" y1="80" x2="870" y2="80" stroke="#e2e8f0" stroke-dasharray="3" />
                             <line x1="40" y1="130" x2="870" y2="130" stroke="#e2e8f0" stroke-dasharray="3" />
@@ -444,6 +444,27 @@
                             <g class="cursor-pointer" onmouseenter="showJulioTooltip(21, 9, 12, 2, 2, 770, 90)" onmouseleave="hideJulioTooltip()"><circle cx="770" cy="248" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="770" cy="241" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="770" cy="265" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="770" cy="265" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
                             <g class="cursor-pointer" onmouseenter="showJulioTooltip(22, 8, 2, 0, 0, 815, 90)" onmouseleave="hideJulioTooltip()"><circle cx="815" cy="250" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="815" cy="265" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="815" cy="270" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="815" cy="270" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
                             <g class="cursor-pointer" onmouseenter="showJulioTooltip(23, 5, 0, 1, 0, 860, 90)" onmouseleave="hideJulioTooltip()"><circle cx="860" cy="258" r="6" fill="#529ab4" stroke="#fff" stroke-width="2"/><circle cx="860" cy="270" r="6" fill="#f3d350" stroke="#fff" stroke-width="2"/><circle cx="860" cy="268" r="6" fill="#e75e52" stroke="#fff" stroke-width="2"/><circle cx="860" cy="270" r="6" fill="#18b965" stroke="#fff" stroke-width="2"/></g>
+
+                            <!-- Etiquetas Horarias seguras en y="295" -->
+                            <text x="50" y="295" font-size="11" fill="#64748b" text-anchor="middle">5</text>
+                            <text x="95" y="295" font-size="11" fill="#64748b" text-anchor="middle">6</text>
+                            <text x="140" y="295" font-size="11" fill="#64748b" text-anchor="middle">7</text>
+                            <text x="185" y="295" font-size="11" fill="#64748b" text-anchor="middle">8</text>
+                            <text x="230" y="295" font-size="11" fill="#64748b" text-anchor="middle">9</text>
+                            <text x="275" y="295" font-size="11" fill="#64748b" text-anchor="middle">10</text>
+                            <text x="320" y="295" font-size="11" fill="#64748b" text-anchor="middle">11</text>
+                            <text x="365" y="295" font-size="11" fill="#64748b" text-anchor="middle">12</text>
+                            <text x="410" y="295" font-size="11" fill="#64748b" text-anchor="middle">13</text>
+                            <text x="455" y="295" font-size="11" fill="#64748b" text-anchor="middle">14</text>
+                            <text x="500" y="295" font-size="11" fill="#64748b" text-anchor="middle">15</text>
+                            <text x="545" y="295" font-size="11" fill="#64748b" text-anchor="middle">16</text>
+                            <text x="590" y="295" font-size="11" fill="#64748b" text-anchor="middle">17</text>
+                            <text x="635" y="295" font-size="11" fill="#64748b" text-anchor="middle">18</text>
+                            <text x="680" y="295" font-size="11" fill="#64748b" text-anchor="middle">19</text>
+                            <text x="725" y="295" font-size="11" fill="#64748b" text-anchor="middle">20</text>
+                            <text x="770" y="295" font-size="11" fill="#64748b" text-anchor="middle">21</text>
+                            <text x="815" y="295" font-size="11" fill="#64748b" text-anchor="middle">22</text>
+                            <text x="860" y="295" font-size="11" fill="#64748b" text-anchor="middle">23</text>
                         </svg>
                     </div>
                 </div>
@@ -453,7 +474,7 @@
                         <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-orange-500 inline-block"></span> NETLIFE</div>
                         <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-sky-500 inline-block"></span> ECUANET</div>
                     </div>
-                    <div class="relative w-full overflow-x-auto">
+                    <div class="relative w-full overflow-x-auto flex justify-center">
                         <svg viewBox="0 0 900 340" class="w-full h-[320px] select-none">
                             <line x1="50" y1="30" x2="870" y2="30" stroke="#e2e8f0" stroke-dasharray="4" />
                             <line x1="50" y1="90" x2="870" y2="90" stroke="#e2e8f0" stroke-dasharray="4" />
@@ -489,7 +510,7 @@
                         <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-orange-500 inline-block"></span> NETLIFE</div>
                         <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-sky-500 inline-block"></span> ECUANET</div>
                     </div>
-                    <div class="relative w-full overflow-x-auto">
+                    <div class="relative w-full overflow-x-auto flex justify-center">
                         <svg viewBox="0 0 900 340" class="w-full h-[320px] select-none">
                             <line x1="50" y1="20" x2="870" y2="20" stroke="#e2e8f0" stroke-dasharray="4" />
                             <line x1="50" y1="80" x2="870" y2="80" stroke="#e2e8f0" stroke-dasharray="4" />
@@ -526,7 +547,7 @@
                         <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-orange-500 inline-block"></span> NETLIFE</div>
                         <div class="flex items-center gap-1.5 text-xs font-semibold"><span class="w-3 h-3 rounded-full bg-sky-500 inline-block"></span> ECUANET</div>
                     </div>
-                    <div class="relative w-full overflow-x-auto">
+                    <div class="relative w-full overflow-x-auto flex justify-center">
                         <svg viewBox="0 0 900 340" class="w-full h-[320px] select-none">
                             <line x1="50" y1="30" x2="870" y2="30" stroke="#e2e8f0" stroke-dasharray="4" />
                             <line x1="50" y1="90" x2="870" y2="90" stroke="#e2e8f0" stroke-dasharray="4" />
